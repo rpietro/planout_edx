@@ -25,6 +25,7 @@ like R http://www.r-project.org/ or python
 Jacinto José Franco, MSc
 Joao Ricardo Vissoci, PhD
 Bruno Melo
+Jacson Barros
 Ricardo Pietrobon, MD, PhD
 Seiji Isotani, PhD
 
