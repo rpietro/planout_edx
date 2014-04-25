@@ -2,6 +2,15 @@
 
 
 <!-- 
+variable categories
+1. arm
+2. baseline
+3. outcomes from exercises
+4. outcomes from computer logs
+
+ -->
+
+<!-- 
 
 https://edx-wiki.atlassian.net/wiki/pages/viewpage.action?pageId=39551632
 
