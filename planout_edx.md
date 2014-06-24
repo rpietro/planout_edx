@@ -2,6 +2,15 @@
 
 
 <!-- 
+variable categories
+1. arm
+2. baseline
+3. outcomes from exercises
+4. outcomes from computer logs
+
+ -->
+
+<!-- 
 
 https://edx-wiki.atlassian.net/wiki/pages/viewpage.action?pageId=39551632
 
@@ -34,6 +43,8 @@ Seiji Isotani, PhD
 # Introduction
 
 Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal empirical data. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice. 
+
+In the now classic Pyramid of Evidence proposed by the founders of Evidence-Based-Medicine, <!-- ref -->randomized controled trials and the corresponding meta-analyses are at the top, while observational studies and reports based on personal experience are positioned at a lower level. While this classification has been transposed to educational research <!-- ref -->, it has also been significantly criticized since randomized controled trials tend to select samples that are consistently different from the population where its results are supposed to be applied. <!-- ref --> While the same is certainly true for in person education - individuals commiting to participate in an in-person educational trial will likely be different - in online environments randomization can be seamless, with the potential to conduct dozens of experiments within a single educational unit. An example of platforms allowing for online randomization include the [Planout framework](), recently released by [Facebook](https://www.facebook.com/) and currently used to conduct over 1000 experiments on their site. Despite the promising perspective of transforming education into an evidence-driven field, to date most learning management systems have been unable to take advantage of frameworks such as Planout, and as a consequence the number and quality of educational trials is still far behind where it could be.
 
 <!-- Hawthorne effect and the problem with experiments run in artificial educational environments  -->
 
