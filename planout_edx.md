@@ -223,9 +223,19 @@ open source library of data analysis scripts in R and Python
 ## Data export
 
 ## Reproducible analysis scripts for each study design
+fazer em ipython notebooks
+
+<!-- 
+
+import R into ipython http://ipython.org/ipython-doc/dev/config/extensions/rmagic.html and then run
+
+http://nbviewer.ipython.org/gist/yoavram/5280132
+
 http://cran.us.r-project.org/web/views/ClinicalTrials.html
 http://cran.us.r-project.org/web/views/ExperimentalDesign.html
 http://cran.us.r-project.org/web/views/ReproducibleResearch.html
+ -->
+http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
 
 
 
