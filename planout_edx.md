@@ -301,6 +301,8 @@ http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
 
 # Discussion
 
+To the best of our knowledge, this is the first description of the integration between a comprehensive randomization system and a modular learning management system, ultimately allowing for the incorporation of randomized experiments into the daily practice of online courses. Of special interest, 
+
 <!-- 
 https://sites.google.com/a/khanacademy.org/forge/technical/data_n
 
