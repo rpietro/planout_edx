@@ -17,10 +17,10 @@ In the now classic [Pyramid of Evidence](http://libguides.mssm.edu/hierarchy) pr
 
 When it comes to randomized experiments in education, a full range of designs is theoretically possible. For example, cluster randomized trials have been advocated when a class might be highly influenced by an instructor <!-- ref -->, factorial trial have been advocated when simultaneously testing variations of an educational method <!-- ref -->, blocked and stratified designs when there might be concern regarding imbalances. More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, outcomes without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts. <!-- ref --> All of these designs are certainly interesting, but without a supporting technology they are more often than not relegated to a secondary plane, educators often not making use of randomization at all or using simplistic designs when more sophisticated ones could lead toward better information to guide educational practice.
 
-In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework.
+In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework. 
 
-# Methods
-## edX and Planout descriptions
+## Methods
+### edX and Planout descriptions
 
 The [Open edX platform](http://code.edx.org/) is an open source, Python-based learning management system licensed under the AGPL <!-- ref -->license. Student data are stored on a relational databases ([MySQL]()) and course metadata stored within a NoSQL document database ([MongoDB]()). It is based on a very modular architecture and built with the assistance of a strong, international open source community. It currently contains a number of modules allowing for its expansion, the main building block being an [XBlock]() learning component. In addition to XBlocks, the Open edX platform currently contains additional modules such as the edX-ORA (Open Response Assessor), which allows for self, peer and automatic grading of open questions. Although an initial effort to create a randomization mechanism for AB trials (randomized experiments comparing arm A versus B), this system is currently limited to the comparison of theme changes, and is thus primarily focused on the testing of User eXperience (UX) features. The randomization of full educational methods and content is therefore still limited.
 
@@ -38,7 +38,7 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 [Planout](https://facebook.github.io/planout/) was recently released by [Facebook](https://www.facebook.com/) as an open source, Python-based framework for conducting online randomized experiments. With designs being easily configurable using [JSON (JavaScript Object Notation)](), Planout allows for the design of an extensive range of configuration for designs such as clustering, blocking, stratification, different allocation proportions, indefinite number of randomization arms, among many others. Given its easy extensability, Planout allows not only for the implementation of a multitude of different designs, but also for the creation of new designs that might not have been described in the trial literature thus far.
 
-## Requisites and informal use cases
+### Requisites and informal use cases
 
 Our primary requisites for the system were: (1) the system should be able to randomize anything included within the Open edX platform, not restricting itself to User eXperience features but also including any type of educational content, (2) it should be able to deliver a wide range of design and randomization frameworks such as the ones offered through Planout, (3) it should allow for external scripting, thus facilitating its further integration with future frameworks such as those offering visual feedback to exercise groups and (4) it should provide researchers with ability to extract the data for research and quality improvement studies. Notice that as a first release we have did not stipulate a reporting graphical interface as a requisite.
 
@@ -51,8 +51,8 @@ Our primary informal use case is described as:
 4. The trial is tested
 
 
-## Application architecture
-### Original Open edX
+### Application architecture
+#### Original Open edX
 <!-- Os conteúdos que podem ser adicionados nas unidades do edX são:
 \begin{itemize}
     \item \textbf{HTML} -- texto formatado com o editor WYSIWYG ou com o editor de código HTML, onde é possível adicionar imagens, animações, texto e iFrames (tag do HTML que permite adicionar páginas inteiras dentro de uma página).
@@ -157,26 +157,26 @@ database architecture
 [AGPL](http://www.gnu.org/licenses/agpl-3.0.html)
  -->
 
-### Original Planout
+#### Original Planout
 
 system description
 planout edX integration
 [BSD License](https://github.com/facebook/planout/blob/master/LICENSE)
 
-### Integration architecture
+#### Integration architecture
 
 <!-- Jacinto, please add a graphic -->
 
 
 
 
-## Data export and analysis script
+### Data export and analysis script
 
 Data export
 Open Access description templates in compliance with CONSORT statement
 open source library of data analysis scripts in R and Python
 
-# Results
+## Results
 
 https://github.com/geekaia/edx-platform
 
@@ -299,7 +299,7 @@ http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
 
 
 
-# Discussion
+## Discussion
 
 To the best of our knowledge, this is the first description of the integration between a comprehensive randomization system and a modular learning management system, ultimately allowing for the incorporation of randomized experiments into the daily practice of online courses. Of special interest, 
 
