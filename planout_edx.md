@@ -1,4 +1,4 @@
-"It is a capital mistake to theorize before you have all the evidence": Educational trial design, randomization and analysis framework integrated into an Open Source Learning Management System
+# "It is a capital mistake to theorize before you have all the evidence": Educational trial design, randomization and analysis framework integrated into an Open Source Learning Management System
 
 Jacinto José Franco, MSc
 Joao Ricardo Vissoci, PhD
@@ -7,9 +7,9 @@ Jacson Barros
 Ricardo Pietrobon, MD, PhD
 Seiji Isotani, PhD
 
-# Abstract
+## Abstract
 
-# Introduction
+## Introduction
 
 Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice. 
 
@@ -20,7 +20,6 @@ When it comes to randomized experiments in education, a full range of designs is
 In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework.
 
 # Methods
-
 ## edX and Planout descriptions
 
 The [Open edX platform](http://code.edx.org/) is an open source, Python-based learning management system licensed under the AGPL <!-- ref -->license. Student data are stored on a relational databases ([MySQL]()) and course metadata stored within a NoSQL document database ([MongoDB]()). It is based on a very modular architecture and built with the assistance of a strong, international open source community. It currently contains a number of modules allowing for its expansion, the main building block being an [XBlock]() learning component. In addition to XBlocks, the Open edX platform currently contains additional modules such as the edX-ORA (Open Response Assessor), which allows for self, peer and automatic grading of open questions. Although an initial effort to create a randomization mechanism for AB trials (randomized experiments comparing arm A versus B), this system is currently limited to the comparison of theme changes, and is thus primarily focused on the testing of User eXperience (UX) features. The randomization of full educational methods and content is therefore still limited.
@@ -51,22 +50,8 @@ Our primary informal use case is described as:
 3. The script is inserted on the Open edX interface
 4. The trial is tested
 
-<!-- 1. The initial randomization arm for the trial, often times the control group when it might exist, will have its content fully created and tested by the instructor. This might include any slides, videos, exercises, as well as any features that might be part of the actual course. Included in this design will be any exercises that might serve as the outcome variable for the trial. For example, these could include exercises measuring knowledge secondary to the course content, questions evaluating satisfaction with the course as a student, ability to put the course information into practice, among others. Notice here that from an operational perspective the length of the course is not relevant, and the instructor has complete freedom to include whatever she might want.
-<!-- Just to make sure I understand, this initial randmization arm will receive regular slide/video/exercise based course? To be compared with other types of courses? If so, it is no very clear for me. It is no clear of what the first arm will be composed by, or what kind of regular based teaching we are cloning (Joao) -->
-<!-- not sure this is relevant here since we are talking about the platform and not a specific trial. but also not sure i understood the comment haha 
-2. Once the initial arm is completed and tested, this arm is cloned. This clone will then be modified to include whatever course features the instructor might want to test. For example, videos and slides could be modified to include a different instructional strategy, the interface could be changed to test a different type of environment, a new wiki could be included to test a more interactive environment eliciting discussions, among others. From a trial design perspective, instructors are not advised to change any exercises representing the outcomes variables of the study since that would violate the assumption that all subjects will have the same evaluation criteria, but the system will not prevent them from doing so in case of a semi-experimental or some other non-experimental exploratory design.
-3. Once one or more intervention arms are derived from the original one, then a [Planout](http://facebook.github.io/planout/docs/getting-started.html) script will be written directly in [JSON (JavaScript Object Notation)](http://www.json.org/) format. Given that the platform is highly technical, at this point we do not envision most instructors programming direcly in JSON, but instead discussing the design with a methodologist and a programmer for implementation and testing. Future releases of this software could include a graphical interface, thus creating an [Agile Development environment](http://agilemanifesto.org/) that allows for the progressive inclusion of application features rather than fully loading them upfront without frequent interaction with instructors.  Add a reference to Agile Development (Joao) 
-4. The interface between Planout and Open edX will be created using [xblock](https://github.com/edx/XBlock), an API (Application Programming Environment). The integration between Planout and Open edX will occur by allowing Planout to direct the following online trial features:
-    * Defining which pages will render the course
-    * Pbtaining user ids and mapping them between Open edX and Planout
-    * Connecting an Anchoring Experiment object, which is the internal identification for experiments in Planout for a given user id. The Anchoring Experiment will contain all the design specifications using the Planout Language, including details about factors such as design type, randomization proportion, randomization arms, among any other factors pre-defined by the Planout language. For a full, detailed description of Planout please visit its [official page](http://facebook.github.io/planout/index.html) or its [main article](https://www.facebook.com/download/255785951270811/planout.pdf).
-    * Connecting the results of the exercises defined as outcome variables by the instructor to the Planout Anchoring Experiment where the fields representing the outcome variables are defined
-    * Testing the logging outcomes to ensure that all participant actions and respective outcomes are being appropriately logged
-
- -->
 
 ## Application architecture
-
 ### Original Open edX
 <!-- Os conteúdos que podem ser adicionados nas unidades do edX são:
 \begin{itemize}
@@ -193,6 +178,99 @@ open source library of data analysis scripts in R and Python
 
 # Results
 
+https://github.com/geekaia/edx-platform
+
+Vídeo 0  
+http://youtu.be/3ahFI6aJP30
+
+Vídeo 1
+http://youtu.be/BT3hPxVwCXM
+
+Video2 forum
+http://youtu.be/AF8IY_iRbD8
+
+Video 3 ParteEntidadeRelacionamento
+http://youtu.be/yADpLzlYU8w
+
+Video 4 Lembrete em relacao a quantidadedeVersoes
+http://youtu.be/fE79gZSvwlg
+
+
+Abaixo há algumas idéias de scripts que podem ser utilizados.
+
+Observe que, com esta opção permite que os alunos Brasileiros acessem somente a versão A do experimento, para os estudantes dos EUA verão somente a versão B e para os demais será randomizado entre as opções A, B ou C.
+
+ CHOICES[0] -- ARM A
+ CHOICES[1] -- ARM B
+ CHOICES[2] -- ARM C caso haja
+
+if(PAIS=='BR')
+{
+  URL = CHOICES[0];
+} else if (PAIS=='US')
+{
+  URL = CHOICES[1]; 
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+
+
+Assim como para o país, podemos atribuir uma versão específica do experimento de acordo com o nível de intrução. 
+
+if(SEXO=='m')
+{
+  URL = CHOICES[0];
+} else if (SEXO=='f')
+{
+  URL = CHOICES[1];
+} else { 
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+Com o nível de Instrução
+
+if(INSTRUCAO=='m')
+{
+  URL = CHOICES[0];
+} else if (INSTRUCAO=='b')
+{
+  URL = CHOICES[1];
+} else { 
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+
+Agora com a estratificada do sexo masculino. Neste exemplo, alunos do sexo masculino tem 50% de chances de entrar no ARM A e mais um pouco se cair no último ELSE.
+
+p1 = BernoulliTrial(p=0.5, unit=userid)
+if(SEXO=='m' && p1)
+{
+  URL = CHOICES[0];
+} else if (SEXO=='f')
+{
+  URL = CHOICES[1];
+} else { 
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+Podemos pensar em estratificar por faixa de idade. Por exemplo, alunos de idade > 18 < 25 e cidade='São Paulo', mas o campo cidade fica em aberto no edX, daí não dá para assegurar que o aluno vá entrar SÃO PAULO ou São Paulo, ou são paulo-SP. Se isso for fundamental eu posso pensar em uma forma de modificar a caixa de entrada para que o usuário selecione a cidade ao invés de digitar.
+
+Não sei se precisa mais de alguma coisa em relação aos scripts. Caso precise, devemos elencar o que exatamente deve ser estratificado. Lembrando que ficaremos limitados a somente algumas instruções com as variáveis PAIS, CIDADE, IDADE, SEXO e INSTRUCAO.
+
+Estou terminando a documentação e já te envio a listagem dos arquivos que devem ser traduzidos.
+
+
+
+Módulo experiments e experiments lms 
+tudo o que começar com """ e no corpo dos algoritmos o que começar com # 
+
+https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments
+https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experimentslms
+
+
+Templates 
+https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
 
 ## Video library and documentation for new users
 
@@ -295,3 +373,18 @@ like R http://www.r-project.org/ or python
  -->
 
 <!-- Hawthorne effect and the problem with experiments run in artificial educational environments  -->
+
+
+<!-- 1. The initial randomization arm for the trial, often times the control group when it might exist, will have its content fully created and tested by the instructor. This might include any slides, videos, exercises, as well as any features that might be part of the actual course. Included in this design will be any exercises that might serve as the outcome variable for the trial. For example, these could include exercises measuring knowledge secondary to the course content, questions evaluating satisfaction with the course as a student, ability to put the course information into practice, among others. Notice here that from an operational perspective the length of the course is not relevant, and the instructor has complete freedom to include whatever she might want.
+<!-- Just to make sure I understand, this initial randmization arm will receive regular slide/video/exercise based course? To be compared with other types of courses? If so, it is no very clear for me. It is no clear of what the first arm will be composed by, or what kind of regular based teaching we are cloning (Joao) -->
+<!-- not sure this is relevant here since we are talking about the platform and not a specific trial. but also not sure i understood the comment haha 
+2. Once the initial arm is completed and tested, this arm is cloned. This clone will then be modified to include whatever course features the instructor might want to test. For example, videos and slides could be modified to include a different instructional strategy, the interface could be changed to test a different type of environment, a new wiki could be included to test a more interactive environment eliciting discussions, among others. From a trial design perspective, instructors are not advised to change any exercises representing the outcomes variables of the study since that would violate the assumption that all subjects will have the same evaluation criteria, but the system will not prevent them from doing so in case of a semi-experimental or some other non-experimental exploratory design.
+3. Once one or more intervention arms are derived from the original one, then a [Planout](http://facebook.github.io/planout/docs/getting-started.html) script will be written directly in [JSON (JavaScript Object Notation)](http://www.json.org/) format. Given that the platform is highly technical, at this point we do not envision most instructors programming direcly in JSON, but instead discussing the design with a methodologist and a programmer for implementation and testing. Future releases of this software could include a graphical interface, thus creating an [Agile Development environment](http://agilemanifesto.org/) that allows for the progressive inclusion of application features rather than fully loading them upfront without frequent interaction with instructors.  Add a reference to Agile Development (Joao) 
+4. The interface between Planout and Open edX will be created using [xblock](https://github.com/edx/XBlock), an API (Application Programming Environment). The integration between Planout and Open edX will occur by allowing Planout to direct the following online trial features:
+    * Defining which pages will render the course
+    * Pbtaining user ids and mapping them between Open edX and Planout
+    * Connecting an Anchoring Experiment object, which is the internal identification for experiments in Planout for a given user id. The Anchoring Experiment will contain all the design specifications using the Planout Language, including details about factors such as design type, randomization proportion, randomization arms, among any other factors pre-defined by the Planout language. For a full, detailed description of Planout please visit its [official page](http://facebook.github.io/planout/index.html) or its [main article](https://www.facebook.com/download/255785951270811/planout.pdf).
+    * Connecting the results of the exercises defined as outcome variables by the instructor to the Planout Anchoring Experiment where the fields representing the outcome variables are defined
+    * Testing the logging outcomes to ensure that all participant actions and respective outcomes are being appropriately logged
+
+ -->
