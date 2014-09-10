@@ -301,7 +301,17 @@ http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
 
 ## Discussion
 
-To the best of our knowledge, this is the first description of the integration between a comprehensive randomization system and a modular learning management system, ultimately allowing for the incorporation of randomized experiments into the daily practice of online courses. Of special interest, 
+To the best of our knowledge, this is the first description of the integration between a comprehensive randomization system and a modular learning management system. Our system allows for the incorporation of randomized experiments into the daily practice of online courses. Of special interest, this system can be used with both hundreds of thousands of learners such as in a Massive Open Online Course (MOOC) or personalized courses set for a single person. In addition, the randomization is based on a series of scripts, thus allowing for extreme flexibility in terms of the types of trials designs that can be deployed.
+
+* randomization in education
+
+* integration into MOOCs and personalized courses
+
+* flexibility in trial design
+
+Although we expect our system to have an impact on the education practice as well as evidence-based learning, our system does have limitations. First, since we emphasized flexibility through the use of programming scripts, our system might not be set by individual instructors. Although this is a limitation, the implementation of a graphical user interface is not overly complex and could be implemented in subsequent cycles of our project. Second, although all data can be extracted for subsequent analysis, we still have not implemented interfaces that that would allow for report generation directly by instructors. Although these reports would improve user experience, we feel that before we focus on individual reports it would be appropriate to have more information on which reports might be of more interested to most instructors. In sum, our development continues to follow [Agile principles](http://agilemanifesto.org/), with a focus on the end user as well as using iterative development cycles.
+
+In conclusion, we expect that future development of this system might lead toward the combination of randomization at the individual level through [N-of-1 trials](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3118090/) in combination with mechanisms to provide personalized information, thus combining the scalability of MOOCs with the customization of personalized education. Of immediate relevance, we expect that more instructors in charge of content generation might decide to include randomization as part of their courses, also making the resulting evidence available to other instructors and the data to their research peers.
 
 <!-- 
 https://sites.google.com/a/khanacademy.org/forge/technical/data_n
