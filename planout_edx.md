@@ -9,6 +9,8 @@ Seiji Isotani, PhD
 
 ## Abstract
 
+<!-- write at the end -->
+
 ## Introduction
 
 Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice. 
@@ -37,6 +39,11 @@ When organizing courses, instructors are presented with the edX Studio Content M
  -->
 
 [Planout](https://facebook.github.io/planout/) was recently released by [Facebook](https://www.facebook.com/) as an open source, Python-based framework for conducting online randomized experiments. With designs being easily configurable using [JSON (JavaScript Object Notation)](), Planout allows for the design of an extensive range of configuration for designs such as clustering, blocking, stratification, different allocation proportions, indefinite number of randomization arms, among many others. Given its easy extensability, Planout allows not only for the implementation of a multitude of different designs, but also for the creation of new designs that might not have been described in the trial literature thus far.
+
+
+### Existing randomization within Open edX
+
+<!-- Jacinto, voce pode descrever o sistema atual aqui? -->
 
 ### Requisites and informal use cases
 
@@ -294,14 +301,16 @@ http://nbviewer.ipython.org/gist/yoavram/5280132
 http://cran.us.r-project.org/web/views/ClinicalTrials.html
 http://cran.us.r-project.org/web/views/ExperimentalDesign.html
 http://cran.us.r-project.org/web/views/ReproducibleResearch.html
- -->
 http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
+
+
+ -->
 
 
 
 ## Discussion
 
-To the best of our knowledge, this is the first description of the integration between a comprehensive randomization system and a modular learning management system. Our system allows for the incorporation of randomized experiments into the daily practice of online courses. Of special interest, this system can be used with both hundreds of thousands of learners such as in a Massive Open Online Course (MOOC) or personalized courses set for a single person. In addition, the randomization is based on a series of scripts, thus allowing for extreme flexibility in terms of the types of trials designs that can be deployed.
+To the best of our knowledge, this is the first description of the integration between a comprehensive randomization system and a modular learning management system. Our system allows for the incorporation of a wide range of randomized experiments into the daily practice of online courses. Of special interest, this system can be used with both hundreds of thousands of learners such as in a Massive Open Online Course (MOOC) or personalized courses set for a single person. In addition, the randomization is based on a series of scripts, thus allowing for extreme flexibility in terms of the types of trials designs that can be deployed.
 
 * randomization in education
 
