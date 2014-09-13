@@ -216,7 +216,7 @@ Antes de descrever o funcionamento do sistema, iremos fazer uma breve descriçã
 - *UserChoiceExperiment* -- esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
 - *AnonyMousPost* -- esta entidade armazena id do comentário e do usuário, que permite identificar um post anônimo. Desta forma, possibilita que, mesmo em posts anônimos, usuários de um grupo só tenha acesso aos posts do mesmo grupo.
 
-A entidades auth\_user está presente por padrão em qualquer aplicação Django e, para o nosso protótipo, serve para identificar o dono do experimento e Arms alocados no LMS. Auth\_profile é donde extrai-se informações sobre os estudantes, tais como: sexo, nacionalidade, cidade, escolaridade, aniversário e outras informações. 
+A entidades auth\_user está presente por padrão em qualquer aplicação Django e, para o nosso protótipo, serve para identificar o dono do experimento e Arms alocados no LMS. Auth\_profile é donde extrai-se informações sobre os estudantes, tais como: sexo, nacionalidade, cidade, escolaridade, aniversário e outras informações. Algumas informações são passadas como argumento dos scripts em planout, o que permite fazer algumas tomadas de decisões e fazer a estratificação via script.
 
 
 <!-- Jacinto, por favor adicione aqui como exatamente o planout e edx foram integrados. essa seção deve ser sucinta, não mais do que meia a uma página -->
