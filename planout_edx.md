@@ -65,6 +65,18 @@ Our primary informal use case is described as:
 Below we describe the original Open edX and Planout architectures, followed by the overall integration architecture.
 
 #### Original Open edX
+O edX é composto por um conjunto de componentes modulares, dentre os principais, podemos citar: Studio ou CMS, LMS, cs_comments_service e mais os bancos de dados Mysql e MongoDb CITE[OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). Esta modularidade da arquitetura permite que algumas coisas possam ser executadas em hosts distintos, tornando a arquitetura altamente escalável, o que pode melhorar os tempos de resposta, mesmo quando a taxa de acessos é grande.
+
+Na Figura XXX ilustra os principais elementos desta arquitetura. Podemos ver dois componentes principais, o CMS ou Studio e o LMS. Dentro desta arquitetura o CMS é o componente que fornece um conjunto de ferramentas aos staff members para fazer a autoração de cursos. No CMS, também permite-se adicionar algums itens opcionais aos cursos, critérios para determinar quem pass or fail no curso e algumas configurações para cada atividade disponibilizada aos alunos. Além disso, o CMS também provê métodos para importar e exportar conteúdos dos cursos.
+
+![alt Arquitetura edX](./img/studiomapping.jpg "Arquitetura do Sistema" )
+
+No LMS (Learning Management System) contém uma série de métodos que permitem ao aluno matricular-se em  cursos,  interagir com os conteúdos disponibilizados via CMS. No LMS, para os staff members, também disponibiliza alguns métodos que permitem extrair alguns dados estatísticos dos cursos.
+
+Alguns coisas estão disponíveis por padrão no CMS, tais como Vídeos, HTML, problemas e discussões do forum, já outros módulos adicionais podem ser carregados mudando algumas setting policies no CMS.
+
+A grande maioria dos componentes do edX foram desenvolvidos utilizando o framework web Django, contudo para efetuar renderização do conteúdo mostrado nos browser cliente, faz-se uso da biblioteca Mako, que proporciona uma melhor flexibilidade e desempenho.
+
 
 <!-- Jacinto, na seção abaixo a gente precisa somente de uma descrição da arquitetura de maneira muito geral, não da maneira como o edx funciona. essa seção deve ser sucinta, não mais do que meia a uma página -->
 
@@ -173,6 +185,18 @@ database architecture
  -->
 
 #### Original Planout
+Com o PlanOut é possível criar experimentos elaborados com o intuito de analisar possíveis efeitos que a mudança de níveis de um determinado fator tem no resultado. Com o PlanOut permite criar experimentos de 2 formas: criar classes em Python ou carregando arquivos JSON gerados a partir da compilação do código escrito via PlanOut Script. Caso seja utilizado scripts, o JSON deve ser carregado pelo interpretador.
+
+O PlanOut foi criado para tornar fácil a criação de experimentos elaborados e é possível criar experimentos A/B e multivariáveis. Em sua linguagem script, om Planout disponibiliza operadores lógicos, matrizes, aritméticos e de flow control. Assim, podemos criar experimentos que randomizem condicionalmente de acordo com o que está definido no script.Isto possibilita analisar efeitos que um dado fator tem para um grupo em específico e, determinar, de uma forma mais precisa, diferenças entre os conteúdos disponíveis aos usuários.
+
+Dentre os operadores disponibilizados pelo PlanOut para fazer a randomização, em nosso protótipo fazemos uso dos seguintes operadores:
+1. UniformChoice -- todas as opções do experimento tem a mesma probabilidade de serem selecionadas;
+2. WeightedChoice -- permite especificar uma probabilidade para cada opção;
+3. BernoulliTrial -- retorna o valor 0 ou 1 de acordo uma probabilidade específica; 
+
+Cada randomização do PlanOut age de forma independente e cada operador faz uso de funções hash mais pseudo-geradores de números aleatórios. Isto faz com que, de uma forma geral, a distribuição gerada esteja de acordo com o que foi especificado nos argumentos dos operadores.
+
+Após acontecer uma randomização, o framework gera um registro em um arquivo com extensão **.log**, onde conterá os argumentos utilizados como entrada, timestamp, userid e a respectiva opção definida pela randomização.
 
 <!-- Jacinto por favor acrescente uma descrição da arquitetura do planout abaixo. essa seção deve ser sucinta, não mais do que meia a uma página -->
 
@@ -181,6 +205,19 @@ planout edX integration
 [BSD License](https://github.com/facebook/planout/blob/master/LICENSE)
 
 #### Integration architecture
+Antes de descrever o funcionamento do sistema, iremos fazer uma breve descrição das entidades criadas, que viabilizaram o desenvolvimento de nosso protótipo. Parte do Modelo Entidade Relacionamento está descrito na Figura XXX., onde ilustra os relacionamentos abaixo descritos. Estas entidades estão definidas no banco de dados MySql e descritas com algumas classes em Python. 
+
+![alt Arquitetura edX](./img/modeloer.png "Parte do modelo Entidade Relacionamento" )
+
+**Entidades adicionadas**: 
+- *ExperimentDefinition* -- esta é a entidade principal, no qual servirá para identificar um experimento no edX. Para cada semana, em um  dado curso, é permitido que o docente crie uma entrada nesta tabela. 
+- *OpcoesExperiment* -- armazena as endereços que serão utilizadas para recuperar as sections que participam do experimento. Cada entrada desta entidade representa uma Arm do experimento.
+- *StrategyRandomization* -- esta entidade permite que o professor defina um design, script do PlanOut ou alterne entre operadores utilizados para randomizar. Por padrão, ao criar o experimento, define-se como forma de randomização o operador UniformChoice. Em nosso protótipo o professor/staff members só podem alterar o Operador, Script ou Design  no primeiro experimento do curso, já que, nosso objetivo é proporcionar uma interface única para cada usuário. Por isso, um usuário, sempre estará em um único arm, independentemente do experimento definido em um curso.
+- *UserChoiceExperiment* -- esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
+- *AnonyMousPost* -- esta entidade armazena id do comentário e do usuário, que permite identificar um post anônimo. Desta forma, possibilita que, mesmo em posts anônimos, usuários de um grupo só tenha acesso aos posts do mesmo grupo.
+
+A entidades auth\_user está presente por padrão em qualquer aplicação Django e, para o nosso protótipo, serve para identificar o dono do experimento e Arms alocados no LMS. Auth\_profile é donde extrai-se informações sobre os estudantes, tais como: sexo, nacionalidade, cidade, escolaridade, aniversário e outras informações. 
+
 
 <!-- Jacinto, por favor adicione aqui como exatamente o planout e edx foram integrados. essa seção deve ser sucinta, não mais do que meia a uma página -->
 
@@ -208,10 +245,6 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 what are the emails??
 
 
-
-
-
- 
 
 
 
