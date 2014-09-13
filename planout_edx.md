@@ -7,6 +7,8 @@ Jacson Barros
 Ricardo Pietrobon, MD, PhD
 Seiji Isotani, PhD
 
+
+
 ## Abstract
 
 <!-- write at the end -->
@@ -59,7 +61,13 @@ Our primary informal use case is described as:
 
 
 ### Application architecture
+
+Below we describe the original Open edX and Planout architectures, followed by the overall integration architecture.
+
 #### Original Open edX
+
+<!-- Jacinto, na seção abaixo a gente precisa somente de uma descrição da arquitetura de maneira muito geral, não da maneira como o edx funciona. essa seção deve ser sucinta, não mais do que meia a uma página -->
+
 <!-- Os conteúdos que podem ser adicionados nas unidades do edX são:
 \begin{itemize}
     \item \textbf{HTML} -- texto formatado com o editor WYSIWYG ou com o editor de código HTML, onde é possível adicionar imagens, animações, texto e iFrames (tag do HTML que permite adicionar páginas inteiras dentro de uma página).
@@ -166,42 +174,97 @@ database architecture
 
 #### Original Planout
 
+<!-- Jacinto por favor acrescente uma descrição da arquitetura do planout abaixo. essa seção deve ser sucinta, não mais do que meia a uma página -->
+
 system description
 planout edX integration
 [BSD License](https://github.com/facebook/planout/blob/master/LICENSE)
 
 #### Integration architecture
 
-<!-- Jacinto, please add a graphic -->
+<!-- Jacinto, por favor adicione aqui como exatamente o planout e edx foram integrados. essa seção deve ser sucinta, não mais do que meia a uma página -->
+
+<!-- Video 3 ParteEntidadeRelacionamento
+http://youtu.be/yADpLzlYU8w
+ -->
+
+## Results
+
+The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP).
+
+### Design of experiments
+
+
+
+<!-- create videos in english -->
+
+[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
+
+[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
+
+[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
+
+
+what are the emails??
 
 
 
 
-### Data export and analysis script
+
+ 
+
+
+
+### Forums
+
+
+http://youtu.be/AF8IY_iRbD8
+
+
+
+
+
+
+
+
+
+
+### Video library and documentation for new users
+
+<!-- Jacinto - pydoc, maintain original licenses -->
+
+[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
+
+[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
+
+[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
+
+### Planout library
+
+<!-- jacinto to add scripts under github repo -->
+
+### Reproducible analysis scripts for each study design
+
+<!-- ricardo to add rmd in R and possibly in python -->
+
+
+<!-- 
+
+import R into ipython http://ipython.org/ipython-doc/dev/config/extensions/rmagic.html and then run
+
+http://nbviewer.ipython.org/gist/yoavram/5280132
+
+http://cran.us.r-project.org/web/views/ClinicalTrials.html
+http://cran.us.r-project.org/web/views/ExperimentalDesign.html
+http://cran.us.r-project.org/web/views/ReproducibleResearch.html
+http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
+
+
+ -->
 
 Data export
 Open Access description templates in compliance with CONSORT statement
 open source library of data analysis scripts in R and Python
-
-## Results
-
-https://github.com/geekaia/edx-platform
-
-Vídeo 0  
-http://youtu.be/3ahFI6aJP30
-
-Vídeo 1
-http://youtu.be/BT3hPxVwCXM
-
-Video2 forum
-http://youtu.be/AF8IY_iRbD8
-
-Video 3 ParteEntidadeRelacionamento
-http://youtu.be/yADpLzlYU8w
-
-Video 4 Lembrete em relacao a quantidadedeVersoes
-http://youtu.be/fE79gZSvwlg
-
 
 Abaixo há algumas idéias de scripts que podem ser utilizados.
 
@@ -278,33 +341,6 @@ https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiment
 
 Templates 
 https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
-
-## Video library and documentation for new users
-
-<!-- Jacinto - pydoc, maintain original licenses -->
-
-## Planout library
-
-<!-- jacinto to add scripts under github repo -->
-
-## Reproducible analysis scripts for each study design
-
-<!-- ricardo to add rmd in R and possibly in python -->
-
-
-<!-- 
-
-import R into ipython http://ipython.org/ipython-doc/dev/config/extensions/rmagic.html and then run
-
-http://nbviewer.ipython.org/gist/yoavram/5280132
-
-http://cran.us.r-project.org/web/views/ClinicalTrials.html
-http://cran.us.r-project.org/web/views/ExperimentalDesign.html
-http://cran.us.r-project.org/web/views/ReproducibleResearch.html
-http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
-
-
- -->
 
 
 
