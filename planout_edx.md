@@ -65,129 +65,24 @@ Our primary informal use case is described as:
 Below we describe the original Open edX and Planout architectures, followed by the overall integration architecture.
 
 #### Original Open edX
-O edX é composto por um conjunto de componentes modulares, dentre os principais, podemos citar: Studio ou CMS, LMS, cs_comments_service e mais os bancos de dados Mysql e MongoDb CITE[OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). Esta modularidade da arquitetura permite que algumas coisas possam ser executadas em hosts distintos, tornando a arquitetura altamente escalável, o que pode melhorar os tempos de resposta, mesmo quando a taxa de acessos é grande.
+Open edX's architecture is based on a group of modular components, including Studio (a Content Management System), Learning Management System, cs_comments_service <!-- Jacinto, o que é isso? --> in addition to the mysql and MongoDB CITE [OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). This architectural modularity allows for <!-- Jacinto, não está claro --> across different hosts, ultimately making the architecture highly scalable. This architecture can therefore improve response times, even with a high hit rate.
 
-Na Figura XXX ilustra os principais elementos desta arquitetura. Podemos ver dois componentes principais, o CMS ou Studio e o LMS. Dentro desta arquitetura o CMS é o componente que fornece um conjunto de ferramentas aos staff members para fazer a autoração de cursos. No CMS, também permite-se adicionar algums itens opcionais aos cursos, critérios para determinar quem pass or fail no curso e algumas configurações para cada atividade disponibilizada aos alunos. Além disso, o CMS também provê métodos para importar e exportar conteúdos dos cursos.
-
-![alt Arquitetura edX](./img/studiomapping.jpg "Arquitetura do Sistema" )
-
-No LMS (Learning Management System) contém uma série de métodos que permitem ao aluno matricular-se em  cursos,  interagir com os conteúdos disponibilizados via CMS. No LMS, para os staff members, também disponibiliza alguns métodos que permitem extrair alguns dados estatísticos dos cursos.
-
-Alguns coisas estão disponíveis por padrão no CMS, tais como Vídeos, HTML, problemas e discussões do forum, já outros módulos adicionais podem ser carregados mudando algumas setting policies no CMS.
-
-A grande maioria dos componentes do edX foram desenvolvidos utilizando o framework web Django, contudo para efetuar renderização do conteúdo mostrado nos browser cliente, faz-se uso da biblioteca Mako, que proporciona uma melhor flexibilidade e desempenho.
+Figure XXX demonstrates the main elements in this architecture, containing the CMS and LMS. The CMS provides a group of tools for the authoring of courses. It also allows for the addition of items such as the pass and fail criteria, settings for learner activity and content import and export. The CMS also makes available resources such as videos, HTML pages, problems and forum discussions.
 
 
-<!-- Jacinto, na seção abaixo a gente precisa somente de uma descrição da arquitetura de maneira muito geral, não da maneira como o edx funciona. essa seção deve ser sucinta, não mais do que meia a uma página -->
+![Open edX Architecture](./img/studiomapping.jpg "Open edX Architecture")
 
-<!-- Os conteúdos que podem ser adicionados nas unidades do edX são:
-\begin{itemize}
-    \item \textbf{HTML} -- texto formatado com o editor WYSIWYG ou com o editor de código HTML, onde é possível adicionar imagens, animações, texto e iFrames (tag do HTML que permite adicionar páginas inteiras dentro de uma página).
-    \item \textbf{Problemas} -- texto HTML e problemas com caixas de verificação, caixas suspensão, botões de radio, entradas, problemas adaptativos (donde se adiciona scripts para interagir de acordo com as respostas dos alunos ), fragmentos de código em Python , componentes arrastar e soltar, mapeamento de imagens, avaliador de expressões matemáticas em Python, funções personalizadas para avaliar as entradas do usuário, scripts em Javascript e construtor de esquemas de circuitos.
-    \item \textbf{Dicussões} -- permite aos alunos e professores discutirem sobre os conteúdos das unidades.
-    \item \textbf{Vídeos} -- URLs de vídeos e legendas. 
-    \item \textbf{Componentes avançados} -- respostas abertas e avaliação por pares.    
-\end{itemize}
+The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course. 
 
-\subsection{LMS}
-O LMS é o módulo em que os alunos dos MOOCs irão interagir com a plataforma e professores. Neste módulo é permitido ao aluno se registrar em cursos, visualizar os vídeos, conteúdos em HTML, links e discutir acerca do conteúdo das unidades. 
-
-Ao se logar, o usuário tem disponível uma listagem de cursos disponíveis. Ao clicar num curso, o usuário é direcionado para a página do curso, onde há o \textit{courseware}, informações do curso, discussões, wiki, progresso. Caso o usuário logado seja o instrutor, será mostrado uma guia extra (utilizada para extrair informações dos cursos), como ilustra a Figura \ref{lmsCourseware}. 
-
-\bigskip
-
-\begin{figure}[h!]
-    \centering
-        \includegraphics[scale=0.4]{conteudo/figs/edx/lmsCourseare.png}
-        \caption{LMS\textit{ Courseware} }
-    \label{lmsCourseware}
-\end{figure}
+The majority of the components in the Open edX platform are based on the Django framework. However, content is rendered using the Mako library, allowing for better flexibility and performance.
 
 
-\section{Implementação de testes A/B no edX}
-Em se tratando do desenvolvimento de uma lógica para criar testes A/B na plataforma é viável de 2 formas. A primeira consiste em fazer uso de bibliotecas previamente criadas por terceiros (por exemplo, PlanOut, GAE/Bingo, Django Experiments), a outra forma é criando o próprio algoritmo e reutilizando componentes de outras bibliotecas. Na presente dissertação, utilizaremos a segunda forma, uma vez que a primeira tem como público alvo desenvolvedores e, em nossa pesquisa, o público alvo são professores de MOOCs, o que justifica a criação de uma ferramenta e não de um \textit{framework}. 
-
-Nesta seção será explicado detalhadamente o funcionamento do protótipo desenvolvido até o presente momento. Sendo assim, primeiro apresentaremos parte do Modelo Entidade Relacionamento (MER) e, em seguida, o diagrama de caso de uso, onde discutiremos minuciosamente o funcionamento do protótipo.
-
-\subsection{Modelo ER}
-
-Para fazer a implementação do protótipo o proponente utilizou o banco de dados Mysql, pois é o mesmo utilizado pela plataforma edX para armazenar informações dos usuários, o que torna fácil a integração com o Modelo ER do edX. Parte do modelo ER criado é ilustrado na Figura \ref{fig:edXmodeloER}.
-
-
-\begin{figure}[h!]
-    \centering
-        \includegraphics[scale=0.45]{conteudo/figs/edx/modeloER.png}
-        \caption{Parte do Modelo Entidade Relacionamento que permite criar Testes A/B no edX}
-    \label{fig:edXmodeloER}
-\end{figure}
-
-Atualmente, o Modelo ER para criar testes A/B contém três entidades:  experiments\_definition, experiments\_opcoesexperiment e experiments\_userchoiceexperiment. Segue abaixo a descrição de cada entidade do banco de dados. 
-
-\subsubsection{Entidade experiments\_experimentdefinition}
-A entidade experiments\_experimentsdefinition serve para identificar um dado experimento criado pelos professores. Esta entidade tem os seguintes atributos: 
-
-\begin{itemize}
-    \item \textbf{descrição}: este campo armazena o nome do experimento, mas atualmente só armazena a \textit{string} ``My Experiment'' mais a data e hora da criação da inserção do registro.
-    \item \textbf{Course}: campo que armazena o course\_id (este é uma primary key para identicar um curso no MongoDB) 
-    \item \textbf{Status}: até agora ainda não foi atribuido nenhuma função para este campo, mas será utilizado assim que forem implementados outros tipos de experimento como multivariáveis ou \textit{multi-armed bandit}.
-    \item \textbf{Usuario}: campo que serve para identificar o dono de um experimento, para isto este campo relaciona-se com a tabela auth\_user criada pelo Django.
-\end{itemize}
-
-
-\subsubsection{Entidade experiments\_opcoesexperiment}
-
-Esta entidade armazena as opções do experimento, que servirá para identificar quais seções fazem parte do experimento. Os campos dessa entidade são: 
-\begin{itemize}
-    \item \textbf{experimento\_id}: campo usado para se relacionar com a entidade experiments\_defintion
-    \item \textbf{sectionExp}: campo usado no CMS para identificar a seção para mostrar o campo version;
-    \item \textbf{sectionExp\_URL}: campo usado no LMS para identificar que seção mostrar para o aluno; 
-    \item \textbf{Version}: campo usado para gravar a opção do experimento A ou B.
-\end{itemize}
-
-\bigskip
-
-\subsubsection{Entidade experiments\_userchoice}
-
-Esta entidade serve para armazenar as opções que foram definidas pelo usuário. Desta forma, ao definir uma opção no LMS \textit{Courseware}, se o aluno efetuar login em outro computador não mudará a versão ou \textit{arm} do experimento. 
-
-Segue os campos desta entidade;
-
-\begin{itemize}
-    \item \textbf{userStudent\_id}: campo usado para identificar a versão escolhida pelo usuário. Este campo relaciona-se com a entidade auth\_user.  
-    \item \textbf{versionExp\_id}: campo usado necessário para se relacionar com a entidade experiments\_opcoesexperiment
-    \item \textbf{experiment\_id}: campo usado para se relacionar com a entidade experiments\_experimentsdefinition
-\end{itemize}
-
-%A entidade experiments$\_$opcoesexperiment serve para armazenar as opções do experimento (A/B/n). Cada opção deve pertencer a um experimento (relacionamento \textit{one-to-many} com experiments$\_$definition), para qual seção do pertence (informação necessária para identificar uma opção no CMS),
-
-%armazenar a  armazena 4 informações, experiment$\_$id (qual experimento pertence essa opção)
-
-\subsection{Descrição do protótipo}
-Na implementação do protótipo foi considerado dois atores, um é o professor e o outro o aluno. O professor ficar a cargo de criar um experimento, definir módulos que serão randomizados e quais os conteúdos testados. O aluno, por sua vez, fica a cargo de ao usar o LMS \textit{Courseware}, definindo, de forma aleatória, a versão que será utilizada no experimento. Isto pode ser observado no diagrama de caso de uso na Figura \ref{fig:edXUsecase}.
-
-\begin{figure}[h!]
-    \centering
-        \includegraphics[scale=0.6]{conteudo/figs/edx/edxUseCase.png}
-        \caption{Caso de Uso para criar Testes A/B no edX}
-    \label{fig:edXUsecase}
-\end{figure}
-
-Para definir um novo experimento, o professor deve clicar no ícone duplicar ao lado da lixeira (Veja a Figura \ref{fig:edX_StudioOutline}). Ao clicar neste ícone, o módulo em que o ícone pertence é duplicado. Com isso, todos os atributos das Seções, Subseções e Unidades são copiadas para a segunda opção.
-
-Em seguida, o professor determina quais serão os conteúdos a serem testados e, no fim do experimento, analisa os resultados. No protótipo, o aluno fica a cargo de definir a versão que será usada ao clicar \textit{Courseware }do LMS -- executando um \textit{loop} (este \textit{loop} cria um menu onde os alunos acessarão o conteúdo do LMS). Para cada elemento do loop, procura-se na base de dados se o usuário já participa de algum experimento da Seção, caso não esteja, o sistema atribui uma versão de forma aleatória.  Essas ações são descritas no Caso de Uso do professor e do aluno da Figura \ref{fig:edXUsecase}.
-\newpage
-
-
-system description
-course cloning
-database architecture
-[AGPL](http://www.gnu.org/licenses/agpl-3.0.html)
- -->
 
 #### Original Planout
-Com o PlanOut é possível criar experimentos elaborados com o intuito de analisar possíveis efeitos que a mudança de níveis de um determinado fator tem no resultado. Com o PlanOut permite criar experimentos de 2 formas: criar classes em Python ou carregando arquivos JSON gerados a partir da compilação do código escrito via PlanOut Script. Caso seja utilizado scripts, o JSON deve ser carregado pelo interpretador.
 
-O PlanOut foi criado para tornar fácil a criação de experimentos elaborados e é possível criar experimentos A/B e multivariáveis. Em sua linguagem script, om Planout disponibiliza operadores lógicos, matrizes, aritméticos e de flow control. Assim, podemos criar experimentos que randomizem condicionalmente de acordo com o que está definido no script.Isto possibilita analisar efeitos que um dado fator tem para um grupo em específico e, determinar, de uma forma mais precisa, diferenças entre os conteúdos disponíveis aos usuários.
+Planour allows for the design and deployment of randomized experiments evaluating the impact of a group of interventions on a specific set of outcomes. Planout allows for these designs to be created in two different ways: Python classes or [JSON]() files generated from the compilation of Planout scripts. The Planout scripting language provides logical operators, matrices and flow control. 
+
+
 
 Dentre os operadores disponibilizados pelo PlanOut para fazer a randomização, em nosso protótipo fazemos uso dos seguintes operadores:
 1. UniformChoice -- todas as opções do experimento tem a mesma probabilidade de serem selecionadas;
@@ -477,4 +372,110 @@ like R http://www.r-project.org/ or python
     * Connecting the results of the exercises defined as outcome variables by the instructor to the Planout Anchoring Experiment where the fields representing the outcome variables are defined
     * Testing the logging outcomes to ensure that all participant actions and respective outcomes are being appropriately logged
 
+ -->
+
+
+
+<!-- Os conteúdos que podem ser adicionados nas unidades do edX são:
+\begin{itemize}
+    \item \textbf{HTML} -- texto formatado com o editor WYSIWYG ou com o editor de código HTML, onde é possível adicionar imagens, animações, texto e iFrames (tag do HTML que permite adicionar páginas inteiras dentro de uma página).
+    \item \textbf{Problemas} -- texto HTML e problemas com caixas de verificação, caixas suspensão, botões de radio, entradas, problemas adaptativos (donde se adiciona scripts para interagir de acordo com as respostas dos alunos ), fragmentos de código em Python , componentes arrastar e soltar, mapeamento de imagens, avaliador de expressões matemáticas em Python, funções personalizadas para avaliar as entradas do usuário, scripts em Javascript e construtor de esquemas de circuitos.
+    \item \textbf{Dicussões} -- permite aos alunos e professores discutirem sobre os conteúdos das unidades.
+    \item \textbf{Vídeos} -- URLs de vídeos e legendas. 
+    \item \textbf{Componentes avançados} -- respostas abertas e avaliação por pares.    
+\end{itemize}
+
+\subsection{LMS}
+O LMS é o módulo em que os alunos dos MOOCs irão interagir com a plataforma e professores. Neste módulo é permitido ao aluno se registrar em cursos, visualizar os vídeos, conteúdos em HTML, links e discutir acerca do conteúdo das unidades. 
+
+Ao se logar, o usuário tem disponível uma listagem de cursos disponíveis. Ao clicar num curso, o usuário é direcionado para a página do curso, onde há o \textit{courseware}, informações do curso, discussões, wiki, progresso. Caso o usuário logado seja o instrutor, será mostrado uma guia extra (utilizada para extrair informações dos cursos), como ilustra a Figura \ref{lmsCourseware}. 
+
+\bigskip
+
+\begin{figure}[h!]
+    \centering
+        \includegraphics[scale=0.4]{conteudo/figs/edx/lmsCourseare.png}
+        \caption{LMS\textit{ Courseware} }
+    \label{lmsCourseware}
+\end{figure}
+
+
+\section{Implementação de testes A/B no edX}
+Em se tratando do desenvolvimento de uma lógica para criar testes A/B na plataforma é viável de 2 formas. A primeira consiste em fazer uso de bibliotecas previamente criadas por terceiros (por exemplo, PlanOut, GAE/Bingo, Django Experiments), a outra forma é criando o próprio algoritmo e reutilizando componentes de outras bibliotecas. Na presente dissertação, utilizaremos a segunda forma, uma vez que a primeira tem como público alvo desenvolvedores e, em nossa pesquisa, o público alvo são professores de MOOCs, o que justifica a criação de uma ferramenta e não de um \textit{framework}. 
+
+Nesta seção será explicado detalhadamente o funcionamento do protótipo desenvolvido até o presente momento. Sendo assim, primeiro apresentaremos parte do Modelo Entidade Relacionamento (MER) e, em seguida, o diagrama de caso de uso, onde discutiremos minuciosamente o funcionamento do protótipo.
+
+\subsection{Modelo ER}
+
+Para fazer a implementação do protótipo o proponente utilizou o banco de dados Mysql, pois é o mesmo utilizado pela plataforma edX para armazenar informações dos usuários, o que torna fácil a integração com o Modelo ER do edX. Parte do modelo ER criado é ilustrado na Figura \ref{fig:edXmodeloER}.
+
+
+\begin{figure}[h!]
+    \centering
+        \includegraphics[scale=0.45]{conteudo/figs/edx/modeloER.png}
+        \caption{Parte do Modelo Entidade Relacionamento que permite criar Testes A/B no edX}
+    \label{fig:edXmodeloER}
+\end{figure}
+
+Atualmente, o Modelo ER para criar testes A/B contém três entidades:  experiments\_definition, experiments\_opcoesexperiment e experiments\_userchoiceexperiment. Segue abaixo a descrição de cada entidade do banco de dados. 
+
+\subsubsection{Entidade experiments\_experimentdefinition}
+A entidade experiments\_experimentsdefinition serve para identificar um dado experimento criado pelos professores. Esta entidade tem os seguintes atributos: 
+
+\begin{itemize}
+    \item \textbf{descrição}: este campo armazena o nome do experimento, mas atualmente só armazena a \textit{string} ``My Experiment'' mais a data e hora da criação da inserção do registro.
+    \item \textbf{Course}: campo que armazena o course\_id (este é uma primary key para identicar um curso no MongoDB) 
+    \item \textbf{Status}: até agora ainda não foi atribuido nenhuma função para este campo, mas será utilizado assim que forem implementados outros tipos de experimento como multivariáveis ou \textit{multi-armed bandit}.
+    \item \textbf{Usuario}: campo que serve para identificar o dono de um experimento, para isto este campo relaciona-se com a tabela auth\_user criada pelo Django.
+\end{itemize}
+
+
+\subsubsection{Entidade experiments\_opcoesexperiment}
+
+Esta entidade armazena as opções do experimento, que servirá para identificar quais seções fazem parte do experimento. Os campos dessa entidade são: 
+\begin{itemize}
+    \item \textbf{experimento\_id}: campo usado para se relacionar com a entidade experiments\_defintion
+    \item \textbf{sectionExp}: campo usado no CMS para identificar a seção para mostrar o campo version;
+    \item \textbf{sectionExp\_URL}: campo usado no LMS para identificar que seção mostrar para o aluno; 
+    \item \textbf{Version}: campo usado para gravar a opção do experimento A ou B.
+\end{itemize}
+
+\bigskip
+
+\subsubsection{Entidade experiments\_userchoice}
+
+Esta entidade serve para armazenar as opções que foram definidas pelo usuário. Desta forma, ao definir uma opção no LMS \textit{Courseware}, se o aluno efetuar login em outro computador não mudará a versão ou \textit{arm} do experimento. 
+
+Segue os campos desta entidade;
+
+\begin{itemize}
+    \item \textbf{userStudent\_id}: campo usado para identificar a versão escolhida pelo usuário. Este campo relaciona-se com a entidade auth\_user.  
+    \item \textbf{versionExp\_id}: campo usado necessário para se relacionar com a entidade experiments\_opcoesexperiment
+    \item \textbf{experiment\_id}: campo usado para se relacionar com a entidade experiments\_experimentsdefinition
+\end{itemize}
+
+%A entidade experiments$\_$opcoesexperiment serve para armazenar as opções do experimento (A/B/n). Cada opção deve pertencer a um experimento (relacionamento \textit{one-to-many} com experiments$\_$definition), para qual seção do pertence (informação necessária para identificar uma opção no CMS),
+
+%armazenar a  armazena 4 informações, experiment$\_$id (qual experimento pertence essa opção)
+
+\subsection{Descrição do protótipo}
+Na implementação do protótipo foi considerado dois atores, um é o professor e o outro o aluno. O professor ficar a cargo de criar um experimento, definir módulos que serão randomizados e quais os conteúdos testados. O aluno, por sua vez, fica a cargo de ao usar o LMS \textit{Courseware}, definindo, de forma aleatória, a versão que será utilizada no experimento. Isto pode ser observado no diagrama de caso de uso na Figura \ref{fig:edXUsecase}.
+
+\begin{figure}[h!]
+    \centering
+        \includegraphics[scale=0.6]{conteudo/figs/edx/edxUseCase.png}
+        \caption{Caso de Uso para criar Testes A/B no edX}
+    \label{fig:edXUsecase}
+\end{figure}
+
+Para definir um novo experimento, o professor deve clicar no ícone duplicar ao lado da lixeira (Veja a Figura \ref{fig:edX_StudioOutline}). Ao clicar neste ícone, o módulo em que o ícone pertence é duplicado. Com isso, todos os atributos das Seções, Subseções e Unidades são copiadas para a segunda opção.
+
+Em seguida, o professor determina quais serão os conteúdos a serem testados e, no fim do experimento, analisa os resultados. No protótipo, o aluno fica a cargo de definir a versão que será usada ao clicar \textit{Courseware }do LMS -- executando um \textit{loop} (este \textit{loop} cria um menu onde os alunos acessarão o conteúdo do LMS). Para cada elemento do loop, procura-se na base de dados se o usuário já participa de algum experimento da Seção, caso não esteja, o sistema atribui uma versão de forma aleatória.  Essas ações são descritas no Caso de Uso do professor e do aluno da Figura \ref{fig:edXUsecase}.
+\newpage
+
+
+system description
+course cloning
+database architecture
+[AGPL](http://www.gnu.org/licenses/agpl-3.0.html)
  -->
