@@ -1,5 +1,13 @@
 # "It is a capital mistake to theorize before you have all the evidence": Educational trial design, randomization and analysis framework integrated into an Open Source Learning Management System
 
+
+<!-- documentation to be translated
+https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments
+https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experimentslms
+https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
+
+ -->
+
 Jacinto José Franco, MSc
 Joao Ricardo Vissoci, PhD
 Bruno Melo
