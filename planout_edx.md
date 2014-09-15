@@ -13,7 +13,7 @@ Seiji Isotani, PhD
 
 <!-- write at the end -->
 
-## Introduction
+## IntroductiOn
 
 Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice. 
 
@@ -24,7 +24,7 @@ When it comes to randomized experiments in education, a full range of designs is
 In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework. 
 
 ## Methods
-### edX and Planout descriptions
+### edX and PlanOut descriptioOs
 
 The [Open edX platform](http://code.edx.org/) is an open source, Python-based learning management system licensed under the AGPL <!-- ref -->license. Student data are stored on a relational databases ([MySQL]()) and course metadata stored within a NoSQL document database ([MongoDB]()). It is based on a very modular architecture and built with the assistance of a strong, international open source community. It currently contains a number of modules allowing for its expansion, the main building block being an [XBlock]() learning component. In addition to XBlocks, the Open edX platform currently contains additional modules such as the edX-ORA (Open Response Assessor), which allows for self, peer and automatic grading of open questions. Although an initial effort to create a randomization mechanism for AB trials (randomized experiments comparing arm A versus B), this system is currently limited to the comparison of theme changes, and is thus primarily focused on the testing of User eXperience (UX) features. The randomization of full educational methods and content is therefore still limited.
 
@@ -47,7 +47,7 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 <!-- Jacinto, voce pode descrever o sistema atual aqui? -->
 
-### Requisites and informal use cases
+### Requisites and informal use casOs
 
 Our primary requisites for the system were: (1) the system should be able to randomize anything included within the Open edX platform, not restricting itself to User eXperience features but also including any type of educational content, (2) it should be able to deliver a wide range of design and randomization frameworks such as the ones offered through Planout, (3) it should allow for external scripting, thus facilitating its further integration with future frameworks such as those offering visual feedback to exercise groups and (4) it should provide researchers with ability to extract the data for research and quality improvement studies. Notice that as a first release we have did not stipulate a reporting graphical interface as a requisite.
 
@@ -62,7 +62,7 @@ Our primary informal use case is described as:
 
 ### Application architecture
 
-Below we describe the original Open edX and Planout architectures, followed by the overall integration architecture.
+Below we describe the original Open edX and PlanOut architectures, followed by the overall integration architecture.
 
 #### Original Open edX
 Open edX's architecture is based on a group of modular components, including Studio (a Content Management System), Learning Management System, cs_comments_service <!-- Jacinto, o que é isso? --> in addition to the mysql and MongoDB CITE [OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). This architectural modularity allows for <!-- Jacinto, não está claro --> across different hosts, ultimately making the architecture highly scalable. This architecture can therefore improve response times, even with a high hit rate.
@@ -78,38 +78,34 @@ The majority of the components in the Open edX platform are based on the Django 
 
 
 
-#### Original Planout
+#### Original PlanOut
 
-Planour allows for the design and deployment of randomized experiments evaluating the impact of a group of interventions on a specific set of outcomes. Planout allows for these designs to be created in two different ways: Python classes or [JSON]() files generated from the compilation of Planout scripts. The Planout scripting language provides logical operators, matrices and flow control. 
+[PlanOut](https://facebook.github.io/planout/) allows for the design and deployment of randomized experiments evaluating the impact of a group of interventions on a specific set of outcomes. Released under a [BSD or  Berkeley Software Distribution License](https://github.com/facebook/planOut/blob/master/LICENSE), PlanOut allows for these designs to be created in two different ways: Python classes or [JSON (JavaScript Object Notation)](http://json.org/) files generated from the compilation of PlanOut scripts. The PlanOut scripting language provides logical operators, matrices and flow control. 
+
+Among the operators made available through PlanOut for randomization, in our project we made use of the following:
+
+1. UniformChoice: all arms have the same probability of being selected
+2. WeightedChoice: allows for the specification of a probability for each arm
+3. BernoulliTrial: returns a value of 0 or 1 according to a pre-specified probably distribution
 
 
+Each randomization design is independent and each operation uses hash functions in addition to pseudo-random number generators. After the randomization schedule is generated, the framework creates an entry in a .log file, which will contain all arguments used as input, the time stamp, a user identification and the options defined for that specific randomization design.
 
-Dentre os operadores disponibilizados pelo PlanOut para fazer a randomização, em nosso protótipo fazemos uso dos seguintes operadores:
-1. UniformChoice -- todas as opções do experimento tem a mesma probabilidade de serem selecionadas;
-2. WeightedChoice -- permite especificar uma probabilidade para cada opção;
-3. BernoulliTrial -- retorna o valor 0 ou 1 de acordo uma probabilidade específica; 
-
-Cada randomização do PlanOut age de forma independente e cada operador faz uso de funções hash mais pseudo-geradores de números aleatórios. Isto faz com que, de uma forma geral, a distribuição gerada esteja de acordo com o que foi especificado nos argumentos dos operadores.
-
-Após acontecer uma randomização, o framework gera um registro em um arquivo com extensão **.log**, onde conterá os argumentos utilizados como entrada, timestamp, userid e a respectiva opção definida pela randomização.
-
-<!-- Jacinto por favor acrescente uma descrição da arquitetura do planout abaixo. essa seção deve ser sucinta, não mais do que meia a uma página -->
-
-system description
-planout edX integration
-[BSD License](https://github.com/facebook/planout/blob/master/LICENSE)
 
 #### Integration architecture
-Antes de descrever o funcionamento do sistema, iremos fazer uma breve descrição das entidades criadas, que viabilizaram o desenvolvimento de nosso protótipo. Parte do Modelo Entidade Relacionamento está descrito na Figura XXX., onde ilustra os relacionamentos abaixo descritos. Estas entidades estão definidas no banco de dados MySql e descritas com algumas classes em Python. 
 
-![alt Arquitetura edX](./img/modeloer.png "Parte do modelo Entidade Relacionamento" )
+Figure X displays and a partial Entity Relationship Diagram for our software. These entities are defined in a [MySQL]() database and described in some Python classes.
 
-**Entidades adicionadas**: 
-- *ExperimentDefinition* -- esta é a entidade principal, no qual servirá para identificar um experimento no edX. Para cada semana, em um  dado curso, é permitido que o docente crie uma entrada nesta tabela. 
-- *OpcoesExperiment* -- armazena as endereços que serão utilizadas para recuperar as sections que participam do experimento. Cada entrada desta entidade representa uma Arm do experimento.
-- *StrategyRandomization* -- esta entidade permite que o professor defina um design, script do PlanOut ou alterne entre operadores utilizados para randomizar. Por padrão, ao criar o experimento, define-se como forma de randomização o operador UniformChoice. Em nosso protótipo o professor/staff members só podem alterar o Operador, Script ou Design  no primeiro experimento do curso, já que, nosso objetivo é proporcionar uma interface única para cada usuário. Por isso, um usuário, sempre estará em um único arm, independentemente do experimento definido em um curso.
-- *UserChoiceExperiment* -- esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
-- *AnonyMousPost* -- esta entidade armazena id do comentário e do usuário, que permite identificar um post anônimo. Desta forma, possibilita que, mesmo em posts anônimos, usuários de um grupo só tenha acesso aos posts do mesmo grupo.
+
+![edX Architecture](./img/modeloer.png "Partial Entity Relationship Diagram" )
+
+In order to create the integration between Open edX and PlanOut we have added the following entities: 
+
+* ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
+ * OpcoesExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
+ * StrategyRandomization: esta entidade permite que o professor defina um design, script do PlanOut ou alterne entre operadores utilizados para randomizar. Por padrão, ao criar o experimento, define-se como forma de randomização o operador UniformChoice. Em nosso protótipo o professor/staff members só podem alterar o Operador, Script ou Design  no primeiro experimento do curso, já que, nosso objetivo é proporcionar uma interface única para cada usuário. Por isso, um usuário, sempre estará em um único arm, independentemente do experimento definido em um curso.
+ * UserChoiceExperiment: esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
+ * AnonyMousPost: esta entidade armazena id do comentário e do usuário, que permite identificar um post anônimo. Desta forma, possibilita que, mesmo em posts anônimos, usuários de um grupo só tenha acesso aos posts do mesmo grupo.
 
 A entidades auth\_user está presente por padrão em qualquer aplicação Django e, para o nosso protótipo, serve para identificar o dono do experimento e Arms alocados no LMS. Auth\_profile é donde extrai-se informações sobre os estudantes, tais como: sexo, nacionalidade, cidade, escolaridade, aniversário e outras informações. Algumas informações são passadas como argumento dos scripts em planout, o que permite fazer algumas tomadas de decisões e fazer a estratificação via script.
 
@@ -121,6 +117,8 @@ http://youtu.be/yADpLzlYU8w
  -->
 
 ## Results
+
+<!-- http://bayesfactor.blogspot.com/2014/09/embedding-rdata-files-in-rmarkdown.html -->
 
 The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP).
 
@@ -167,7 +165,7 @@ http://youtu.be/AF8IY_iRbD8
 
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
 
-### Planout library
+### PlanOut library
 
 <!-- jacinto to add scripts under github repo -->
 
@@ -364,12 +362,12 @@ like R http://www.r-project.org/ or python
 <!-- Just to make sure I understand, this initial randmization arm will receive regular slide/video/exercise based course? To be compared with other types of courses? If so, it is no very clear for me. It is no clear of what the first arm will be composed by, or what kind of regular based teaching we are cloning (Joao) -->
 <!-- not sure this is relevant here since we are talking about the platform and not a specific trial. but also not sure i understood the comment haha 
 2. Once the initial arm is completed and tested, this arm is cloned. This clone will then be modified to include whatever course features the instructor might want to test. For example, videos and slides could be modified to include a different instructional strategy, the interface could be changed to test a different type of environment, a new wiki could be included to test a more interactive environment eliciting discussions, among others. From a trial design perspective, instructors are not advised to change any exercises representing the outcomes variables of the study since that would violate the assumption that all subjects will have the same evaluation criteria, but the system will not prevent them from doing so in case of a semi-experimental or some other non-experimental exploratory design.
-3. Once one or more intervention arms are derived from the original one, then a [Planout](http://facebook.github.io/planout/docs/getting-started.html) script will be written directly in [JSON (JavaScript Object Notation)](http://www.json.org/) format. Given that the platform is highly technical, at this point we do not envision most instructors programming direcly in JSON, but instead discussing the design with a methodologist and a programmer for implementation and testing. Future releases of this software could include a graphical interface, thus creating an [Agile Development environment](http://agilemanifesto.org/) that allows for the progressive inclusion of application features rather than fully loading them upfront without frequent interaction with instructors.  Add a reference to Agile Development (Joao) 
-4. The interface between Planout and Open edX will be created using [xblock](https://github.com/edx/XBlock), an API (Application Programming Environment). The integration between Planout and Open edX will occur by allowing Planout to direct the following online trial features:
+3. Once one or more intervention arms are derived from the original one, then a [PlanOut](http://facebook.github.io/planOut/docs/getting-started.html) script will be written directly in [JSON (JavaScript Object Notation)](http://www.json.org/) format. Given that the platform is highly technical, at this point we do not envision most instructors programming direcly in JSON, but instead discussing the design with a methodologist and a programmer for implementation and testing. Future releases of this software could include a graphical interface, thus creating an [Agile Development environment](http://agilemanifesto.org/) that allows for the progressive inclusion of application features rather than fully loading them upfront without frequent interaction with instructors.  Add a reference to Agile Development (Joao) 
+4. The interface between PlanOut and Open edX will be created using [xblock](https://github.com/edx/XBlock), an API (Application Programming Environment). The integration between PlanOut and Open edX will occur by allowing PlanOut to direct the following online trial features:
     * Defining which pages will render the course
-    * Pbtaining user ids and mapping them between Open edX and Planout
-    * Connecting an Anchoring Experiment object, which is the internal identification for experiments in Planout for a given user id. The Anchoring Experiment will contain all the design specifications using the Planout Language, including details about factors such as design type, randomization proportion, randomization arms, among any other factors pre-defined by the Planout language. For a full, detailed description of Planout please visit its [official page](http://facebook.github.io/planout/index.html) or its [main article](https://www.facebook.com/download/255785951270811/planout.pdf).
-    * Connecting the results of the exercises defined as outcome variables by the instructor to the Planout Anchoring Experiment where the fields representing the outcome variables are defined
+    * Pbtaining user ids and mapping them between Open edX and PlanOut
+    * Connecting an Anchoring Experiment object, which is the internal identification for experiments in PlanOut for a given user id. The Anchoring Experiment will contain all the design specifications using the PlanOut Language, including details about factors such as design type, randomization proportion, randomization arms, among any other factors pre-defined by the PlanOut language. For a full, detailed description of PlanOut please visit its [official page](http://facebook.github.io/planOut/index.html) or its [main article](https://www.facebook.com/download/255785951270811/planOut.pdf).
+    * Connecting the results of the exercises defined as outcome variables by the instructor to the PlanOut Anchoring Experiment where the fields representing the outcome variables are defined
     * Testing the logging outcomes to ensure that all participant actions and respective outcomes are being appropriately logged
 
  -->
