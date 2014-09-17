@@ -75,6 +75,9 @@ Below we describe the original Open edX and PlanOut architectures, followed by t
 #### Original Open edX
 Open edX's architecture is based on a group of modular components, including Studio (a Content Management System), Learning Management System, cs_comments_service <!-- Jacinto, o que é isso? --> in addition to the mysql and MongoDB CITE [OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). This architectural modularity allows for <!-- Jacinto, não está claro --> across different hosts, ultimately making the architecture highly scalable. This architecture can therefore improve response times, even with a high hit rate.
 
+==== MELHOREI UM POUCO === O edX é composto por um conjunto de componentes modulares, dentre os principais, podemos citar: Studio/CMS (a Content Management System), Learning Management System (LMS), Comment Service (cs\_comments\_service), ORA (Open Response Assessor) e mais os bancos de dados Mysql e MongoDb CITE[OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). Esta modularidade da arquitetura permite que alguns serviços possam ser executadas em hosts distintos, tornando a arquitetura altamente escalável, melhorando os tempos de resposta, mesmo quando a taxa de acessos é grande. Há também a possibilidade de se adicionar nós redundantes e, combinar isso com um Load Balancer para aumentar a disponibilidade dos serviços.
+
+
 Figure XXX demonstrates the main elements in this architecture, containing the CMS and LMS. The CMS provides a group of tools for the authoring of courses. It also allows for the addition of items such as the pass and fail criteria, settings for learner activity and content import and export. The CMS also makes available resources such as videos, HTML pages, problems and forum discussions.
 
 
@@ -82,8 +85,7 @@ Figure XXX demonstrates the main elements in this architecture, containing the C
 
 The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course. 
 
-The majority of the components in the Open edX platform are based on the Django framework. However, content is rendered using the Mako library, allowing for better flexibility and performance.
-
+The majority of the components in the Open edX platform are based on the Django framework, and the content is rendered using the Mako library, allowing for better flexibility and performance. Além de python, do lado do servidor também utiliza-se Java, Ruby, Ruby on Rails, NodeJs. Do lado cliente, obviamente, o conteúdo é renderizado utilizando-se HTML, JavaScript, CSS e SASS.
 
 
 #### Original PlanOut
