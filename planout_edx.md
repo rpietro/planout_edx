@@ -32,7 +32,7 @@ When it comes to randomized experiments in education, a full range of designs is
 In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework. 
 
 ## Methods
-### edX and PlanOut descriptioOs
+### edX and PlanOut descriptions
 
 The [Open edX platform](http://code.edx.org/) is an open source, Python-based learning management system licensed under the AGPL <!-- ref -->license. Student data are stored on a relational databases ([MySQL]()) and course metadata stored within a NoSQL document database ([MongoDB]()). It is based on a very modular architecture and built with the assistance of a strong, international open source community. It currently contains a number of modules allowing for its expansion, the main building block being an [XBlock]() learning component. In addition to XBlocks, the Open edX platform currently contains additional modules such as the edX-ORA (Open Response Assessor), which allows for self, peer and automatic grading of open questions. Although an initial effort to create a randomization mechanism for AB trials (randomized experiments comparing arm A versus B), this system is currently limited to the comparison of theme changes, and is thus primarily focused on the testing of User eXperience (UX) features. The randomization of full educational methods and content is therefore still limited.
 
@@ -55,7 +55,7 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 <!-- Jacinto, voce pode descrever o sistema atual aqui? -->
 
-### Requisites and informal use casOs
+### Requisites and informal use cases
 
 Our primary requisites for the system were: (1) the system should be able to randomize anything included within the Open edX platform, not restricting itself to User eXperience features but also including any type of educational content, (2) it should be able to deliver a wide range of design and randomization frameworks such as the ones offered through Planout, (3) it should allow for external scripting, thus facilitating its further integration with future frameworks such as those offering visual feedback to exercise groups and (4) it should provide researchers with ability to extract the data for research and quality improvement studies. Notice that as a first release we have did not stipulate a reporting graphical interface as a requisite.
 
@@ -77,7 +77,6 @@ Open edX's architecture is based on a group of modular components, including Stu
 
 ==== MELHOREI UM POUCO === O edX é composto por um conjunto de componentes modulares, dentre os principais, podemos citar: Studio/CMS (a Content Management System), Learning Management System (LMS), Comment Service (cs\_comments\_service), ORA (Open Response Assessor) e mais os bancos de dados Mysql e MongoDb CITE[OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). Esta modularidade da arquitetura permite que alguns serviços possam ser executadas em hosts distintos, tornando a arquitetura altamente escalável, melhorando os tempos de resposta, mesmo quando a taxa de acessos é grande. Há também a possibilidade de se adicionar nós redundantes e, combinar isso com um Load Balancer para aumentar a disponibilidade dos serviços.
 
-
 Figure XXX demonstrates the main elements in this architecture, containing the CMS and LMS. The CMS provides a group of tools for the authoring of courses. It also allows for the addition of items such as the pass and fail criteria, settings for learner activity and content import and export. The CMS also makes available resources such as videos, HTML pages, problems and forum discussions.
 
 
@@ -85,7 +84,7 @@ Figure XXX demonstrates the main elements in this architecture, containing the C
 
 The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course. 
 
-The majority of the components in the Open edX platform are based on the Django framework, and the content is rendered using the Mako library, allowing for better flexibility and performance. Além de python, do lado do servidor também utiliza-se Java, Ruby, Ruby on Rails, NodeJs. Do lado cliente, obviamente, o conteúdo é renderizado utilizando-se HTML, JavaScript, CSS e SASS.
+The majority of the components in the Open edX platform are based on the Django framework, and the content is rendered using the Mako library, allowing for better flexibility and performance. Além de Python, do lado do servidor também utiliza-se Java, Ruby, Ruby on Rails, e NodeJs. Do lado cliente, obviamente, o conteúdo é renderizado utilizando-se HTML, JavaScript, CSS e SASS.
 
 
 #### Original PlanOut
@@ -109,7 +108,8 @@ Figure X displays and a partial Entity Relationship Diagram for our software. Th
 
 ![edX Architecture](./img/modeloer.png "Partial Entity Relationship Diagram" )
 
-In order to create the integration between Open edX and PlanOut we have added the following entities: 
+In order to create the integration between Open edX and PlanOut, and make possible to load designs created by JMP, R, Minitab ou LibreOffice we have added the following entities: <!-- modifiquei aqui adicionei load designs -->
+
 
 * ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
  * OpcoesExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
