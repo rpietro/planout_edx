@@ -137,15 +137,22 @@ No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* 
 A randomização também pode ser executada previamente com softwares tais como JMP, Minitab e, em seguida, armazenada em no campo *customDesign* da entidade *StrategyRandomization*. Com base neste design, ao invés de randomizar, o algoritmo retorna a versão definida no Design. Além de carregar o design criados por softwares estatísticos, o professor pode determinar essa versão manualmente digitando a ordem desejada. Isto pode ser útil em momentos em que professores usam o edX para ensinar em small private online course -- SPOC, isso pode ser preciso definir a versão manualmente. 
 
 ### Defining designs and scripts
-O planejameno do experimento é a primeira coisa que deve-se fazer antes de executar qualquer experimento. No planejamento precisamos definir claramente fatores, níveis, tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado.
 
-Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut.
 
-Para especificar um design criamos uma janela que permite mudar entre os Operadores do PlanOut, Scripts do PlanOut e carregar um design criado por softwares de terceiros. 
+<!-- Jacinto, eu não entendi o que são esses termos que você usou nessa frase. seria bom a gente aderir a uma nomenclatura padrão existente pra evitar confusão
 
-Deve-se usar UniformChoice quando se quer que a amostra tenha o resultado balanceado entre os Arms. Por exemplo, se tivermos 2 Arms, a quantidade de alunos alocada para cada Arm será aproximadamente 50%. Com WeightedChoice temos como modificar a probabilidade que cada Arm tem de ser alocado randomicamente.
+No planejamento precisamos definir claramente fatores, níveis, tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado. -->
 
-Caregando designs de experimentos definidos por softwares de terceiros (R, JMP, Minitab, LibreOffice e outros), deve-se deixar a primeria linha para o label da coluna, os campos são separados por vírgula e, independente da randomização utilizada, a primeira coluna deve ter o valor numérico 0 -- Arm A, 1 -- Arm B e 2 -- Arm C. <!-- Talvez eu irei mude isso se conseguir implementar o crossover -->
+<!-- 
+Frases abaixo também não estão claras - com condições para alocação você quer dizer estraticação ou blocking? se sim, eu usaria a nomenclatura padrão senão vai ficar muito confuso
+
+Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut. -->
+
+To specify a design the user opens up a window where each operator can be changed, also allowing for the insertion of scripts in case of more sophisticated designs. <!-- precisamos de uma figura aqui-->
+
+The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
+
+When using a script, a third-party software such as R, JMP, Minitab, LibreOffice are used to generate a Comma Separate Value (CSV) file where the first row already represents a randomization, and where each column represents an arm. <!-- Talvez eu irei mude isso se conseguir implementar o crossover -->
 
 A última forma de criar um planejamento de experimento é via script do PlanOut. A linguagem script do PlanOut tem um conjunto limitado de palavras chaves e operadores, dos quais incluem: operadores lógicos (And -- &&, or -- ||, not -- !) e aritméticos (addition, subtraction, modulo, multiplication, and division), condições de execução (if/else if/else) e matrizes CITE{The PlanOut language}{https://facebook.github.io/planout/docs/planout-language.html}. 
 
@@ -167,11 +174,10 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 
 ### Design of experiments
 
-<<<<<<< HEAD
+
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
 
-=======
->>>>>>> d009f24d8fd5bfbaa21160a33d5cccc89406e077
+
 <!-- create videos in english -->
 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
@@ -180,12 +186,8 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
 
-
-<<<<<<< HEAD
 <!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
-=======
-<!-- Jacinto, o que são os "emails" que voce menciona nos videos? -->
->>>>>>> d009f24d8fd5bfbaa21160a33d5cccc89406e077
+
 
 
 
