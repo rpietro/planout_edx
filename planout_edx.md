@@ -113,16 +113,17 @@ In order to create the integration between Open edX and PlanOut, and make possib
 
 * ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
  * OpcoesExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
- * StrategyRandomization: esta entidade permite que o professor defina um design, script do PlanOut ou alterne entre operadores utilizados para randomizar. Por padrão, ao criar o experimento, define-se como forma de randomização o operador UniformChoice. Em nosso protótipo o professor/staff members só podem alterar o Operador, Script ou Design  no primeiro experimento do curso, já que, nosso objetivo é proporcionar uma interface única para cada usuário. Por isso, um usuário, sempre estará em um único arm, independentemente do experimento definido em um curso.
+ * StrategyRandomization: allows for the instructor to define a design, PlanOut script or to esta entidade permite que o professor defina um design, script do PlanOut ou alterne entre operadores utilizados para randomizar. Por padrão, ao criar o experimento, define-se como forma de randomização o operador UniformChoice. Em nosso protótipo o professor/staff members só podem alterar o Operador, Script ou Design  no primeiro experimento do curso, já que, nosso objetivo é proporcionar uma interface única para cada usuário. Por isso, um usuário, sempre estará em um único arm, independentemente do experimento definido em um curso.
  * UserChoiceExperiment: esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
  * AnonyMousPost: esta entidade armazena id do comentário e do usuário, que permite identificar um post anônimo. Desta forma, possibilita que, mesmo em posts anônimos, usuários de um grupo só tenha acesso aos posts do mesmo grupo.
 
 A entidades auth\_user está presente por padrão em qualquer aplicação Django e, para o nosso protótipo, serve para identificar o dono do experimento e Arms alocados no LMS. Auth\_profile é donde podemos extrair informações sobre os estudantes, tais como: sexo, nacionalidade, cidade, escolaridade, aniversário e outras informações. Algumas informações são passadas como argumento dos scripts em planout, o que permite fazer algumas tomadas de decisões e fazer a estratificação via script.
 
-### Criando Experimentos 
-De acordo com o que definimos nos casos de uso. Para criar um experimento, o professor deve primeiramente definir uma section com todos os conteúdos de uma semana, em seguida clica-se no ícone Flask presente em cada seção. Com isso, todos os atributos da seção escolhida é duplicado, são inseridas entradas nas entidades *ExperimentDefinition*, *StrategyRandomization* e *OpcoesExperiment*. Tais informações inseridas são usadas tanto pelo CMS quanto pelo LMS, e permitem identificar os experimentos, Arms dos experimentos e mais a estratégia usada para randomizar entre os Arms.
+### Creating experiments
 
-A randomização ocorre de acordo com o que foi definido em *StrategyRandomization*, que permite-nos alternar entre os operadores do PlanOut, usar um design ou carregar um script. No momento em que foi criado o experimento, o experimento é cadastrado para usar o operador *Uniform*, mas caso precise criamos uma janela para alternar como as Arms serão distribuídos entre os estudantes.
+Im accordance with our use cases, in order to create an experiment the instructor should first define a course section with all of the corresponding content. Next, the Flask icon is clicked, which will duplicate that section, with new entities being created named *ExperimentDefinition*, *StrategyRandomization* and *OpcoesExperiment*. These entities are used by both the CMS and the LMS, allowing for the identification of the experiment, arm and the corresponding randomization strategy.
+
+Randomization is deployed in accordance with the definition within *StrategyRandomization*, which allows for <!-- Jacinto, o que isso quer dizer? "permite-nos alternar entre os operadores do PlanOut" -->, make use of a design or load a script. When the experiment is created, it is registed to use the *Uniform* operator, <!-- Jacinto, nao entendi essa parte: mas caso precise criamos uma janela para alternar como as Arms serão distribuídos entre os estudantes. -->
 
 No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar as o design dos experimentos e a extrair informações em CSV referente às sections que fazem parte do experimento. Com os tais dados, o professor poderá carregá-los em softwares como R, JMP, Minitab, Excell e LibreOffice e efetuar a análise estatística necessária para tirar conclusões em relação a um determinado experimento.
 
@@ -130,7 +131,7 @@ No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* 
 
 A randomização também pode ser executada previamente com softwares tais como JMP, Minitab e, em seguida, armazenada em no campo *customDesign* da entidade *StrategyRandomization*. Com base neste design, ao invés de randomizar, o algoritmo retorna a versão definida no Design. Além de carregar o design criados por softwares estatísticos, o professor pode determinar essa versão manualmente digitando a ordem desejada. Isto pode ser útil em momentos em que professores usam o edX para ensinar em small private online course -- SPOC, isso pode ser preciso definir a versão manualmente. 
 
-### Definindo Designs e Scripts
+### Defining designs and scripts
 O planejameno do experimento é a primeira coisa que deve-se fazer antes de executar qualquer experimento. No planejamento precisamos definir claramente fatores, níveis, tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado.
 
 Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut.
@@ -145,41 +146,6 @@ A última forma de criar um planejamento de experimento é via script do PlanOut
 
 Cada script recebe como argumentos informações sobre o profile do usuário, que são: CHOICES, IDADE, CIDADE, PAIS, INSTRUCAO e SEXO. Com estas informações e mais os operadores do PlanOut podemos criar scripts que permitam ao professor mais controle da forma com que os Arms são alocados. Contudo, sabemos que, em razão das limitações do PlanOut e por termos uma quantidade limitada de informações sobre os alunos não é possível especificar todo tipo de designs. 
 
-Nos scripts, obrigatoriamente, deve-se retorna uma variável chamada URL, que é o resultado retornado pela classe que fará o parse do JSON. Para o protótipo CHOICES[0] corresponde ao Arm A, CHOICES[1] -- Arm B e CHOICES[2] -- Arm C caso haja. Abaixo iremos mostrar alguns exemplos de scripts do PlanOut.
-
-**Script 1**: Randomização Uniform. Neste exemplo todos os Arms tem a mesma quantidade de probabilidade. Esta é exatamente a randomizção padrão do protótipo
-URL = uniformChoice(choices=CHOICES, unit=userid);
-
-**Script 2**: Randomização com pesos. A primeira Arm tem 70% de chances de ser escolhido, enquanto que o segundo tem 30%
-URL = weightedChoice(choices=CHOICES, weights=[0.7, 0.3] unit=userid);
-
-
-**Script 3**: Randomização estratificada.Isto nos permite determinar uma porcentagem de alunos de um grupo específico. Neste exemplo definimos que 50% dos homens podem cair no Arm A, todas as mulheres irão para o Arm B. Caso o estudante não tenha entrado nem no primeiro e nem no segundo if, será efetuado a randomização pelo operador uniformChoice. Por enquanto, os scripts podem criar condições combinadas com IDADE, CIDADE, PAIS e INSTRUCAO.
-
-p1 = BernoulliTrial(p=0.5, unit=userid)
-if(SEXO=='m' && p1)
-{
-  URL = CHOICES[0];
-} else if (SEXO=='f')
-{
-  URL = CHOICES[1];
-} else {
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-**Script 4**: Define uma Arm de acordo com o país. Neste exemplo os alunos do Brasil conseguirão o Arm A, dos EUA o Arm B e os demais podem ter qualquer um dos Arms do experimento.
-
-if(PAIS=='BR')
-{
-  URL = CHOICES[0];
-} else if (PAIS=='US')
-{
-  URL = CHOICES[1]; 
-} else {
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-Uma coisa importante que podemos ver nos script, é que procuramos definir critérios para que, em todas as hipóteses, os estudantes entrem em um Arm, por isso definimos no último else a randomização com o operador uniformChoice.
 
 
 <!-- Jacinto, por favor adicione aqui como exatamente o planout e edx foram integrados. essa seção deve ser sucinta, não mais do que meia a uma página -->
@@ -205,7 +171,7 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
 
 
-what are the emails??
+<!-- Jacinto, o que são os "emails" que voce menciona nos videos? -->
 
 
 
@@ -263,6 +229,45 @@ Open Access description templates in compliance with CONSORT statement
 open source library of data analysis scripts in R and Python
 
 Abaixo há algumas idéias de scripts que podem ser utilizados.
+
+Nos scripts, obrigatoriamente, deve-se retorna uma variável chamada URL, que é o resultado retornado pela classe que fará o parse do JSON. Para o protótipo CHOICES[0] corresponde ao Arm A, CHOICES[1] -- Arm B e CHOICES[2] -- Arm C caso haja. Abaixo iremos mostrar alguns exemplos de scripts do PlanOut.
+
+**Script 1**: Randomização Uniform. Neste exemplo todos os Arms tem a mesma quantidade de probabilidade. Esta é exatamente a randomizção padrão do protótipo
+URL = uniformChoice(choices=CHOICES, unit=userid);
+
+**Script 2**: Randomização com pesos. A primeira Arm tem 70% de chances de ser escolhido, enquanto que o segundo tem 30%
+URL = weightedChoice(choices=CHOICES, weights=[0.7, 0.3] unit=userid);
+
+
+**Script 3**: Randomização estratificada.Isto nos permite determinar uma porcentagem de alunos de um grupo específico. Neste exemplo definimos que 50% dos homens podem cair no Arm A, todas as mulheres irão para o Arm B. Caso o estudante não tenha entrado nem no primeiro e nem no segundo if, será efetuado a randomização pelo operador uniformChoice. Por enquanto, os scripts podem criar condições combinadas com IDADE, CIDADE, PAIS e INSTRUCAO.
+
+p1 = BernoulliTrial(p=0.5, unit=userid)
+if(SEXO=='m' && p1)
+{
+  URL = CHOICES[0];
+} else if (SEXO=='f')
+{
+  URL = CHOICES[1];
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+**Script 4**: Define uma Arm de acordo com o país. Neste exemplo os alunos do Brasil conseguirão o Arm A, dos EUA o Arm B e os demais podem ter qualquer um dos Arms do experimento.
+
+if(PAIS=='BR')
+{
+  URL = CHOICES[0];
+} else if (PAIS=='US')
+{
+  URL = CHOICES[1]; 
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+Uma coisa importante que podemos ver nos script, é que procuramos definir critérios para que, em todas as hipóteses, os estudantes entrem em um Arm, por isso definimos no último else a randomização com o operador uniformChoice.
+
+
+
 
 Observe que, com esta opção permite que os alunos Brasileiros acessem somente a versão A do experimento, para os estudantes dos EUA verão somente a versão B e para os demais será randomizado entre as opções A, B ou C.
 
