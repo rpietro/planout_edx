@@ -37,6 +37,9 @@ In face of these gaps, the objective of this study is therefore to describe the 
 The [Open edX platform](http://code.edx.org/) is an open source, Python-based learning management system licensed under the AGPL <!-- ref -->license. Student data are stored on a relational databases ([MySQL]()) and course metadata stored within a NoSQL document database ([MongoDB]()). It is based on a very modular architecture and built with the assistance of a strong, international open source community. It currently contains a number of modules allowing for its expansion, the main building block being an [XBlock]() learning component. In addition to XBlocks, the Open edX platform currently contains additional modules such as the edX-ORA (Open Response Assessor), which allows for self, peer and automatic grading of open questions. Although an initial effort to create a randomization mechanism for AB trials (randomized experiments comparing arm A versus B), this system is currently limited to the comparison of theme changes, and is thus primarily focused on the testing of User eXperience (UX) features. The randomization of full educational methods and content is therefore still limited.
 
 When organizing courses, instructors are presented with the edX Studio Content Management System, which allows them to set a hierarchical course structure containing sections, subsections and unities. Unities can then contain videos, exercises, texts, among other forms of educational content. 
+
+
+<!-- Jacinto, posso deletar abaixo ou isso é válido? -->
 <!-- 
 
 \begin{figure}[h!]
@@ -55,7 +58,7 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 <!-- Jacinto, voce pode descrever o sistema atual aqui? -->
 
-### Requisites and informal use casOs
+### Requisites and informal use cases
 
 Our primary requisites for the system were: (1) the system should be able to randomize anything included within the Open edX platform, not restricting itself to User eXperience features but also including any type of educational content, (2) it should be able to deliver a wide range of design and randomization frameworks such as the ones offered through Planout, (3) it should allow for external scripting, thus facilitating its further integration with future frameworks such as those offering visual feedback to exercise groups and (4) it should provide researchers with ability to extract the data for research and quality improvement studies. Notice that as a first release we have did not stipulate a reporting graphical interface as a requisite.
 
@@ -109,9 +112,11 @@ Figure X displays and a partial Entity Relationship Diagram for our software. Th
 
 In order to create the integration between Open edX and PlanOut we have added the following entities: 
 
+<!-- might transform below into a table -->
+
 * ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
  * OpcoesExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
- * StrategyRandomization: esta entidade permite que o professor defina um design, script do PlanOut ou alterne entre operadores utilizados para randomizar. Por padrão, ao criar o experimento, define-se como forma de randomização o operador UniformChoice. Em nosso protótipo o professor/staff members só podem alterar o Operador, Script ou Design  no primeiro experimento do curso, já que, nosso objetivo é proporcionar uma interface única para cada usuário. Por isso, um usuário, sempre estará em um único arm, independentemente do experimento definido em um curso.
+ * StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- o que é um operator? o que é um design? acho que essas coisas precisam ser definidas --> As a consequece, individual students will only be in a single arm across all experiments.
  * UserChoiceExperiment: esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
  * AnonyMousPost: esta entidade armazena id do comentário e do usuário, que permite identificar um post anônimo. Desta forma, possibilita que, mesmo em posts anônimos, usuários de um grupo só tenha acesso aos posts do mesmo grupo.
 
@@ -132,7 +137,7 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 
 ### Design of experiments
 
-
+<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
 
 <!-- create videos in english -->
 
@@ -143,7 +148,7 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
 
 
-what are the emails??
+<!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
 
 
 
@@ -152,7 +157,8 @@ what are the emails??
 ### Forums
 
 
-http://youtu.be/AF8IY_iRbD8
+<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
+[video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8)
 
 
 
@@ -176,6 +182,13 @@ http://youtu.be/AF8IY_iRbD8
 ### PlanOut library
 
 <!-- jacinto to add scripts under github repo -->
+
+* parallel trial with two arms and 1:1 allocation proportion
+* parallel trial with two arms and 2:1 allocation proportion
+* parallel trial with three arms and 1:1:1 proportion
+* factorial trial with three interventions
+* cluster trial wtih two arms
+
 
 ### Reproducible analysis scripts for each study design
 
