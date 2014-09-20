@@ -38,19 +38,6 @@ The [Open edX platform](http://code.edx.org/) is an open source, Python-based le
 
 When organizing courses, instructors are presented with the edX Studio Content Management System, which allows them to set a hierarchical course structure containing sections, subsections and unities. Unities can then contain videos, exercises, texts, among other forms of educational content. 
 
-
-<!-- Jacinto, posso deletar abaixo ou isso é válido? -->
-<!-- 
-
-\begin{figure}[h!]
-    \centering
-        \includegraphics[scale=0.5]{conteudo/figs/edx/autoracaoSection.png}
-        \caption{Seção do CMS (edX Studio) no \textit{course outline} }
-    \label{fig:edX_StudioOutline}
-\end{figure}
-
- -->
-
 [Planout](https://facebook.github.io/planout/) was recently released by [Facebook](https://www.facebook.com/) as an open source, Python-based framework for conducting online randomized experiments. With designs being easily configurable using [JSON (JavaScript Object Notation)](), Planout allows for the design of an extensive range of configuration for designs such as clustering, blocking, stratification, different allocation proportions, indefinite number of randomization arms, among many others. Given its easy extensability, Planout allows not only for the implementation of a multitude of different designs, but also for the creation of new designs that might not have been described in the trial literature thus far.
 
 
