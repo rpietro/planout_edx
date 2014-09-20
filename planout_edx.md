@@ -187,6 +187,8 @@ Caso o professor deseje especificar condições para a alocação dos Arms, ser�
 
 To specify a design the user opens up a window where each operator can be changed, also allowing for the insertion of scripts in case of more sophisticated designs. <!-- precisamos de uma figura aqui-->
 
+![Change Design](./img/Estrategy.png "MudarScript")
+
 
 The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
 
