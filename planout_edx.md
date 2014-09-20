@@ -153,6 +153,21 @@ Portanto, temos: 1 Fator e 3 níveis
 
 Tamanho da Amostra: isto faz parte do planejamento, já que o tamanho não deve ser nem muito pequeno. O tamanho deve ser suficiente para tirar alguma conclusão, pois se for muito pequeno, artigos provenientes de um determinado estudo podem ser rejeitados.
 
+
+Caso o professor deseje, também poderá definir que os 30 primeiros tenham a versão A e os outros 30 com a versão B ele pode. Para isso é só criar uma planilha com 0s e 1s. 
+Ex.:
+Versao 
+0
+0
+0
+0
+0
+1
+1
+1
+1
+1
+
 --> 
 
 ### Defining designs and scripts
@@ -164,6 +179,9 @@ No planejamento precisamos definir claramente fatores, níveis e tamanho da amos
 
 <!-- 
 Frases abaixo também não estão claras - com condições para alocação você quer dizer estraticação ou blocking? se sim, eu usaria a nomenclatura padrão senão vai ficar muito confuso
+
+Isso serve para a estratificação e para a criação de qualquer script com o PlanOut, permite conhecer o público que está sendo estudado. Não faz muito sentido criar condições nos scripts como COUNTRY=='TAI' se não tem ninguém da Tailância.
+
 
 Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut. -->
 
