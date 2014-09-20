@@ -119,6 +119,14 @@ In order to create the integration between Open edX and PlanOut, and make possib
 
 A entidades auth\_user está presente por padrão em qualquer aplicação Django e, para o nosso protótipo, serve para identificar o dono do experimento e Arms alocados no LMS. Auth\_profile é donde podemos extrair informações sobre os estudantes, tais como: sexo, nacionalidade, cidade, escolaridade, aniversário e outras informações. Algumas informações são passadas como argumento dos scripts em planout, o que permite fazer algumas tomadas de decisões e fazer a estratificação via script.
 
+
+## Results
+
+<!-- http://bayesfactor.blogspot.com/2014/09/embedding-rdata-files-in-rmarkdown.html -->
+
+The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP).
+
+
 ### Creating experiments
 
 Im accordance with our use cases, in order to create an experiment the instructor should first define a course section with all of the corresponding content. Next, the Flask icon is clicked, which will duplicate that section, with new entities being created named *ExperimentDefinition*, *StrategyRandomization* and *OpcoesExperiment*. These entities are used by both the CMS and the LMS, allowing for the identification of the experiment, arm and the corresponding randomization strategy.
@@ -129,7 +137,7 @@ No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar 
 
 No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* e, de acordo com está em gravado, um thread bloqueante irá executar a randomização com operadores do PlanOut, script do PlanOut ou será lido o design definido pelo professor. Em seguida, insere-se um registro com o Arm do estudante em *UserChoiceExperiment* para que em um momento posterior possa ser recuperado. Já que demos bastante liberdade para o professor definir o design do experimento, caso o professor entre com valores errôneos será considerado a randomização do PlanOut, isto assegura que a todos os usuários sejam alocados para um Arm.
 
-A randomização também pode ser executada previamente com softwares tais como JMP, Minitab e, em seguida, armazenada em no campo *customDesign* da entidade *StrategyRandomization*. Com base neste design, ao invés de randomizar, o algoritmo retorna a versão definida no Design. Além de carregar o design criados por softwares estatísticos, o professor pode determinar essa versão manualmente digitando a ordem desejada. Isto pode ser útil em momentos em que professores usam o edX para ensinar em small private online course -- SPOC, isso pode ser preciso definir a versão manualmente. 
+The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Jacinto, não entendi essa parte: Com base neste design, ao invés de randomizar, o algoritmo retorna a versão definida no Design -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. 
 
 ### Defining designs and scripts
 O planejameno do experimento é a primeira coisa que deve-se fazer antes de executar qualquer experimento. No planejamento precisamos definir claramente fatores, níveis, tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado.
@@ -144,21 +152,12 @@ Caregando designs de experimentos definidos por softwares de terceiros (R, JMP, 
 
 A última forma de criar um planejamento de experimento é via script do PlanOut. A linguagem script do PlanOut tem um conjunto limitado de palavras chaves e operadores, dos quais incluem: operadores lógicos (And -- &&, or -- ||, not -- !) e aritméticos (addition, subtraction, modulo, multiplication, and division), condições de execução (if/else if/else) e matrizes CITE{The PlanOut language}{https://facebook.github.io/planout/docs/planout-language.html}. 
 
-Cada script recebe como argumentos informações sobre o profile do usuário, que são: CHOICES, IDADE, CIDADE, PAIS, INSTRUCAO e SEXO. Com estas informações e mais os operadores do PlanOut podemos criar scripts que permitam ao professor mais controle da forma com que os Arms são alocados. Contudo, sabemos que, em razão das limitações do PlanOut e por termos uma quantidade limitada de informações sobre os alunos não é possível especificar todo tipo de designs. 
-
-
-
-<!-- Jacinto, por favor adicione aqui como exatamente o planout e edx foram integrados. essa seção deve ser sucinta, não mais do que meia a uma página -->
+Each script will have as arguments information about the user profile, including choices, age, city, education and gender. With these variables as well as PlanOut operators it is then possible to generate scripts that allow the instructor to have further control over the way each arm is allocated. 
 
 <!-- Video 3 ParteEntidadeRelacionamento
 http://youtu.be/yADpLzlYU8w
  -->
 
-## Results
-
-<!-- http://bayesfactor.blogspot.com/2014/09/embedding-rdata-files-in-rmarkdown.html -->
-
-The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP).
 
 ### Design of experiments
 
