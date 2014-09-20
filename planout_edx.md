@@ -129,14 +129,38 @@ No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar 
 
 No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* e, de acordo com está em gravado, um thread bloqueante irá executar a randomização com operadores do PlanOut, script do PlanOut ou será lido o design definido pelo professor. Em seguida, insere-se um registro com o Arm do estudante em *UserChoiceExperiment* para que em um momento posterior possa ser recuperado. Já que demos bastante liberdade para o professor definir o design do experimento, caso o professor entre com valores errôneos será considerado a randomização do PlanOut, isto assegura que a todos os usuários sejam alocados para um Arm.
 
-The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Jacinto, não entendi essa parte: Com base neste design, ao invés de randomizar, o algoritmo retorna a versão definida no Design -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. 
+The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Jacinto, não entendi essa parte: Com base neste design, ao invés de randomizar no momeneto que o aluno acessa o courseware acesso, o algoritmo simplesmente a versão previamente definida definida no Design -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. 
+
+<!-- 
+Como já havia dito os arms do Planejamento do experimento pode ser feito de duas formas: 
+
+No momento em que o aluno acessa o COURSEWARE ou quando o professor cria o planejamento pelo JMP, R ... 
+
+Quando se faz o planejamento pelo JMP é gerado a ordem que o sistema irá usar para cadastrar os Arms para os Alunos
+
+versão 
+2
+0
+2
+
+Se esta sequência fosse gerado pelo JMP o sistema iria interpretar: C, A e B. Então, o primeiro aluno será cadastrado com o Arm C, o segundo com A e o terceiro com B.
+
+
+Fator - variável independente. por exemplo APOSTILA 
+Nível - variações dos Fatores. Por exemplo: APOSTILA POSITIVO, APOSTILA MASTER, APOSTILA WIZARD. 
+
+Portanto, temos: 1 Fator e 3 níveis
+
+Tamanho da Amostra: isto faz parte do planejamento, já que o tamanho não deve ser nem muito pequeno. O tamanho deve ser suficiente para tirar alguma conclusão, pois se for muito pequeno, artigos provenientes de um determinado estudo podem ser rejeitados.
+
+--> 
 
 ### Defining designs and scripts
 
 
 <!-- Jacinto, eu não entendi o que são esses termos que você usou nessa frase. seria bom a gente aderir a uma nomenclatura padrão existente pra evitar confusão
 
-No planejamento precisamos definir claramente fatores, níveis, tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado. -->
+No planejamento precisamos definir claramente fatores, níveis e tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado. -->
 
 <!-- 
 Frases abaixo também não estão claras - com condições para alocação você quer dizer estraticação ou blocking? se sim, eu usaria a nomenclatura padrão senão vai ficar muito confuso
