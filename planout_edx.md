@@ -180,12 +180,13 @@ No planejamento precisamos definir claramente fatores, níveis e tamanho da amos
 <!-- 
 Frases abaixo também não estão claras - com condições para alocação você quer dizer estraticação ou blocking? se sim, eu usaria a nomenclatura padrão senão vai ficar muito confuso
 
-Isso serve para a estratificação e para a criação de qualquer script com o PlanOut, permite conhecer o público que está sendo estudado. Não faz muito sentido criar condições nos scripts como COUNTRY=='TAI' se não tem ninguém da Tailância.
+O que eu quis dizer é que para definir scripts customizados devemos conhecer o público. Para isso deve-se gerar um relatório com todas as informações dos usuários. Isso serve para a estratificação e para a criação de qualquer script com o PlanOut, pois permite conhecer o público que está sendo estudado. Não faz muito sentido criar condições nos scripts como COUNTRY=='TAI' se não tem ninguém da Tailância.
 
 
 Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut. -->
 
 To specify a design the user opens up a window where each operator can be changed, also allowing for the insertion of scripts in case of more sophisticated designs. <!-- precisamos de uma figura aqui-->
+
 
 The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
 
