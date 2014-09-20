@@ -189,14 +189,13 @@ To specify a design the user opens up a window where each operator can be change
 
 ![Change Design](./img/Estrategy.png "MudarScript")
 
-
 The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
 
 When using a script, a third-party software such as R, JMP, Minitab, LibreOffice are used to generate a Comma Separate Value (CSV) file where the first row already represents a randomization, and where each column represents an arm. <!-- Talvez eu irei mude isso se conseguir implementar o crossover -->
 
 A última forma de criar um planejamento de experimento é via script do PlanOut. A linguagem script do PlanOut tem um conjunto limitado de palavras chaves e operadores, dos quais incluem: operadores lógicos (And -- &&, or -- ||, not -- !) e aritméticos (addition, subtraction, modulo, multiplication, and division), condições de execução (if/else if/else) e matrizes CITE{The PlanOut language}{https://facebook.github.io/planout/docs/planout-language.html}. 
 
-Each script will have as arguments information about the user profile, including choices, age, city, education and gender. With these variables as well as PlanOut operators it is then possible to generate scripts that allow the instructor to have further control over the way each arm is allocated. 
+Each script will have as arguments information about the user profile, including choices, age, city, education and gender. With these variables as well as PlanOut operators it is then possible to generate scripts that allow the instructor to have further control over the way each arm is allocated.
 
 <!-- Video 3 ParteEntidadeRelacionamento
 http://youtu.be/yADpLzlYU8w
@@ -204,7 +203,6 @@ http://youtu.be/yADpLzlYU8w
 
 
 ### Design of experiments
-
 
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
 
@@ -218,25 +216,23 @@ http://youtu.be/yADpLzlYU8w
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
 
 <!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
+<!-- Nos e-mails eu simplesmente gero um arquivo .CSV com e-mails dos usuários e seus respectivos Arms 
+Ex.: 
 
+Arm E-mail
+A   geekaia@gmail.com
+A   maria@gmail.com
+B   carlos@hotmail.com
+B   carlota@gmail.com
 
-
-
+-->
 
 
 ### Forums
-
+Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B.
 
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
 [video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8)
-
-
-
-
-
-
-
-
 
 
 ### Video library and documentation for new users
