@@ -37,6 +37,9 @@ In face of these gaps, the objective of this study is therefore to describe the 
 The [Open edX platform](http://code.edx.org/) is an open source, Python-based learning management system licensed under the AGPL <!-- ref -->license. Student data are stored on a relational databases ([MySQL]()) and course metadata stored within a NoSQL document database ([MongoDB]()). It is based on a very modular architecture and built with the assistance of a strong, international open source community. It currently contains a number of modules allowing for its expansion, the main building block being an [XBlock]() learning component. In addition to XBlocks, the Open edX platform currently contains additional modules such as the edX-ORA (Open Response Assessor), which allows for self, peer and automatic grading of open questions. Although an initial effort to create a randomization mechanism for AB trials (randomized experiments comparing arm A versus B), this system is currently limited to the comparison of theme changes, and is thus primarily focused on the testing of User eXperience (UX) features. The randomization of full educational methods and content is therefore still limited.
 
 When organizing courses, instructors are presented with the edX Studio Content Management System, which allows them to set a hierarchical course structure containing sections, subsections and unities. Unities can then contain videos, exercises, texts, among other forms of educational content. 
+
+
+<!-- Jacinto, posso deletar abaixo ou isso é válido? -->
 <!-- 
 
 \begin{figure}[h!]
@@ -111,9 +114,11 @@ Figure X displays and a partial Entity Relationship Diagram for our software. Th
 In order to create the integration between Open edX and PlanOut, and make possible to load designs created by third-party software. We have added the following entities: <!-- modifiquei aqui adicionei load designs -->
 
 
+<!-- might transform below into a table -->
+
 * ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
  * OpcoesExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
- * StrategyRandomization: allows for the instructor to define a design, PlanOut script or to esta entidade permite que o professor defina um design, script do PlanOut ou alterne entre operadores utilizados para randomizar. Por padrão, ao criar o experimento, define-se como forma de randomização o operador UniformChoice. Em nosso protótipo o professor/staff members só podem alterar o Operador, Script ou Design  no primeiro experimento do curso, já que, nosso objetivo é proporcionar uma interface única para cada usuário. Por isso, um usuário, sempre estará em um único arm, independentemente do experimento definido em um curso.
+ * StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- o que é um operator? o que é um design? acho que essas coisas precisam ser definidas --> As a consequece, individual students will only be in a single arm across all experiments.
  * UserChoiceExperiment: esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
  * AnonyMousPost: esta entidade armazena id do comentário e do usuário, que permite identificar um post anônimo. Desta forma, possibilita que, mesmo em posts anônimos, usuários de um grupo só tenha acesso aos posts do mesmo grupo.
 
@@ -140,15 +145,22 @@ No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* 
 The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Jacinto, não entendi essa parte: Com base neste design, ao invés de randomizar, o algoritmo retorna a versão definida no Design -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. 
 
 ### Defining designs and scripts
-O planejameno do experimento é a primeira coisa que deve-se fazer antes de executar qualquer experimento. No planejamento precisamos definir claramente fatores, níveis, tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado.
 
-Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut.
 
-Para especificar um design criamos uma janela que permite mudar entre os Operadores do PlanOut, Scripts do PlanOut e carregar um design criado por softwares de terceiros. 
+<!-- Jacinto, eu não entendi o que são esses termos que você usou nessa frase. seria bom a gente aderir a uma nomenclatura padrão existente pra evitar confusão
 
-Deve-se usar UniformChoice quando se quer que a amostra tenha o resultado balanceado entre os Arms. Por exemplo, se tivermos 2 Arms, a quantidade de alunos alocada para cada Arm será aproximadamente 50%. Com WeightedChoice temos como modificar a probabilidade que cada Arm tem de ser alocado randomicamente.
+No planejamento precisamos definir claramente fatores, níveis, tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado. -->
 
-Caregando designs de experimentos definidos por softwares de terceiros (R, JMP, Minitab, LibreOffice e outros), deve-se deixar a primeria linha para o label da coluna, os campos são separados por vírgula e, independente da randomização utilizada, a primeira coluna deve ter o valor numérico 0 -- Arm A, 1 -- Arm B e 2 -- Arm C. <!-- Talvez eu irei mude isso se conseguir implementar o crossover -->
+<!-- 
+Frases abaixo também não estão claras - com condições para alocação você quer dizer estraticação ou blocking? se sim, eu usaria a nomenclatura padrão senão vai ficar muito confuso
+
+Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut. -->
+
+To specify a design the user opens up a window where each operator can be changed, also allowing for the insertion of scripts in case of more sophisticated designs. <!-- precisamos de uma figura aqui-->
+
+The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
+
+When using a script, a third-party software such as R, JMP, Minitab, LibreOffice are used to generate a Comma Separate Value (CSV) file where the first row already represents a randomization, and where each column represents an arm. <!-- Talvez eu irei mude isso se conseguir implementar o crossover -->
 
 A última forma de criar um planejamento de experimento é via script do PlanOut. A linguagem script do PlanOut tem um conjunto limitado de palavras chaves e operadores, dos quais incluem: operadores lógicos (And -- &&, or -- ||, not -- !) e aritméticos (addition, subtraction, modulo, multiplication, and division), condições de execução (if/else if/else) e matrizes CITE{The PlanOut language}{https://facebook.github.io/planout/docs/planout-language.html}. 
 
@@ -161,6 +173,10 @@ http://youtu.be/yADpLzlYU8w
 
 ### Design of experiments
 
+
+<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
+
+
 <!-- create videos in english -->
 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
@@ -169,8 +185,8 @@ http://youtu.be/yADpLzlYU8w
 
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
 
+<!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
 
-<!-- Jacinto, o que são os "emails" que voce menciona nos videos? -->
 
 
 
@@ -179,7 +195,8 @@ http://youtu.be/yADpLzlYU8w
 ### Forums
 
 
-http://youtu.be/AF8IY_iRbD8
+<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
+[video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8)
 
 
 
@@ -203,6 +220,13 @@ http://youtu.be/AF8IY_iRbD8
 ### PlanOut library
 
 <!-- jacinto to add scripts under github repo -->
+
+* parallel trial with two arms and 1:1 allocation proportion
+* parallel trial with two arms and 2:1 allocation proportion
+* parallel trial with three arms and 1:1:1 proportion
+* factorial trial with three interventions
+* cluster trial wtih two arms
+
 
 ### Reproducible analysis scripts for each study design
 
