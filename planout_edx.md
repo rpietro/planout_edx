@@ -241,15 +241,10 @@ Em relação ao licenciamento do código produzido, nós mantemos o padrão util
 
 
 
-
-
-
 <!-- Jacinto - pydoc, maintain original licenses -->
 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
-
 [video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
-
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
 
 ### PlanOut library
