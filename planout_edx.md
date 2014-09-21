@@ -235,6 +235,10 @@ Em nosso protótipo implementamos uma funcionalidade que permite que os estudant
 
 
 ### Video library and documentation for new users
+Durante o desenvolvimento procuramos manter o código o mais simples e auto-explicativo, o que facilita que novos desenvolvedores possam modificar e melhorar o nosso protótipo. Também provemos docstrings no começo das funções e classes que provêem algumas explicações adicionais acerca do que é executado na função ou classe. Nós também provemos alguns vídeos que mostram o funcionamento da ferramenta integrado ao edX.
+
+
+
 
 <!-- Jacinto - pydoc, maintain original licenses -->
 
