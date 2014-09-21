@@ -199,13 +199,14 @@ Each script will have as arguments information about the user profile, including
 
 <!-- Video 3 ParteEntidadeRelacionamento
 http://youtu.be/yADpLzlYU8w
+ 
  -->
 
 
 ### Design of experiments
 
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-
+Desemvolvemos alguns vídeos tutoriais ilustram o processo de criação de experimentos utilizando o edX integrado ao protótipo. Nos vídeos também mostramos o processo 
 
 <!-- create videos in english -->
 
@@ -224,9 +225,7 @@ A   geekaia@gmail.com
 A   maria@gmail.com
 B   carlos@hotmail.com
 B   carlota@gmail.com
-
 -->
-
 
 ### Forums
 Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B.
