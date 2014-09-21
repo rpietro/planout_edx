@@ -206,7 +206,7 @@ http://youtu.be/yADpLzlYU8w
 ### Design of experiments
 
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-Desemvolvemos alguns vídeos tutoriais ilustram o processo de criação de experimentos utilizando o edX integrado ao protótipo. Nos vídeos também mostramos o processo 
+Desemvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de experimentos utilizando o edX integrado ao protótipo. Em tais vídeos exemplificamos como carregar designs, alternar entre os operadores do PlanOut e a carregar e compilar scripts em PlanOut.
 
 <!-- create videos in english -->
 
