@@ -21,7 +21,7 @@ Seiji Isotani, PhD
 
 <!-- write at the end -->
 
-## IntroductiOn
+## Introduction
 
 Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice. 
 
