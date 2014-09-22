@@ -23,7 +23,7 @@ Seiji Isotani, PhD
 
 ## Introduction
 
-Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice. 
+Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice.
 
 In the now classic [Pyramid of Evidence](http://libguides.mssm.edu/hierarchy) proposed by the founders of Evidence-Based-Medicine, randomized controled trials and the corresponding meta-analyses are at the top, while observational studies and reports based on personal experience are positioned at a lower level. While this classification has been transposed to educational research <!-- ref -->, it has also been significantly criticized since randomized controled trials tend to select samples that are consistently different from the population where its results are supposed to be applied. <!-- ref --> While the same is certainly true for in person education - individuals commiting to participate in an in-person educational trial will likely be different - in online environments randomization can be seamless, with the potential to conduct dozens of experiments within a single educational unit. An example of platforms allowing for online randomization include the [Planout framework](https://facebook.github.io/planout/), recently released by [Facebook](https://www.facebook.com/) and currently used to conduct over 1000 experiments on their site. Despite the promising perspective of transforming education into an evidence-driven field, to date most learning management systems have been unable to take advantage of frameworks such as Planout, and as a consequence the number and quality of educational trials is still far behind where it could be.
 
@@ -36,14 +36,22 @@ In face of these gaps, the objective of this study is therefore to describe the 
 
 The [Open edX platform](http://code.edx.org/) is an open source, Python-based learning management system licensed under the AGPL <!-- ref -->license. Student data are stored on a relational databases ([MySQL]()) and course metadata stored within a NoSQL document database ([MongoDB]()). It is based on a very modular architecture and built with the assistance of a strong, international open source community. It currently contains a number of modules allowing for its expansion, the main building block being an [XBlock]() learning component. In addition to XBlocks, the Open edX platform currently contains additional modules such as the edX-ORA (Open Response Assessor), which allows for self, peer and automatic grading of open questions. Although an initial effort to create a randomization mechanism for AB trials (randomized experiments comparing arm A versus B), this system is currently limited to the comparison of theme changes, and is thus primarily focused on the testing of User eXperience (UX) features. The randomization of full educational methods and content is therefore still limited.
 
-When organizing courses, instructors are presented with the edX Studio Content Management System, which allows them to set a hierarchical course structure containing sections, subsections and unities. Unities can then contain videos, exercises, texts, among other forms of educational content. 
+When organizing courses, instructors are presented with the edX Studio Content Management System, which allows them to set a hierarchical course structure containing sections, subsections and unities. Unities can then contain videos, exercises, texts, among other forms of educational content.
 
 [Planout](https://facebook.github.io/planout/) was recently released by [Facebook](https://www.facebook.com/) as an open source, Python-based framework for conducting online randomized experiments. With designs being easily configurable using [JSON (JavaScript Object Notation)](), Planout allows for the design of an extensive range of configuration for designs such as clustering, blocking, stratification, different allocation proportions, indefinite number of randomization arms, among many others. Given its easy extensability, Planout allows not only for the implementation of a multitude of different designs, but also for the creation of new designs that might not have been described in the trial literature thus far.
 
 
 ### Existing randomization within Open edX
 
-<!-- Jacinto, voce pode descrever o sistema atual aqui? -->
+Quase no mesmo momente em que estávamos finalizando a programação de nosso protótipo a equipe do edX estava desenvolvendo o  componente *split_test*, que pode ser adicionado no curso com o objetivo de testar conteúdos diferenciados para grupos de usuários distintos. O componente do edX trabalha com a formação de grupos, donde permite-se adicionar conteúdos para os grupos criados pelo professor. Os estudantes serão cadastrados nos grupos de acordo com a política previamente definida. Tais políticas podem ser:
+
+- Dinâmica -- os grupos são formados de acordo com a ordem que os usuários visualizam o conteúdo; 
+- Aleatória -- os estudantes serão randomizados entre os grupos disponíveis; 
+- Evenly distributed -- a quantidade de estudantes é distribuído igualmente  entre os grupos disponíveis;
+- Permanente -- os alunos permanecem em no mesmo grupo independente da quantidade de experimentos no curso.
+
+<!-- Jacinto, voce pode descrever o sistema atual aqui? 
+-->
 
 ### Requisites and informal use cases
 
