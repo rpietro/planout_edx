@@ -243,18 +243,17 @@ Em nosso protótipo implementamos uma funcionalidade que permite que os estudant
 
 
 ### Video library and documentation for new users
-Durante o desenvolvimento procuramos manter o código o mais simples e auto-explicativo, o que torna mais fácil para  que desenvolvedores possam modificar e melhorar o nosso protótipo. Também provemos docstrings no começo das funções e classes que provêem algumas explicações adicionais acerca do que é executado na função ou classe. Nós também provemos alguns vídeos que mostram o funcionamento da ferramenta integrado ao edX. 
 
-Em relação ao licenciamento do código produzido, nós mantemos o padrão utilizado pelo edX, que é a licença GNU Affero General Public License e pode ser encontrado no arquivo LICENSE em nosso repositório.
-
+All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project]()
 
 
-<!-- Jacinto - pydoc, maintain original licenses -->
+<!-- Jacinto a licensa dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? -->
 
+<!-- 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
 [video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
 [video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
-
+ -->
 ### PlanOut library
 
 <!-- jacinto to add scripts under github repo -->
