@@ -44,16 +44,11 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 ### Existing randomization within Open edX
 
-Quase no mesmo momente em que estávamos finalizando a programação de nosso protótipo a equipe do edX estava desenvolvendo o  componente *split_test*, que pode ser adicionado no curso com o objetivo de testar conteúdos diferenciados para grupos de usuários distintos. O componente do edX trabalha com a formação de grupos, donde permite-se adicionar conteúdos para os grupos criados pelo professor. Os estudantes serão cadastrados nos grupos de acordo com a política previamente definida. Tais políticas podem ser:
+Open edX recently released the *split_test* component, which can be added to a course to generate a parallel trial. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação-->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref -->
 
-- Dinâmica -- os grupos são formados de acordo com a ordem que os usuários visualizam o conteúdo; 
-- Aleatória -- os estudantes serão randomizados entre os grupos disponíveis; 
-- Evenly distributed -- a quantidade de estudantes é distribuído igualmente  entre os grupos disponíveis;
-- Permanente -- os alunos permanecem em no mesmo grupo independente da quantidade de experimentos no curso.
+Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely cross-over, N-of-1 and factorial, as well as possible variations resulting from adaptations or combinations of each of these.
 
 
-<!-- Jacinto, voce pode descrever o sistema atual aqui? 
--->
 
 ### Requisites and informal use cases
 
@@ -66,6 +61,7 @@ Our primary informal use case is described as:
 2. The educational researcher selects a script from a Planout library to match the design she wants to implement, modifying it to match local requirements
 3. The script is inserted on the Open edX interface
 4. The trial is tested
+5. The trial is deployed as part of a course or a dedicated research trial
 
 
 ### Application architecture
@@ -73,9 +69,8 @@ Our primary informal use case is described as:
 Below we describe the original Open edX and PlanOut architectures, followed by the overall integration architecture.
 
 #### Original Open edX
-Open edX's architecture is based on a group of modular components, including Studio (a Content Management System), Learning Management System, Comment Service in addition to the mysql and MongoDB CITE [OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). This architectural modularity allows for <!-- Jacinto, não está claro --> across different hosts, ultimately making the architecture highly scalable. This architecture can therefore improve response times, even with a high hit rate.
 
-<!--OLHE AQUI O edX é composto por um conjunto de componentes modulares, dentre os principais, podemos citar: Studio/CMS (a Content Management System), Learning Management System (LMS), Comment Service (cs\_comments\_service), ORA (Open Response Assessor) e mais os bancos de dados Mysql e MongoDb CITE[OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). Esta modularidade da arquitetura permite que alguns serviços possam ser executadas em hosts distintos, tornando a arquitetura altamente escalável, melhorando os tempos de resposta, mesmo quando a taxa de acessos é grande. Há também a possibilidade de se adicionar nós redundantes e combinar isso com um Load Balancer para aumentar a disponibilidade dos serviços. -->
+Open edX's architecture is based on a group of modular components, including Studio (a Content Management System), Learning Management System (LMS), Comment Service, Open Response Assessor (ORA) in addition to the MySQL and MongoDB ([OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/)). This architectural modularity allows for some of the services to be executed across different hosts, ultimately making the architecture highly scalable. This architecture can therefore improve response times, even with a high hit rate as is common in Massive Open Online Courses (MOOCs).
 
 Figure XXX demonstrates the main elements in this architecture, containing the CMS and LMS. The CMS provides a group of tools for the authoring of courses. It also allows for the addition of items such as the pass and fail criteria, settings for learner activity and content import and export. The CMS also makes available resources such as videos, HTML pages, problems and forum discussions.
 
@@ -84,7 +79,7 @@ Figure XXX demonstrates the main elements in this architecture, containing the C
 
 The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course. 
 
-The majority of the components in the Open edX platform are based on the Django framework, and the content is rendered using the Mako library, allowing for better flexibility and performance. Além de Python, do lado do servidor também utiliza-se Java, Ruby, Ruby on Rails, e NodeJs. Do lado cliente, obviamente, o conteúdo é renderizado utilizando-se HTML, JavaScript, CSS e SASS.
+The majority of  components in the Open edX platform are based on the Django framework, and the content is rendered using the Mako library, allowing for better flexibility and performance. Beyond Python, the server also uses languages such as [Java](), [Ruby](), [Ruby on Rails](), and [NodeJs](). On the client side the content is rendered using a combination of [HTML](), [JavaScript](), [CSS]() and [SASS]().
 
 
 #### Original PlanOut
@@ -114,12 +109,13 @@ In order to create the integration between Open edX and PlanOut, and make possib
 <!-- might transform below into a table -->
 
 * ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
- * OpcoesExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
- * StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- o que é um operator? o que é um design? acho que essas coisas precisam ser definidas --> As a consequece, individual students will only be in a single arm across all experiments.
- * UserChoiceExperiment: esta entidade serve para definir que Arm foi alocado na randomização, ou, simplesmente inserir uma entrada de acordo com o Design em StrategyRandomization. Esta entidade assegura que, em um momento posterior, o usuário recupere e use o conteúdo do Arm alocado.
- * AnonyMousPost: this entity stores the unique identifier for the comment as well as the user, which allows for the identificatio of an anonymous post. This feature allows that, for example, group users only have access to posts made within their own group.
+* OpcoesExperiment: <!-- Jacinto, seria melhor chamar de options ao invés de experimento --> stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
+* StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- Jacinto, o que é um operator? o que é um design? acho que essas coisas precisam ser definidas --> As a consequece, individual students will only be in a single arm across all experiments.
+* UserChoiceExperiment: this entity defines which arm was allocated during randomization, by inserting an entry that is defined under Design in StrategyRandomization. This entity ensures that, at a later moment, users might recover and use the content of the Arm where they have been allocated.
+* AnonyMousPost: this entity stores the unique identifier for the comment as well as the user, which allows for the identificatio of an anonymous post. This feature allows that, for example, group users only have access to posts made within their own group.
 
-A entidades auth\_user está presente por padrão em qualquer aplicação Django e, para o nosso protótipo, serve para identificar o dono do experimento e Arms alocados no LMS. Auth\_profile é donde podemos extrair informações sobre os estudantes, tais como: sexo, nacionalidade, cidade, escolaridade, aniversário e outras informações. Algumas informações são passadas como argumento dos scripts em planout, o que permite fazer algumas tomadas de decisões e fazer a estratificação via script.
+The entities auth_user are standard within any Django application. In our project, this entiry identifies the experiment owner and the respective Arms allocated within the LMS. Auth_profile is where data about learners can be extracted, such as baseline and socio-demographic variables. Finally, some of the data are passes are an argument to the scripts within Planout which allows for the stratification of a randomization schedule.
+
 
 
 ## Results
