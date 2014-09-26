@@ -249,7 +249,7 @@ Em nosso protótipo implementamos uma funcionalidade que permite que os estudant
 All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE)
 
 
-<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisaos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
+<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
 
 <!-- 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
