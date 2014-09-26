@@ -31,6 +31,7 @@ When it comes to randomized experiments in education, a full range of designs is
 
 In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework.
 
+
 ## Methods
 ### edX and PlanOut descriptions
 
@@ -74,7 +75,7 @@ Below we describe the original Open edX and PlanOut architectures, followed by t
 #### Original Open edX
 Open edX's architecture is based on a group of modular components, including Studio (a Content Management System), Learning Management System, Comment Service in addition to the mysql and MongoDB CITE [OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). This architectural modularity allows for <!-- Jacinto, não está claro --> across different hosts, ultimately making the architecture highly scalable. This architecture can therefore improve response times, even with a high hit rate.
 
-<!--OLHE AQUI O edX é composto por um conjunto de componentes modulares, dentre os principais, podemos citar: Studio/CMS (a Content Management System), Learning Management System (LMS), Comment Service (cs\_comments\_service), ORA (Open Response Assessor) e mais os bancos de dados Mysql e MongoDb CITE[OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). Esta modularidade da arquitetura permite que alguns serviços possam ser executadas em hosts distintos, tornando a arquitetura altamente escalável, melhorando os tempos de resposta, mesmo quando a taxa de acessos é grande. Há também a possibilidade de se adicionar nós redundantes e, combinar isso com um Load Balancer para aumentar a disponibilidade dos serviços. -->
+<!--OLHE AQUI O edX é composto por um conjunto de componentes modulares, dentre os principais, podemos citar: Studio/CMS (a Content Management System), Learning Management System (LMS), Comment Service (cs\_comments\_service), ORA (Open Response Assessor) e mais os bancos de dados Mysql e MongoDb CITE[OpenEdX Components](http://openedxdev.wordpress.com/openedx/architecture/openedx-architecture/). Esta modularidade da arquitetura permite que alguns serviços possam ser executadas em hosts distintos, tornando a arquitetura altamente escalável, melhorando os tempos de resposta, mesmo quando a taxa de acessos é grande. Há também a possibilidade de se adicionar nós redundantes e combinar isso com um Load Balancer para aumentar a disponibilidade dos serviços. -->
 
 Figure XXX demonstrates the main elements in this architecture, containing the CMS and LMS. The CMS provides a group of tools for the authoring of courses. It also allows for the addition of items such as the pass and fail criteria, settings for learner activity and content import and export. The CMS also makes available resources such as videos, HTML pages, problems and forum discussions.
 
@@ -248,7 +249,7 @@ Em nosso protótipo implementamos uma funcionalidade que permite que os estudant
 All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE)
 
 
-<!-- Jacinto a licensa dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisaos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
+<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisaos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
 
 <!-- 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
