@@ -29,7 +29,7 @@ In the now classic [Pyramid of Evidence](http://libguides.mssm.edu/hierarchy) pr
 
 When it comes to randomized experiments in education, a full range of designs is theoretically possible. For example, cluster randomized trials have been advocated when a class might be highly influenced by an instructor <!-- ref -->, factorial trial have been advocated when simultaneously testing variations of an educational method <!-- ref -->, blocked and stratified designs when there might be concern regarding imbalances. More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, outcomes without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts. <!-- ref --> All of these designs are certainly interesting, but without a supporting technology they are more often than not relegated to a secondary plane, educators often not making use of randomization at all or using simplistic designs when more sophisticated ones could lead toward better information to guide educational practice.
 
-In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework. 
+In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework.
 
 ## Methods
 ### edX and PlanOut descriptions
@@ -49,6 +49,7 @@ Quase no mesmo momente em que estávamos finalizando a programação de nosso pr
 - Aleatória -- os estudantes serão randomizados entre os grupos disponíveis; 
 - Evenly distributed -- a quantidade de estudantes é distribuído igualmente  entre os grupos disponíveis;
 - Permanente -- os alunos permanecem em no mesmo grupo independente da quantidade de experimentos no curso.
+
 
 <!-- Jacinto, voce pode descrever o sistema atual aqui? 
 -->
@@ -244,10 +245,10 @@ Em nosso protótipo implementamos uma funcionalidade que permite que os estudant
 
 ### Video library and documentation for new users
 
-All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project]()
+All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE)
 
 
-<!-- Jacinto a licensa dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? -->
+<!-- Jacinto a licensa dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisaos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
 
 <!-- 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
