@@ -342,6 +342,15 @@ if(SEXO=='m' && p1)
   URL = uniformChoice(choices=CHOICES, unit=userid);
 }
 
+Adicionei o fatorial completo carregado via Design criado pelo Minitab e com Script do PlanOut
+
+Fatorial completo 2x2
+
+fat1 = UniformChoice(choices=["1", "2"], unit=userid)
+fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid)
+
+
+
 Podemos pensar em estratificar por faixa de idade. Por exemplo, alunos de idade > 18 < 25 e cidade='São Paulo', mas o campo cidade fica em aberto no edX, daí não dá para assegurar que o aluno vá entrar SÃO PAULO ou São Paulo, ou são paulo-SP. Se isso for fundamental eu posso pensar em uma forma de modificar a caixa de entrada para que o usuário selecione a cidade ao invés de digitar.
 
 Não sei se precisa mais de alguma coisa em relação aos scripts. Caso precise, devemos elencar o que exatamente deve ser estratificado. Lembrando que ficaremos limitados a somente algumas instruções com as variáveis PAIS, CIDADE, IDADE, SEXO e INSTRUCAO.
