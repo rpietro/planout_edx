@@ -121,8 +121,6 @@ The entities auth_user are standard within any Django application. In our projec
 ## Results
 
 
-<!-- http://bayesfactor.blogspot.com/2014/09/embedding-rdata-files-in-rmarkdown.html -->
-
 The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). <!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx -->
 
 
@@ -177,7 +175,7 @@ Versao
 
 --> 
 
-### Defining designs and scripts
+### Defining experimental designs
 
 
 <!-- Jacinto, eu não entendi o que são esses termos que você usou nessa frase. seria bom a gente aderir a uma nomenclatura padrão existente pra evitar confusão
@@ -210,7 +208,6 @@ http://youtu.be/yADpLzlYU8w
  -->
 
 
-### Design of experiments
 
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
 Desemvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de experimentos utilizando o edX integrado ao protótipo. Em tais vídeos exemplificamos como carregar designs, alternar entre os operadores do PlanOut e a carregar e compilar scripts em PlanOut.
@@ -234,26 +231,6 @@ B   carlos@hotmail.com
 B   carlota@gmail.com
 -->
 
-### Forums
-Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B.
-
-<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-[video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8)
-
-
-### Video library and documentation for new users
-
-All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE)
-
-
-<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
-
-<!-- 
-[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
-[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
-[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
- -->
-### PlanOut library
 
 <!-- jacinto to add scripts under github repo -->
 
@@ -263,25 +240,6 @@ All of our code was documented using docstrings at the beggining of our function
 * factorial trial with three interventions
 * cluster trial wtih two arms
 
-
-### Reproducible analysis scripts for each study design
-
-<!-- ricardo to add rmd in R and possibly in python -->
-
-
-<!-- 
-
-import R into ipython http://ipython.org/ipython-doc/dev/config/extensions/rmagic.html and then run
-
-http://nbviewer.ipython.org/gist/yoavram/5280132
-
-http://cran.us.r-project.org/web/views/ClinicalTrials.html
-http://cran.us.r-project.org/web/views/ExperimentalDesign.html
-http://cran.us.r-project.org/web/views/ReproducibleResearch.html
-http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
-
-
- -->
 
 Data export
 Open Access description templates in compliance with CONSORT statement
@@ -401,6 +359,31 @@ https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiment
 
 Templates 
 https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
+
+
+
+### Video library and documentation for new users
+
+All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE)
+
+
+<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
+
+<!-- 
+[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
+[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
+[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
+ -->
+Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B.
+
+<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
+[video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8)
+
+
+
+
+
+
 
 
 
@@ -608,4 +591,23 @@ system description
 course cloning
 database architecture
 [AGPL](http://www.gnu.org/licenses/agpl-3.0.html)
+ -->
+<!-- http://bayesfactor.blogspot.com/2014/09/embedding-rdata-files-in-rmarkdown.html -->
+
+
+<!-- ricardo to add rmd in R and possibly in python -->
+
+
+<!-- 
+
+import R into ipython http://ipython.org/ipython-doc/dev/config/extensions/rmagic.html and then run
+
+http://nbviewer.ipython.org/gist/yoavram/5280132
+
+http://cran.us.r-project.org/web/views/ClinicalTrials.html
+http://cran.us.r-project.org/web/views/ExperimentalDesign.html
+http://cran.us.r-project.org/web/views/ReproducibleResearch.html
+http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
+
+
  -->
