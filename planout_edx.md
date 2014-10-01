@@ -344,7 +344,7 @@ if(SEXO=='m' && p1)
 
 Adicionei o fatorial completo carregado via Design criado pelo Minitab e com Script do PlanOut
 
-Fatorial completo 2x2
+Fatorial completo com 2 fatores
 
 fat1 = UniformChoice(choices=["1", "2"], unit=userid)
 fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid)
