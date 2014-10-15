@@ -349,6 +349,8 @@ Fatorial completo com 2 fatores
 fat1 = UniformChoice(choices=["1", "2"], unit=userid)
 fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid)
 
+Se for com scripts irá aparecer A para a combinação 0, B para a combinação 1, C para a combinação 2 e D para a combinação 3
+
 
 
 Podemos pensar em estratificar por faixa de idade. Por exemplo, alunos de idade > 18 < 25 e cidade='São Paulo', mas o campo cidade fica em aberto no edX, daí não dá para assegurar que o aluno vá entrar SÃO PAULO ou São Paulo, ou são paulo-SP. Se isso for fundamental eu posso pensar em uma forma de modificar a caixa de entrada para que o usuário selecione a cidade ao invés de digitar.
