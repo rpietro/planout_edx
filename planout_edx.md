@@ -9,6 +9,7 @@ https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
  -->
 
 Jacinto José Franco, MSc
+Gustavo Costa Medeiros
 Joao Ricardo Vissoci, PhD
 Bruno Melo
 Jacson Barros
