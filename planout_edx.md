@@ -114,7 +114,7 @@ In order to create the integration between Open edX and PlanOut, and make possib
 * StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- Jacinto, o que é um operator? o que é um design? acho que essas coisas precisam ser definidas --> As a consequece, individual students will only be in a single arm across all experiments.
 * UserChoiceExperiment: this entity defines which arm was allocated during randomization, by inserting an entry that is defined under Design in StrategyRandomization. This entity ensures that, at a later moment, users might recover and use the content of the Arm where they have been allocated.
 * AnonyMousPost: this entity stores the unique identifier for the comment as well as the user, which allows for the identificatio of an anonymous post. This feature allows that, for example, group users only have access to posts made within their own group.
-*GroupsCluster -- cada registro desta entidade descreve um grupo criado para Cluster Trials. Um aluno pertencerá a um determinado grupo se preencher todos os requisitos definidos pelo professor. Cada grupo, pode usar até 5 critérios distintos, dos quais incluem: gender, age, level of education, country and city. Os critérios são armazenados no formato JSON, o que permite, de forma fácil, a recuperação do que foi definido para cada grupo. 
+* GroupsCluster -- cada registro desta entidade descreve um grupo criado para Cluster Trials. Um aluno pertencerá a um determinado grupo se preencher todos os requisitos definidos pelo professor. Cada grupo, pode usar até 5 critérios distintos, dos quais incluem: gender, age, level of education, country and city. Os critérios são armazenados no formato JSON, o que permite, de forma fácil, a recuperação do que foi definido para cada grupo. 
 
 
 The entities auth_user are standard within any Django application. In our project, this entiry identifies the experiment owner and the respective Arms allocated within the LMS. Auth_profile is where data about learners can be extracted, such as baseline and socio-demographic variables. Finally, some of the data are passes are an argument to the scripts within Planout which allows for the stratification of a randomization schedule.
@@ -261,7 +261,7 @@ URL = weightedChoice(choices=CHOICES, weights=[0.7, 0.3] unit=userid);
 
 **Script 3**: Randomização estratificada.Isto nos permite determinar uma porcentagem de alunos de um grupo específico. Neste exemplo definimos que 50% dos homens podem cair no Arm A, todas as mulheres irão para o Arm B. Caso o estudante não tenha entrado nem no primeiro e nem no segundo if, será efetuado a randomização pelo operador uniformChoice. Por enquanto, os scripts podem criar condições combinadas com IDADE, CIDADE, PAIS e INSTRUCAO.
 
-p1 = BernoulliTrial(p=0.5, unit=userid)
+p1 = BernoultiTrial(p=0.5, unit=userid);
 if(SEXO=='m' && p1)
 {
   URL = CHOICES[0];
