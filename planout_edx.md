@@ -45,7 +45,9 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 ### Existing randomization within Open edX
 
-Open edX recently released the *split_test* component, which can be added to a course to generate a parallel trial. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação-->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref -->
+Open edX recently released the *split_test* component, which can be added to a course to generate a parallel trial. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação
+Ricardo - usuários são inseridos nos grupos na primeira visualização do conteúdo 
+   -->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref  Ricardo http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html-->
 
 Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely cross-over, N-of-1 and factorial, as well as possible variations resulting from adaptations or combinations of each of these.
 
@@ -226,7 +228,7 @@ Desemvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de 
 <!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
 <!-- Nos e-mails eu simplesmente gero um arquivo .CSV com e-mails dos usuários e seus respectivos Arms 
 Ex.: 
-
+Ricardo
 Arm E-mail
 A   geekaia@gmail.com
 A   maria@gmail.com
