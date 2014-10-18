@@ -52,7 +52,6 @@ Ricardo - usuários são inseridos nos grupos na primeira visualização do cont
 Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely cross-over, N-of-1 and factorial, as well as possible variations resulting from adaptations or combinations of each of these.
 
 
-
 ### Requisites and informal use cases
 
 Our primary requisites for the system were: (1) the system should be able to randomize anything included within the Open edX platform, not restricting itself to User eXperience features but also including any type of educational content, (2) it should be able to deliver a wide range of design and randomization frameworks such as the ones offered through Planout, (3) it should allow for external scripting, thus facilitating its further integration with future frameworks such as those offering visual feedback to exercise groups and (4) it should provide researchers with ability to extract the data for research and quality improvement studies. Notice that as a first release we have did not stipulate a reporting graphical interface as a requisite.
@@ -89,7 +88,7 @@ The majority of  components in the Open edX platform are based on the Django fra
 
 [PlanOut](https://facebook.github.io/planout/) allows for the design and deployment of randomized experiments evaluating the impact of a group of interventions on a specific set of outcomes. Released under a [BSD or  Berkeley Software Distribution License](https://github.com/facebook/planOut/blob/master/LICENSE), PlanOut allows for these designs to be created in two different ways: Python classes or [JSON (JavaScript Object Notation)](http://json.org/) files generated from the compilation of PlanOut scripts. The PlanOut scripting language provides logical operators, matrices and flow control. 
 
-Among the operators made available through PlanOut for randomization, in our project we made use of the following:
+Among the random assignment operators made available through PlanOut for randomization, in our project we made use of the following:
 
 1. UniformChoice: all arms have the same probability of being selected
 2. WeightedChoice: allows for the specification of a probability for each arm
@@ -122,20 +121,21 @@ In order to create the integration between Open edX and PlanOut, and make possib
 The entities auth_user are standard within any Django application. In our project, this entiry identifies the experiment owner and the respective Arms allocated within the LMS. Auth_profile is where data about learners can be extracted, such as baseline and socio-demographic variables. Finally, some of the data are passes are an argument to the scripts within Planout which allows for the stratification of a randomization schedule.
 
 
-
 ## Results
 
+The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). <!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx 
 
-The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). <!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx -->
+https://github.com/edx/edx-platform/blob/master/LICENSE
+-->
 
 
 ### Creating experiments
 
 Im accordance with our use cases, in order to create an experiment the instructor should first define a course section with all of the corresponding content. Next, the Flask icon is clicked, which will duplicate that section, with new entities being created named *ExperimentDefinition*, *StrategyRandomization* and *OpcoesExperiment*. These entities are used by both the CMS and the LMS, allowing for the identification of the experiment, arm and the corresponding randomization strategy.
 
-Randomization is deployed in accordance with the definition within *StrategyRandomization*, which allows for to use the operators UniformChoice e WeightedChoice, make use of a design or load a script. Caso nada seja mudado, o experimento será randomizado com o operador *uniform*, pois este é o operador definido durante a criação de um experimento.
+Randomization is deployed in accordance with the definition within *StrategyRandomization*, which allows for to use the operators UniformChoice e WeightedChoice, make use of a design or load a script. Caso nada seja mudado no planejamento, o experimento será randomizado com o operador *uniform*, pois este é o operador definido durante a criação de um experimento. <!--see here Ricardo --> 
 
-No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar as o design dos experimentos e a extrair informações em CSV referente às sections que fazem parte do experimento. Com os tais dados, o professor poderá carregá-los em softwares como R, JMP, Minitab, Excell e LibreOffice e efetuar a análise estatística necessária para tirar conclusões em relação a um determinado experimento.
+No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar as o design dos experimentos e a extrair informações em CSV referente às sections que fazem parte do experimento. Com os tais dados, o professor poderá carregá-los em softwares como R, JMP, Minitab, Excell e LibreOffice e efetuar a análise estatística necessária para tirar conclusões em relação a um determinado experimento. <!--see here Ricardo --> 
 
 No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* e, de acordo com está em gravado, um thread bloqueante irá executar a randomização com operadores do PlanOut, script do PlanOut ou será lido o design definido pelo professor. Em seguida, insere-se um registro com o Arm do estudante em *UserChoiceExperiment* para que em um momento posterior possa ser recuperado. Já que demos bastante liberdade para o professor definir o design do experimento, caso o professor entre com valores errôneos será considerado a randomização do PlanOut, isto assegura que a todos os usuários sejam alocados para um Arm.
 
