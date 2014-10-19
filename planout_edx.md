@@ -139,7 +139,7 @@ No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar 
 
 No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* e, de acordo com está em gravado, um thread bloqueante irá executar a randomização com operadores do PlanOut, script do PlanOut ou será lido o design definido pelo professor. Em seguida, insere-se um registro com o Arm do estudante em *UserChoiceExperiment* para que em um momento posterior possa ser recuperado. Já que demos bastante liberdade para o professor definir o design do experimento, caso o professor entre com valores errôneos será considerado a randomização do PlanOut, isto assegura que a todos os usuários sejam alocados para um Arm.
 
-The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Acho que fica melhor assim: Com base na ordem criada no design os Arms serão atribuídos aos usuários quando acessado o Courseware -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. <!-- Adicionei uma pequena explicação abaixo -->
+The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Acho que fica melhor assim: Com base na ordem criada no design os Arms serão atribuídos aos usuários quando acessado o Courseware -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. <!-- Adicionei uma pequena explicação abaixo  Ricardo -->
 
 <!-- 
 Como já havia dito os arms do Planejamento do experimento pode ser feito de duas formas: 
@@ -199,13 +199,39 @@ To specify a design the user opens up a window where each operator can be change
 
 ![Change Design](./img/Estrategy.png "MudarScript")
 
+Como podemos ver, é possível especificar designs diferenciados como: Paralelo, Proporcional, Fatorial, Customizada, CrossOver, Cluster e PlanOut script.
+
+* Paralelo -- experimentos paralelos, também chamados de testes A/B quando há somente 2 alternativas, podem obtidos com o uso do random assignment operator UniformChoice do PlanOut. Com isto Arms podem ser igualmente alocados entre os Arms criados pelo professor. Em outras palavras, uma intervenção irá alocar aproximadamente 50% dos indivíduos. Este design pode ser obtido via PlanOut script ou simplesmente selecionando Uniform na Figura XXX. 
+* Proportional - permite, via operador WeightedChoice, modificar a proporção em que serão alocados os arms do experimento. 
+* Fatorial - neste design, permite-se que combinar 2 fatores em um experimento, donde explora-se todas as combinações possíveis entre os níveis dos fatores. Pode ser feito o design fatorial via Minitab, R ou JMP e, donde gera-se um CSV ou TXT separado por vírgula. Desta forma, baseando-se na ordem estabelecida no design, alunos serão alocados para os arms. O fatorial design também pode ser obtido com scripts do PlanOut como o exemplo abaixo: 
+fat1 = UniformChoice(choices=["1", "2"], unit=userid);
+fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid);
+* Customizada - neste design, similar ao design fatorial, é permitido que seja carregado um arquivo com a ordem que serão alocados os Arms para os alunos. Nesta opção, a primeira coluna fica responsável por definir que arm será alocado para o aluno. 
+* CrossOver - neste design o aluno poderá mudar de Arm durante o curso. A quantidade de vezes (periodos) que um aluno pode mudar de Arm é definido pela quantidade de Arms criados no experimento.
+* Cluster - utilizando este design o professor pode estudar grupos ao invés de alunos em específico. Com isso, permite-se a criação de a partir da combinação de uma série de atributos, dos quais incluem: idade, escolaridade, cidade, país e sexo.
+* PlanOut Script - scripts em PlanOut permitem criar de experimentos personalizados que podem combinar o uso de operadores combinado com as variáveis previamente passadas para o Scripts. Isto habilita, por exemplo, controlar a probabilidade de um atributo em específico, permitindo fazer a estratificação.
+
+Temos a possibilidade de criar experimentos de 3 formas: selecioando designs (WeightedChoice, Uniform, CrossOver, Cluter Trial) prontos, criando scripts do PlanOut e carregando o design criado por softwares de terceiros. No caso de Proportional e Paralelo, usamos classes em python para alternar entre os operadores UniformChoice e WeightTechChoice, já para Cluster e CrossOver, devido as limitações do PlanOut, desenvolvemos alguns algoritmos que agem de forma a preencher os requisitos necessários para podermos criar tais designs.
+
+Com designs criados por terceiros, como no caso do fatorial, podemos ter 2 fatores (Fact1 and Fact2) com 2 níveis (1 e 2) para cada fator. Utilizamos o formato padrão, separado por ponto de vírgula que, gera a seguinte sequência: StdOrder;RunOrder;PtType;Blocks;Fact1;Fact2. Neste caso, o design tem um número fixo de usuarios e uma ordem criada durante a randomização. Os usuários serão inseridos de acordo a ordem que está no design. Este tipo de experimento pode ser útil em cursos onde há poucos poucos alunos e, por isso, é importante que os arms estejam balanceados.
+
+
+
+
+<!-- Ricardo veja acima --> 
+
+
 The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
 
-When using a script, a third-party software such as R, JMP, Minitab, LibreOffice are used to generate a Comma Separate Value (CSV) file where the first row already represents a randomization, and where each column represents an arm. <!-- Talvez eu irei mude isso se conseguir implementar o crossover -->
+When using a script, a third-party software such as R, JMP, Minitab, LibreOffice are used to generate a Comma Separate Value (CSV) file where the first row already represents a randomization, and where each column represents an arm. 
 
 Another way of designing an experiment is to directly use the Planout scripting language. This language has a limited set of keywords and operators, including logical operators (AND, OR or NOT), arithmetic operators, execution conditions (if/else) and matrices [The PlanOut language](https://facebook.github.io/planout/docs/planout-language.html)
 
 Each script will have as arguments information about the user profile, including choices, age, city, education and gender. With these variables as well as PlanOut operators it is then possible to generate scripts that allow the instructor to have further control over the way each arm is allocated.
+
+
+
+
 
 <!-- Video 3 ParteEntidadeRelacionamento
 http://youtu.be/yADpLzlYU8w
@@ -213,9 +239,8 @@ http://youtu.be/yADpLzlYU8w
  -->
 
 
-
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-Desemvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de experimentos utilizando o edX integrado ao protótipo. Em tais vídeos exemplificamos como carregar designs, alternar entre os operadores do PlanOut e a carregar e compilar scripts em PlanOut.
+Desenvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de experimentos utilizando o edX integrado ao protótipo. Em tais vídeos exemplificamos como carregar designs, alternar entre os operadores do PlanOut e a carregar e compilar scripts em PlanOut.
 
 <!-- create videos in english -->
 
@@ -383,7 +408,7 @@ https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
 All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE)
 
 
-<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
+<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Ricardo Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
 
 <!-- 
 [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
@@ -394,12 +419,6 @@ Em nosso protótipo implementamos uma funcionalidade que permite que os estudant
 
 <!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
 [video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8)
-
-
-
-
-
-
 
 
 
