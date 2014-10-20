@@ -9,6 +9,7 @@ https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
  -->
 
 Jacinto José Franco, MSc
+Gustavo Costa Medeiros
 Joao Ricardo Vissoci, PhD
 Bruno Melo
 Jacson Barros
@@ -23,11 +24,13 @@ Seiji Isotani, PhD
 
 ## Introduction
 
-Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. <!-- ref -->While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice.
+Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently might be roughly summarized as a sequence of theorization followed by education policy implementation with restricted experimental validation (Baron, 2004). Online education (OE) has risen significantly over the last two decades bringing unique opportunities, (Wong et al., 2010; Triola et al, 2012; Cook and Triola, 2014; Liyanagunawardena, 2014, Cook and Triola, 2014; Carney et al., 2004). The widespread Massive open online courses (MOOCs) shows the potential of OE with approximately 100 platforms worldwide (Liyanagunawardena, 2014). One example of MOOCs platform is the Open edX Learning Management System used by renowned universities such as, for example, Harvard University and Massachusetts Institute of Technology (https://www.edx.org/). Additionally OE expanded the possibilities to perform randomized controlled educational studies in an easier and more efficient way (Liyanagunawardena, 2014), which could transform OE into an evidence-driven field. However, there is also a significant lack of evidence on OE (Wong et al., 2010; Triola et al., 2012).
 
-In the now classic [Pyramid of Evidence](http://libguides.mssm.edu/hierarchy) proposed by the founders of Evidence-Based-Medicine, randomized controled trials and the corresponding meta-analyses are at the top, while observational studies and reports based on personal experience are positioned at a lower level. While this classification has been transposed to educational research <!-- ref -->, it has also been significantly criticized since randomized controled trials tend to select samples that are consistently different from the population where its results are supposed to be applied. <!-- ref --> While the same is certainly true for in person education - individuals commiting to participate in an in-person educational trial will likely be different - in online environments randomization can be seamless, with the potential to conduct dozens of experiments within a single educational unit. An example of platforms allowing for online randomization include the [Planout framework](https://facebook.github.io/planout/), recently released by [Facebook](https://www.facebook.com/) and currently used to conduct over 1000 experiments on their site. Despite the promising perspective of transforming education into an evidence-driven field, to date most learning management systems have been unable to take advantage of frameworks such as Planout, and as a consequence the number and quality of educational trials is still far behind where it could be.
+In terms of quality and reliability of evidence randomized controlled trials (RCTs) are usually seen as the best source of information (Baron, 2004, Jadad and Enkins, 2007), together with the corresponding “filtered-information studies” such as meta-analyses/systematic reviews (Sackett et al, 2010). Observational studies and reports based on personal experience are positioned at a lower level (Sackett et al, 2010). Although there are frameworks that allow RCT such as the Planout framework, a relatively small number of well designed RCT have been conducted in OE (Wong et al., 2010; Triola et al., 2012).). RCT are not a panacea and might present some limitations such as the selection of samples different from the population where its results are supposed to be applied (Jadad and Enkins, 2007) but online RCTs may additionally reduce some of the limitations in person experiments. It is true that randomized studies are slowly becoming more common in the educational field (Slavin, 2002) however unfortunately experiments are still largely divorced from the daily educational practice (Wong et al, 2010; Triola et al, 2012).
 
-When it comes to randomized experiments in education, a full range of designs is theoretically possible. For example, cluster randomized trials have been advocated when a class might be highly influenced by an instructor <!-- ref -->, factorial trial have been advocated when simultaneously testing variations of an educational method <!-- ref -->, blocked and stratified designs when there might be concern regarding imbalances. More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, outcomes without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts. <!-- ref --> All of these designs are certainly interesting, but without a supporting technology they are more often than not relegated to a secondary plane, educators often not making use of randomization at all or using simplistic designs when more sophisticated ones could lead toward better information to guide educational practice.
+Despite simple, the principle of randomization is often misunderstood by researchers and clinicians (Jadad and Enkin, 2007). For example, strategies to allocate subjects according to “pseudo-random” strategies such as date of birth and hospital record (for example by odd and even numbers) or alternately into different groups are not truly random (Jadad and Enkin, 2007). Using computerized randomization that generates random sequences of number significantly reduce biases (Jadad and Enkin, 2007). Recently was developed a framework that allows parallel randomization of online studies in edX platform (Open edX platform. 2014). Overall, in this relatively simple design each group of subjects is exposed only to one of the interventions (Jadad and Enkins, 2007). Despite this framework represented an important progress, we highlight that when it comes to randomized experiments in education a full range of more refined designs and randomizations is theoretically possible, which goes far beyond traditional parallel randomization (Jadad and Enkins, 2007). These other designs such as cluster, factorial and cross-over trials might be much precise for specific educational trials and can further decrease biases when properly used (Jadad and Enkins, 2007).
+
+Cluster randomization is conducted when it is more appropriate to randomi allocate groups of people than individuals (Jadad and Enkins, 2007). In some educational trials we may prefer to use groups such as a specific schools or geographic areas if the intervention affects more than one individual (Jadad and Enkins, 2007). Another form of trial is the factorial trial where the researchers can compare two or more educational interventions in combination and individually (Jadad and Enkins, 2007). This design can be highly useful in education since we can evaluate potencial interactions between interventions such as, for example, synergisms (Jadad and Enkins, 2007). A cross-over trial is when each of the individuals receives the educational interventions in successive periods and the order in which the subjects participate in each of the interventions is randomly determined (jadad and enkins, 2007). More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, outcomes without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts. <!-- ref -->. However, without a supporting technology these trial designs have been relegated to a secondary plane. As a result, Educators using simplistic designs when more sophisticated ones could lead toward better information to guide educational practice in specific situations.
 
 In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework.
 
@@ -44,10 +47,11 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 ### Existing randomization within Open edX
 
-Open edX recently released the *split_test* component, which can be added to a course to generate a parallel trial. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação-->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref -->
+Open edX recently released the *split_test* component, which can be added to a course to generate a parallel trial. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação
+Ricardo - usuários são inseridos nos grupos na primeira visualização do conteúdo 
+   -->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref  Ricardo http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html-->
 
 Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely cross-over, N-of-1 and factorial, as well as possible variations resulting from adaptations or combinations of each of these.
-
 
 
 ### Requisites and informal use cases
@@ -86,7 +90,7 @@ The majority of  components in the Open edX platform are based on the Django fra
 
 [PlanOut](https://facebook.github.io/planout/) allows for the design and deployment of randomized experiments evaluating the impact of a group of interventions on a specific set of outcomes. Released under a [BSD or  Berkeley Software Distribution License](https://github.com/facebook/planOut/blob/master/LICENSE), PlanOut allows for these designs to be created in two different ways: Python classes or [JSON (JavaScript Object Notation)](http://json.org/) files generated from the compilation of PlanOut scripts. The PlanOut scripting language provides logical operators, matrices and flow control. 
 
-Among the operators made available through PlanOut for randomization, in our project we made use of the following:
+Among the random assignment operators made available through PlanOut for randomization, in our project we made use of the following:
 
 1. UniformChoice: all arms have the same probability of being selected
 2. WeightedChoice: allows for the specification of a probability for each arm
@@ -113,289 +117,45 @@ In order to create the integration between Open edX and PlanOut, and make possib
 * StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- Jacinto, o que é um operator? o que é um design? acho que essas coisas precisam ser definidas --> As a consequece, individual students will only be in a single arm across all experiments.
 * UserChoiceExperiment: this entity defines which arm was allocated during randomization, by inserting an entry that is defined under Design in StrategyRandomization. This entity ensures that, at a later moment, users might recover and use the content of the Arm where they have been allocated.
 * AnonyMousPost: this entity stores the unique identifier for the comment as well as the user, which allows for the identificatio of an anonymous post. This feature allows that, for example, group users only have access to posts made within their own group.
+* GroupsCluster -- cada registro desta entidade descreve um grupo criado para Cluster Trials. Um aluno pertencerá a um determinado grupo se preencher todos os requisitos definidos pelo professor. Cada grupo, pode usar até 5 critérios distintos, dos quais incluem: gender, age, level of education, country and city. Os critérios são armazenados no formato JSON, o que permite, de forma fácil, a recuperação do que foi definido para cada grupo. 
+
 
 The entities auth_user are standard within any Django application. In our project, this entiry identifies the experiment owner and the respective Arms allocated within the LMS. Auth_profile is where data about learners can be extracted, such as baseline and socio-demographic variables. Finally, some of the data are passes are an argument to the scripts within Planout which allows for the stratification of a randomization schedule.
 
 
-
 ## Results
 
+The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). 
 
-The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). <!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx  -->
+<!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx http://iblstudios.com/open-edx-gets-more-open-xblock-api-license-is-changed-from-aglp-to-apache-2-0/ -->
 
 
-### Creating experiments
+## Scripts for creating specific designs
 
-Im accordance with our use cases, in order to create an experiment the instructor should first define a course section with all of the corresponding content. Next, the Flask icon is clicked, which will duplicate that section, with new entities being created named *ExperimentDefinition*, *StrategyRandomization* and *OpcoesExperiment*. These entities are used by both the CMS and the LMS, allowing for the identification of the experiment, arm and the corresponding randomization strategy.
 
-Randomization is deployed in accordance with the definition within *StrategyRandomization*, which allows for to use the operators UniformChoice e WeightedChoice, make use of a design or load a script. Caso nada seja mudado, o experimento será randomizado com o operador *uniform*, pois este é o operador definido durante a criação de um experimento.
 
-No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar as o design dos experimentos e a extrair informações em CSV referente às sections que fazem parte do experimento. Com os tais dados, o professor poderá carregá-los em softwares como R, JMP, Minitab, Excell e LibreOffice e efetuar a análise estatística necessária para tirar conclusões em relação a um determinado experimento.
+### Creating experiments by importing random schedules from other statistical languages and software
 
-No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* e, de acordo com está em gravado, um thread bloqueante irá executar a randomização com operadores do PlanOut, script do PlanOut ou será lido o design definido pelo professor. Em seguida, insere-se um registro com o Arm do estudante em *UserChoiceExperiment* para que em um momento posterior possa ser recuperado. Já que demos bastante liberdade para o professor definir o design do experimento, caso o professor entre com valores errôneos será considerado a randomização do PlanOut, isto assegura que a todos os usuários sejam alocados para um Arm.
 
-The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Acho que fica melhor assim: Com base na ordem criada no design os Arms serão atribuídos aos usuários quando acessado o Courseware -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. <!-- Adicionei uma pequena explicação abaixo -->
+### Parallel design
 
-<!-- 
-Como já havia dito os arms do Planejamento do experimento pode ser feito de duas formas: 
+1:1
+other proportions
 
-No momento em que o aluno acessa o COURSEWARE ou quando o professor cria o planejamento pelo JMP, R ... 
 
-Quando se faz o planejamento pelo JMP é gerado a ordem que o sistema irá usar para cadastrar os Arms para os Alunos
+### Factorial design
 
-versão 
-2
-0
-2
 
-Se esta sequência fosse gerado pelo JMP o sistema iria interpretar: C, A e B. Então, o primeiro aluno será cadastrado com o Arm C, o segundo com A e o terceiro com B.
+### Cross-over design
 
 
-Fator - variável independente. por exemplo APOSTILA 
-Nível - variações dos Fatores. Por exemplo: APOSTILA POSITIVO, APOSTILA MASTER, APOSTILA WIZARD. 
+### Cluster design
 
-Portanto, temos: 1 Fator e 3 níveis
 
-Tamanho da Amostra: isto faz parte do planejamento, já que o tamanho não deve ser nem muito pequeno. O tamanho deve ser suficiente para tirar alguma conclusão, pois se for muito pequeno, artigos provenientes de um determinado estudo podem ser rejeitados.
+### Customized design
 
 
-Caso o professor deseje, também poderá definir que os 30 primeiros tenham a versão A e os outros 30 com a versão B ele pode. Para isso é só criar uma planilha com 0s e 1s. 
-Ex.:
-Versao 
-0
-0
-0
-0
-0
-1
-1
-1
-1
-1
-
---> 
-
-### Defining experimental designs
-
-
-<!-- Jacinto, eu não entendi o que são esses termos que você usou nessa frase. seria bom a gente aderir a uma nomenclatura padrão existente pra evitar confusão
-
-No planejamento precisamos definir claramente fatores, níveis e tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado. -->
-
-<!-- 
-Frases abaixo também não estão claras - com condições para alocação você quer dizer estraticação ou blocking? se sim, eu usaria a nomenclatura padrão senão vai ficar muito confuso
-
-O que eu quis dizer é que para definir scripts customizados devemos conhecer o público. Para isso deve-se gerar um relatório com todas as informações dos usuários. Isso serve para a estratificação e para a criação de qualquer script com o PlanOut, pois permite conhecer o público que está sendo estudado. Não faz muito sentido criar condições nos scripts como COUNTRY=='TAI' se não tem ninguém da Tailância.
-
-
-Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut. -->
-
-To specify a design the user opens up a window where each operator can be changed, also allowing for the insertion of scripts in case of more sophisticated designs. <!-- precisamos de uma figura aqui-->
-
-![Change Design](./img/Estrategy.png "MudarScript")
-
-The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
-
-When using a script, a third-party software such as R, JMP, Minitab, LibreOffice are used to generate a Comma Separate Value (CSV) file where the first row already represents a randomization, and where each column represents an arm. <!-- Talvez eu irei mude isso se conseguir implementar o crossover -->
-
-Another way of designing an experiment is to directly use the Planout scripting language. This language has a limited set of keywords and operators, including logical operators (AND, OR or NOT), arithmetic operators, execution conditions (if/else) and matrices [The PlanOut language](https://facebook.github.io/planout/docs/planout-language.html)
-
-Each script will have as arguments information about the user profile, including choices, age, city, education and gender. With these variables as well as PlanOut operators it is then possible to generate scripts that allow the instructor to have further control over the way each arm is allocated.
-
-<!-- Video 3 ParteEntidadeRelacionamento
-http://youtu.be/yADpLzlYU8w
- 
- -->
-
-
-
-<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-Desemvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de experimentos utilizando o edX integrado ao protótipo. Em tais vídeos exemplificamos como carregar designs, alternar entre os operadores do PlanOut e a carregar e compilar scripts em PlanOut.
-
-<!-- create videos in english -->
-
-[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
-
-[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
-
-[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
-
-<!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
-<!-- Nos e-mails eu simplesmente gero um arquivo .CSV com e-mails dos usuários e seus respectivos Arms 
-Ex.: 
-
-Arm E-mail
-A   geekaia@gmail.com
-A   maria@gmail.com
-B   carlos@hotmail.com
-B   carlota@gmail.com
--->
-
-
-<!-- jacinto to add scripts under github repo -->
-
-* parallel trial with two arms and 1:1 allocation proportion
-* parallel trial with two arms and 2:1 allocation proportion
-* parallel trial with three arms and 1:1:1 proportion
-* factorial trial with three interventions
-* cluster trial wtih two arms
-
-
-Data export
-Open Access description templates in compliance with CONSORT statement
-open source library of data analysis scripts in R and Python
-
-Abaixo há algumas idéias de scripts que podem ser utilizados.
-
-Nos scripts, obrigatoriamente, deve-se retorna uma variável chamada URL, que é o resultado retornado pela classe que fará o parse do JSON. Para o protótipo CHOICES[0] corresponde ao Arm A, CHOICES[1] -- Arm B e CHOICES[2] -- Arm C caso haja. Abaixo iremos mostrar alguns exemplos de scripts do PlanOut.
-
-**Script 1**: Randomização Uniform. Neste exemplo todos os Arms tem a mesma quantidade de probabilidade. Esta é exatamente a randomizção padrão do protótipo
-URL = uniformChoice(choices=CHOICES, unit=userid);
-
-**Script 2**: Randomização com pesos. A primeira Arm tem 70% de chances de ser escolhido, enquanto que o segundo tem 30%
-URL = weightedChoice(choices=CHOICES, weights=[0.7, 0.3] unit=userid);
-
-
-**Script 3**: Randomização estratificada.Isto nos permite determinar uma porcentagem de alunos de um grupo específico. Neste exemplo definimos que 50% dos homens podem cair no Arm A, todas as mulheres irão para o Arm B. Caso o estudante não tenha entrado nem no primeiro e nem no segundo if, será efetuado a randomização pelo operador uniformChoice. Por enquanto, os scripts podem criar condições combinadas com IDADE, CIDADE, PAIS e INSTRUCAO.
-
-p1 = BernoulliTrial(p=0.5, unit=userid)
-if(SEXO=='m' && p1)
-{
-  URL = CHOICES[0];
-} else if (SEXO=='f')
-{
-  URL = CHOICES[1];
-} else {
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-**Script 4**: Define uma Arm de acordo com o país. Neste exemplo os alunos do Brasil conseguirão o Arm A, dos EUA o Arm B e os demais podem ter qualquer um dos Arms do experimento.
-
-if(PAIS=='BR')
-{
-  URL = CHOICES[0];
-} else if (PAIS=='US')
-{
-  URL = CHOICES[1]; 
-} else {
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-Uma coisa importante que podemos ver nos script, é que procuramos definir critérios para que, em todas as hipóteses, os estudantes entrem em um Arm, por isso definimos no último else a randomização com o operador uniformChoice.
-
-
-
-
-Observe que, com esta opção permite que os alunos Brasileiros acessem somente a versão A do experimento, para os estudantes dos EUA verão somente a versão B e para os demais será randomizado entre as opções A, B ou C.
-
- CHOICES[0] -- ARM A
- CHOICES[1] -- ARM B
- CHOICES[2] -- ARM C caso haja
-
-if(PAIS=='BR')
-{
-  URL = CHOICES[0];
-} else if (PAIS=='US')
-{
-  URL = CHOICES[1]; 
-} else {
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-
-
-Assim como para o país, podemos atribuir uma versão específica do experimento de acordo com o nível de intrução. 
-
-if(SEXO=='m')
-{
-  URL = CHOICES[0];
-} else if (SEXO=='f')
-{
-  URL = CHOICES[1];
-} else { 
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-Com o nível de Instrução
-
-if(INSTRUCAO=='m')
-{
-  URL = CHOICES[0];
-} else if (INSTRUCAO=='b')
-{
-  URL = CHOICES[1];
-} else { 
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-
-Agora com a estratificada do sexo masculino. Neste exemplo, alunos do sexo masculino tem 50% de chances de entrar no ARM A e mais um pouco se cair no último ELSE.
-
-p1 = BernoulliTrial(p=0.5, unit=userid)
-if(SEXO=='m' && p1)
-{
-  URL = CHOICES[0];
-} else if (SEXO=='f')
-{
-  URL = CHOICES[1];
-} else { 
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
-
-Adicionei o fatorial completo carregado via Design criado pelo Minitab e com Script do PlanOut
-
-Fatorial completo com 2 fatores
-
-fat1 = UniformChoice(choices=["1", "2"], unit=userid)
-fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid)
-
-Se for com scripts irá aparecer A para a combinação 0, B para a combinação 1, C para a combinação 2 e D para a combinação 3
-
-
-
-Podemos pensar em estratificar por faixa de idade. Por exemplo, alunos de idade > 18 < 25 e cidade='São Paulo', mas o campo cidade fica em aberto no edX, daí não dá para assegurar que o aluno vá entrar SÃO PAULO ou São Paulo, ou são paulo-SP. Se isso for fundamental eu posso pensar em uma forma de modificar a caixa de entrada para que o usuário selecione a cidade ao invés de digitar.
-
-Não sei se precisa mais de alguma coisa em relação aos scripts. Caso precise, devemos elencar o que exatamente deve ser estratificado. Lembrando que ficaremos limitados a somente algumas instruções com as variáveis PAIS, CIDADE, IDADE, SEXO e INSTRUCAO.
-
-Estou terminando a documentação e já te envio a listagem dos arquivos que devem ser traduzidos.
-
-
-
-Módulo experiments e experiments lms 
-tudo o que começar com """ e no corpo dos algoritmos o que começar com # 
-
-https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments
-https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experimentslms
-
-
-Templates 
-https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
-
-
-
-### Video library and documentation for new users
-
-All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link -->. All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE)
-
-
-<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!-->
-
-<!-- 
-[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
-[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
-[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
- -->
-Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B.
-
-<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-[video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8)
-
-
-
-
-
-
-
+### Video Library
 
 
 ## Discussion
@@ -485,7 +245,7 @@ like R http://www.r-project.org/ or python
 
 
 <!-- 1. The initial randomization arm for the trial, often times the control group when it might exist, will have its content fully created and tested by the instructor. This might include any slides, videos, exercises, as well as any features that might be part of the actual course. Included in this design will be any exercises that might serve as the outcome variable for the trial. For example, these could include exercises measuring knowledge secondary to the course content, questions evaluating satisfaction with the course as a student, ability to put the course information into practice, among others. Notice here that from an operational perspective the length of the course is not relevant, and the instructor has complete freedom to include whatever she might want.
-<!-- Just to make sure I understand, this initial randmization arm will receive regular slide/video/exercise based course? To be compared with other types of courses? If so, it is no very clear for me. It is no clear of what the first arm will be composed by, or what kind of regular based teaching we are cloning (Joao) -->
+ Just to make sure I understand, this initial randmization arm will receive regular slide/video/exercise based course? To be compared with other types of courses? If so, it is no very clear for me. It is no clear of what the first arm will be composed by, or what kind of regular based teaching we are cloning (Joao) -->
 <!-- not sure this is relevant here since we are talking about the platform and not a specific trial. but also not sure i understood the comment haha 
 2. Once the initial arm is completed and tested, this arm is cloned. This clone will then be modified to include whatever course features the instructor might want to test. For example, videos and slides could be modified to include a different instructional strategy, the interface could be changed to test a different type of environment, a new wiki could be included to test a more interactive environment eliciting discussions, among others. From a trial design perspective, instructors are not advised to change any exercises representing the outcomes variables of the study since that would violate the assumption that all subjects will have the same evaluation criteria, but the system will not prevent them from doing so in case of a semi-experimental or some other non-experimental exploratory design.
 3. Once one or more intervention arms are derived from the original one, then a [PlanOut](http://facebook.github.io/planOut/docs/getting-started.html) script will be written directly in [JSON (JavaScript Object Notation)](http://www.json.org/) format. Given that the platform is highly technical, at this point we do not envision most instructors programming direcly in JSON, but instead discussing the design with a methodologist and a programmer for implementation and testing. Future releases of this software could include a graphical interface, thus creating an [Agile Development environment](http://agilemanifesto.org/) that allows for the progressive inclusion of application features rather than fully loading them upfront without frequent interaction with instructors.  Add a reference to Agile Development (Joao) 
@@ -622,3 +382,316 @@ http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
 
 
  -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ### Creating experiments
+
+Im accordance with our use cases, in order to create an experiment the instructor should first define a course section with all of the corresponding content. Next, the Flask icon is clicked, which will duplicate that section, with new entities being created named *ExperimentDefinition*, *StrategyRandomization* and *OpcoesExperiment*. These entities are used by both the CMS and the LMS, allowing for the identification of the experiment, arm and the corresponding randomization strategy.
+
+Randomization is deployed in accordance with the definition within *StrategyRandomization*, which allows for to use the operators UniformChoice e WeightedChoice, make use of a design or load a script. Caso nada seja mudado no planejamento, o experimento será randomizado com o operador *uniform*, pois este é o operador definido durante a criação de um experimento. <!--see here Ricardo  
+
+No CMS, criamos a entrada Experiments no menu Tools, que permite-nos configurar as o design dos experimentos e a extrair informações em CSV referente às sections que fazem parte do experimento. Com os tais dados, o professor poderá carregá-los em softwares como R, JMP, Minitab, Excell e LibreOffice e efetuar a análise estatística necessária para tirar conclusões em relação a um determinado experimento. <!--see here Ricardo  
+
+No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* e, de acordo com está em gravado, um thread bloqueante irá executar a randomização com operadores do PlanOut, script do PlanOut ou será lido o design definido pelo professor. Em seguida, insere-se um registro com o Arm do estudante em *UserChoiceExperiment* para que em um momento posterior possa ser recuperado. Já que demos bastante liberdade para o professor definir o design do experimento, caso o professor entre com valores errôneos será considerado a randomização do PlanOut, isto assegura que a todos os usuários sejam alocados para um Arm.
+
+The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Acho que fica melhor assim: Com base na ordem criada no design os Arms serão atribuídos aos usuários quando acessado o Courseware . Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. <!-- Adicionei uma pequena explicação abaixo  Ricardo 
+ -->
+<!-- 
+Ricardo
+Como já havia dito os arms do Planejamento do experimento pode ser feito de duas formas: 
+
+No momento em que o aluno acessa o COURSEWARE ou quando o professor cria o planejamento pelo JMP, R ... 
+
+Quando se faz o planejamento pelo JMP é gerado a ordem que o sistema irá usar para cadastrar os Arms para os Alunos
+
+versão 
+2
+0
+2
+
+Se esta sequência fosse gerado pelo JMP o sistema iria interpretar: C, A e B. Então, o primeiro aluno será cadastrado com o Arm C, o segundo com A e o terceiro com B.
+
+
+Fator - variável independente. por exemplo APOSTILA 
+Nível - variações dos Fatores. Por exemplo: APOSTILA POSITIVO, APOSTILA MASTER, APOSTILA WIZARD. 
+
+Portanto, temos: 1 Fator e 3 níveis
+
+Tamanho da Amostra: isto faz parte do planejamento, já que o tamanho não deve ser nem muito pequeno. O tamanho deve ser suficiente para tirar alguma conclusão, pois se for muito pequeno, artigos provenientes de um determinado estudo podem ser rejeitados.
+
+
+Caso o professor deseje, também poderá definir que os 30 primeiros tenham a versão A e os outros 30 com a versão B ele pode. Para isso é só criar uma planilha com 0s e 1s. 
+Ex.:
+Versao 
+0
+0
+0
+0
+0
+1
+1
+1
+1
+1
+
+--> 
+
+### Defining experimental designs
+
+
+<!-- Jacinto, eu não entendi o que são esses termos que você usou nessa frase. seria bom a gente aderir a uma nomenclatura padrão existente pra evitar confusão
+
+No planejamento precisamos definir claramente fatores, níveis e tamanho da amostra necessário para conseguir compara efetivamente o conteúdo testado. -->
+
+<!-- 
+Frases abaixo também não estão claras - com condições para alocação você quer dizer estraticação ou blocking? se sim, eu usaria a nomenclatura padrão senão vai ficar muito confuso
+
+O que eu quis dizer é que para definir scripts customizados devemos conhecer o público. Para isso deve-se gerar um relatório com todas as informações dos usuários. Isso serve para a estratificação e para a criação de qualquer script com o PlanOut, pois permite conhecer o público que está sendo estudado. Não faz muito sentido criar condições nos scripts como COUNTRY=='TAI' se não tem ninguém da Tailância.
+
+
+Caso o professor deseje especificar condições para a alocação dos Arms, será necessário conhecer previamente o público que está sendo estudado. Isto pode ser feito extraindo informações dos profiles dos usuários, que servirão de base para criar o script em PlanOut, já que todas as informações do profile do usuário são passadas para o script em PlanOut. -->
+
+<!-- To specify a design the user opens up a window where each operator can be changed, also allowing for the insertion of scripts in case of more sophisticated designs. <!-- precisamos de uma figura aqui
+
+![Change Design](./img/Estrategy.png "MudarScript")
+
+Como podemos ver, é possível especificar designs diferenciados como: Paralelo, Proporcional, Fatorial, Customizada, CrossOver, Cluster e PlanOut script.
+
+* Paralelo -- também chamados de testes A/B quando há somente 2 alternativas, podem obtidos com o uso do random assignment operator UniformChoice do PlanOut. Com isto Arms podem ser igualmente alocados entre os Arms criados pelo professor. Em outras palavras, uma intervenção irá alocar aproximadamente 50% dos indivíduos. Este design pode ser obtido via PlanOut script ou simplesmente selecionando Uniform na Figura XXX. 
+* Proportional - permite, via operador WeightedChoice, modificar a proporção em que serão alocados os arms do experimento. 
+* Fatorial - permite-se que combinar 2 fatores em um experimento, donde explora-se todas as combinações possíveis entre os níveis dos fatores. Pode ser feito o design fatorial via Minitab, R ou JMP e, donde gera-se um CSV ou TXT separado por vírgula. Desta forma, baseando-se na ordem estabelecida no design, alunos serão alocados para os arms. O fatorial design também pode ser obtido com scripts do PlanOut como o exemplo abaixo:
+fat1 = UniformChoice(choices=["1", "2"], unit=userid);
+fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid);
+* Customizada - de forma similar ao implementado para o design fatorial, nesse design é permitido que seja carregado um arquivo com a ordem que serão alocados os Arms para os alunos. Nesta opção, a primeira coluna fica responsável por definir que arm será alocado para o aluno. 
+* CrossOver - com este design o aluno poderá mudar de Arm durante o curso. A quantidade de vezes (periodos) que um aluno pode mudar de Arm é definido pela quantidade de Arms criados no experimento. Cada semana pode ser um período um período dos experimentos.
+* Cluster - utilizando este design o professor pode estudar grupos ao invés de alunos em específico. Com isso, permite-se a criação de a partir da combinação de uma série de atributos, dos quais incluem: idade, escolaridade, cidade, país e sexo.
+* PlanOut Script - scripts em PlanOut permitem criar de experimentos personalizados que podem combinar o uso de operadores combinado com as variáveis previamente passadas para o Scripts. Isto habilita, por exemplo, controlar a probabilidade de um atributo em específico, permitindo fazer a estratificação.
+
+Os experimentos podem ser especificados de 3 formas: selecionando designs (WeightedChoice, Uniform, CrossOver, Cluter Trial) prontos, criando scripts do PlanOut e carregando o design criado por softwares de terceiros. No caso de Proportional e Paralelo, usamos classes em python para alternar entre os operadores UniformChoice e WeightTechChoice, já para Cluster e CrossOver, devido as limitações do PlanOut, desenvolvemos alguns algoritmos que agem de forma a preencher os requisitos necessários para podermos usar tais designs.
+
+Com designs criados por softwares de terceiros, como no caso do fatorial, podemos ter 2 fatores (Fact1 and Fact2) com 2 níveis (1 e 2) para cada fator. Utilizamos o formato padrão, separado por ponto de vírgula que, gera a seguinte sequência: StdOrder;RunOrder;PtType;Blocks;Fact1;Fact2. Neste caso, o design tem um número fixo de usuarios e uma ordem criada durante a randomização. Os usuários serão inseridos de acordo a ordem que está no design. Este tipo de experimento pode ser útil em cursos onde há poucos poucos alunos e, por isso, é importante que os arms estejam balanceados. Além do fatorial, também é possível determinar a ordem e que arms serão alocados para os alunos gerando uma sequência numérica, donde 0 para o Arm A, 1 para B, 2 para C e 3 para D.
+
+
+<!-- Ricardo veja acima  
+
+
+The UniformChoice operator should be used when the arms should be equally allocated between the arms. In other words, with two arms an intervention will be allocated to approximately 50% of the subjects. With the WeightedChoice operator, we have a way to modify the probability of allocation to each arm.
+
+When using a script, a third-party software such as R, JMP, Minitab, LibreOffice are used to generate a Comma Separate Value (CSV) file where the first row already represents a randomization, and where each line represents an arm. 
+
+Another way of designing an experiment is to directly use the Planout scripting language. This language has a limited set of keywords and operators, including logical operators (AND, OR or NOT), arithmetic operators, execution conditions (if/else) and matrices [The PlanOut language](https://facebook.github.io/planout/docs/planout-language.html)
+
+Each script will have as arguments information about the user profile, including choices, age, city, education and gender. With these variables as well as PlanOut operators it is then possible to generate scripts that allow the instructor to have further control over the way each arm is allocated.
+ -->
+
+
+
+
+<!-- Video 3 ParteEntidadeRelacionamento
+http://youtu.be/yADpLzlYU8w
+ 
+ -->
+
+
+<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
+<!-- Desenvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de experimentos utilizando o edX integrado ao protótipo. Em tais vídeos exemplificamos como carregar designs, alternar entre os operadores do PlanOut e a carregar e compilar scripts em PlanOut. -->
+
+<!-- create videos in english -->
+
+<!-- [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
+
+[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
+
+[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
+ -->
+<!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
+<!-- Nos e-mails eu simplesmente gero um arquivo .CSV com e-mails dos usuários e seus respectivos Arms 
+Ex.: 
+Ricardo
+Arm E-mail
+A   geekaia@gmail.com
+A   maria@gmail.com
+B   carlos@hotmail.com
+B   carlota@gmail.com
+-->
+
+
+<!-- jacinto to add scripts under github repo -->
+
+<!-- * parallel trial with two arms and 1:1 allocation proportion
+* parallel trial with two arms and 2:1 allocation proportion
+* parallel trial with three arms and 1:1:1 proportion
+* factorial trial with three interventions
+* cluster trial wtih two arms
+
+
+Data export
+Open Access description templates in compliance with CONSORT statement
+open source library of data analysis scripts in R and Python
+
+Abaixo há algumas idéias de scripts que podem ser utilizados.
+
+Nos scripts, obrigatoriamente, deve-se retorna uma variável chamada URL, que é o resultado retornado pela classe que fará o parse do JSON. Para o protótipo CHOICES[0] corresponde ao Arm A, CHOICES[1] -- Arm B e CHOICES[2] -- Arm C caso haja. Abaixo iremos mostrar alguns exemplos de scripts do PlanOut.
+
+**Script 1**: Randomização Uniform. Neste exemplo todos os Arms tem a mesma quantidade de probabilidade. Esta é exatamente a randomizção padrão do protótipo
+URL = uniformChoice(choices=CHOICES, unit=userid);
+
+**Script 2**: Randomização com pesos. A primeira Arm tem 70% de chances de ser escolhido, enquanto que o segundo tem 30%
+URL = weightedChoice(choices=CHOICES, weights=[0.7, 0.3] unit=userid);
+
+
+**Script 3**: Randomização estratificada.Isto nos permite determinar uma porcentagem de alunos de um grupo específico. Neste exemplo definimos que 50% dos homens podem cair no Arm A, todas as mulheres irão para o Arm B. Caso o estudante não tenha entrado nem no primeiro e nem no segundo if, será efetuado a randomização pelo operador uniformChoice. Por enquanto, os scripts podem criar condições combinadas com IDADE, CIDADE, PAIS e INSTRUCAO.
+
+p1 = BernoultiTrial(p=0.5, unit=userid);
+if(SEXO=='m' && p1)
+{
+  URL = CHOICES[0];
+} else if (SEXO=='f')
+{
+  URL = CHOICES[1];
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+**Script 4**: Define uma Arm de acordo com o país. Neste exemplo os alunos do Brasil conseguirão o Arm A, dos EUA o Arm B e os demais podem ter qualquer um dos Arms do experimento.
+
+if(PAIS=='BR')
+{
+  URL = CHOICES[0];
+} else if (PAIS=='US')
+{
+  URL = CHOICES[1]; 
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+Uma coisa importante que podemos ver nos script, é que procuramos definir critérios para que, em todas as hipóteses, os estudantes entrem em um Arm, por isso definimos no último else a randomização com o operador uniformChoice.
+
+
+
+
+Observe que, com esta opção permite que os alunos Brasileiros acessem somente a versão A do experimento, para os estudantes dos EUA verão somente a versão B e para os demais será randomizado entre as opções A, B ou C.
+
+ CHOICES[0] -- ARM A
+ CHOICES[1] -- ARM B
+ CHOICES[2] -- ARM C caso haja
+
+if(PAIS=='BR')
+{
+  URL = CHOICES[0];
+} else if (PAIS=='US')
+{
+  URL = CHOICES[1]; 
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+
+
+Assim como para o país, podemos atribuir uma versão específica do experimento de acordo com o nível de intrução. 
+
+if(SEXO=='m')
+{
+  URL = CHOICES[0];
+} else if (SEXO=='f')
+{
+  URL = CHOICES[1];
+} else { 
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+Com o nível de Instrução
+
+if(INSTRUCAO=='m')
+{
+  URL = CHOICES[0];
+} else if (INSTRUCAO=='b')
+{
+  URL = CHOICES[1];
+} else { 
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+
+Agora com a estratificada do sexo masculino. Neste exemplo, alunos do sexo masculino tem 50% de chances de entrar no ARM A e mais um pouco se cair no último ELSE.
+
+p1 = BernoulliTrial(p=0.5, unit=userid)
+if(SEXO=='m' && p1)
+{
+  URL = CHOICES[0];
+} else if (SEXO=='f')
+{
+  URL = CHOICES[1];
+} else { 
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+Adicionei o fatorial completo carregado via Design criado pelo Minitab e com Script do PlanOut
+
+Fatorial completo com 2 fatores
+
+fat1 = UniformChoice(choices=["1", "2"], unit=userid)
+fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid)
+
+Se for com scripts irá aparecer A para a combinação 0, B para a combinação 1, C para a combinação 2 e D para a combinação 3
+
+
+
+Podemos pensar em estratificar por faixa de idade. Por exemplo, alunos de idade > 18 < 25 e cidade='São Paulo', mas o campo cidade fica em aberto no edX, daí não dá para assegurar que o aluno vá entrar SÃO PAULO ou São Paulo, ou são paulo-SP. Se isso for fundamental eu posso pensar em uma forma de modificar a caixa de entrada para que o usuário selecione a cidade ao invés de digitar.
+
+Não sei se precisa mais de alguma coisa em relação aos scripts. Caso precise, devemos elencar o que exatamente deve ser estratificado. Lembrando que ficaremos limitados a somente algumas instruções com as variáveis PAIS, CIDADE, IDADE, SEXO e INSTRUCAO.
+
+Estou terminando a documentação e já te envio a listagem dos arquivos que devem ser traduzidos.
+
+
+
+Módulo experiments e experiments lms 
+tudo o que começar com """ e no corpo dos algoritmos o que começar com # 
+
+https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments
+https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experimentslms
+
+
+Templates 
+https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
+
+
+
+### Video library and documentation for new users
+
+All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link . All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE) 
+
+
+<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Ricardo Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!
+
+<!-- 
+[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
+[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
+[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
+ 
+Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B.
+
+<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
+<!-- [video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8) -->
+
+
+
+<!-- ##Introdução inicial Ricardo
+
+Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 , the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice.
+
+In the now classic [Pyramid of Evidence](http://libguides.mssm.edu/hierarchy) proposed by the founders of Evidence-Based-Medicine, randomized controled trials and the corresponding meta-analyses are at the top, while observational studies and reports based on personal experience are positioned at a lower level. While this classification has been transposed to educational research , it has also been significantly criticized since randomized controled trials tend to select samples that are consistently different from the population where its results are supposed to be applied.  While the same is certainly true for in person education - individuals commiting to participate in an in-person educational trial will likely be different - in online environments randomization can be seamless, with the potential to conduct dozens of experiments within a single educational unit. An example of platforms allowing for online randomization include the [Planout framework](https://facebook.github.io/planout/), recently released by [Facebook](https://www.facebook.com/) and currently used to conduct over 1000 experiments on their site. Despite the promising perspective of transforming education into an evidence-driven field, to date most learning management systems have been unable to take advantage of frameworks such as Planout, and as a consequence the number and quality of educational trials is still far behind where it could be.
+
+When it comes to randomized experiments in education, a full range of designs is theoretically possible. For example, cluster randomized trials have been advocated when a class might be highly influenced by an instructor , factorial trial have been advocated when simultaneously testing variations of an educational method , blocked and stratified designs when there might be concern regarding imbalances. More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, outcomes without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts.  All of these designs are certainly interesting, but without a supporting technology they are more often than not relegated to a secondary plane, educators often not making use of randomization at all or using simplistic designs when more sophisticated ones could lead toward better information to guide educational practice.
+
+In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework. -->
