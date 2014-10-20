@@ -121,7 +121,7 @@ The entities auth_user are standard within any Django application. In our projec
 ## Results
 
 
-The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). <!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx -->
+The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). <!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx  -->
 
 
 ### Creating experiments
