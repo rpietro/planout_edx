@@ -154,6 +154,7 @@ No LMS, em Courseware, será lido o que foi definido no *StrategyRandomization* 
 The randomization schedule can also be previously set on software packages such as R, JMP and Minitab and then stored within the field *customDesign* within the entity *StrategyRandomization*. Based on this design, <!-- Acho que fica melhor assim: Com base na ordem criada no design os Arms serão atribuídos aos usuários quando acessado o Courseware -->. Besides loading the design previously established by third party packages, the instructor might also manually add the sequence, although that might compromise a proper randomization schedule. <!-- Adicionei uma pequena explicação abaixo  Ricardo -->
 
 <!-- 
+Ricardo
 Como já havia dito os arms do Planejamento do experimento pode ser feito de duas formas: 
 
 No momento em que o aluno acessa o COURSEWARE ou quando o professor cria o planejamento pelo JMP, R ... 
@@ -225,9 +226,7 @@ fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid);
 
 Temos a possibilidade de criar experimentos de 3 formas: selecioando designs (WeightedChoice, Uniform, CrossOver, Cluter Trial) prontos, criando scripts do PlanOut e carregando o design criado por softwares de terceiros. No caso de Proportional e Paralelo, usamos classes em python para alternar entre os operadores UniformChoice e WeightTechChoice, já para Cluster e CrossOver, devido as limitações do PlanOut, desenvolvemos alguns algoritmos que agem de forma a preencher os requisitos necessários para podermos criar tais designs.
 
-Com designs criados por softwares de terceiros, como no caso do fatorial, podemos ter 2 fatores (Fact1 and Fact2) com 2 níveis (1 e 2) para cada fator. Utilizamos o formato padrão, separado por ponto de vírgula que, gera a seguinte sequência: StdOrder;RunOrder;PtType;Blocks;Fact1;Fact2. Neste caso, o design tem um número fixo de usuarios e uma ordem criada durante a randomização. Os usuários serão inseridos de acordo a ordem que está no design. Este tipo de experimento pode ser útil em cursos onde há poucos poucos alunos e, por isso, é importante que os arms estejam balanceados.
-
-
+Com designs criados por softwares de terceiros, como no caso do fatorial, podemos ter 2 fatores (Fact1 and Fact2) com 2 níveis (1 e 2) para cada fator. Utilizamos o formato padrão, separado por ponto de vírgula que, gera a seguinte sequência: StdOrder;RunOrder;PtType;Blocks;Fact1;Fact2. Neste caso, o design tem um número fixo de usuarios e uma ordem criada durante a randomização. Os usuários serão inseridos de acordo a ordem que está no design. Este tipo de experimento pode ser útil em cursos onde há poucos poucos alunos e, por isso, é importante que os arms estejam balanceados. Além do fatorial, também é possível determinar a ordem e que arms serão alocados para os alunos gerando uma sequência numérica, donde 0 para o Arm A, 1 para B, 2 para C e 3 para D.
 
 
 <!-- Ricardo veja acima --> 
