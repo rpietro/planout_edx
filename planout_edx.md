@@ -722,3 +722,5 @@ Sackett, David L. Evidence‐based medicine. John Wiley & Sons, Ltd, 2000.
 Slavin, Robert E. "Evidence-based education policies: Transforming educational practice and research." Educational researcher 31.7 (2002): 15-21.
 
 Open edX platform 2014. http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/index.html
+
+Friedman, Lawrence M., Curt Furberg, and David L. DeMets. Fundamentals of clinical trials. Vol. 4. New York: Springer, 2010.
