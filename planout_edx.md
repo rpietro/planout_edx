@@ -24,7 +24,7 @@ Seiji Isotani, PhD
 
 ## Introduction
 
-Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently might be summarized as massive theorization followed by education policy implementation with restricted experimental validation (Baron, 2004; Landrum and Mastropieri, 2012). Online education (OE) has risen significantly over the last two decades bringing unique opportunities (Wong et al., 2010; Triola et al, 2012; Liyanagunawardena, 2014, Cook and Triola, 2014; Carney et al., 2004). The currently widespread massive open online courses (MOOCs) with approximately 100 platforms worldwide shows the potential of OE (Liyanagunawardena, 2014). One example of MOOCs platform is the Open edX Learning Management System used by renowned universities such as Harvard University and Massachusetts Institute of Technology (https://www.edx.org/). OE also expanded the possibilities to perform educational randomized controlled trials (RCTs)  in an easier and more efficient way (Liyanagunawardena, 2014), which could transform OE into an evidence-driven field. However, there is a significant lack of evidence on OE (Wong et al., 2010; Triola et al., 2012).
+Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment <!-- Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 -->, the history of education until recently might be summarized as massive theorization followed by education policy implementation with restricted experimental validation (Baron, 2004; Landrum and Mastropieri, 2012). Online education (OE) has risen significantly over the last two decades bringing unique opportunities (Wong et al., 2010; Triola et al, 2012; Liyanagunawardena, 2014, Cook and Triola, 2014; Carney et al., 2004). The currently widespread massive open online courses (MOOCs) with approximately 100 platforms worldwide shows the potential of OE (Liyanagunawardena, 2014). One example of MOOCs platform is the Open edX Learning Management System used by renowned universities such as Harvard University and Massachusetts Institute of Technology (https://www.edx.org/; Kolowich 2013). OE also expanded the possibilities to perform educational randomized controlled trials (RCTs)  in an easier and more efficient way (Liyanagunawardena, 2014), which could transform OE into an evidence-driven field. However, there is a significant lack of evidence on OE (Wong et al., 2010; Triola et al., 2012).
 
 In terms of quality and reliability of evidence RCTs are usually seen as the best source of information (Baron, 2004, Jadad and Enkins, 2007), together with the corresponding “filtered-information studies” such as meta-analyses/systematic reviews (Sackett et al, 2010). While observational studies and reports based on personal experience are positioned at a lower evidenciary level (Sackett et al, 2010). Although there are frameworks that allow online RCTs such as the Planout framework, a relatively small number of well designed RCTs have been conducted (Wong et al., 2010; Triola et al., 2012). It is true that RCTs are slowly becoming more common in the educational field (Slavin, 2002) however unfortunately experiments are still largely divorced from the daily educational practice (Wong et al, 2010; Triola et al, 2012).
 
@@ -704,3 +704,21 @@ Landrum, Timothy J., and Margo A. Mastropieri. "Advances in Learning and Behavio
 Wong, Geoff, Trisha Greenhalgh, and Ray Pawson. "Internet-based medical education: a realist review of what works, for whom and in what circumstances." BMC medical education 10.1 (2010): 12.
 
 Triola, Marc M., Sören Huwendiek, Anthony J. Levinson, and David A. Cook. "New directions in e-learning research in health professions education: Report of two symposia." Medical teacher 34, no. 1 (2012): e15-e20.
+
+Cook, David A., and Marc M. Triola. "What is the role of e‐learning? Looking past the hype." Medical education 48.9 (2014): 930-937.
+
+Liyanagunawardena, Tharindu Rekha, and Shirley Ann Williams. "Massive open online courses on health and medicine: Review." Journal of medical Internet research 16.8 (2014).
+
+Carney, Patricia A., David W. Nierenberg, Catherine F. Pipas, W. Blair Brooks, Therese A. Stukel, and Adam M. Keller. "Educational epidemiology: applying population-based design and analytic approaches to study medical education." JAMA 292, no. 9 (2004): 1044-1050.
+
+www.edx.org
+
+Kolowich, Steve. "How EdX plans to earn, and share, revenue from its free online courses." The Chronicle of Higher Education 21 (2013).
+
+Jadad, Alejandro R., and Murray W. Enkin. "Randomized controlled trials: the basics." Randomized Controlled Trials: Questions, Answers, and Musings, Second Edition (2007): 1-11.
+
+Sackett, David L. Evidence‐based medicine. John Wiley & Sons, Ltd, 2000.
+
+Slavin, Robert E. "Evidence-based education policies: Transforming educational practice and research." Educational researcher 31.7 (2002): 15-21.
+
+Open edX platform 2014. http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/index.html
