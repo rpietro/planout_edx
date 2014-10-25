@@ -28,11 +28,12 @@ Despite Sherlock Holmes' widely known advice that theorizing before having data 
 
 Regarding efficacy evaluation in relation to educational interventions, randomized trials are perceived as one of the best ways to establish causal relationships between interventions and educational outcomes (Baron, 2004, Jadad and Enkins, 2007, Friedman et al., 2010). While observational studies and case reports based on personal experience can bring additional insights, they are frequently positioned at a lower level in relation to the strength of evidence since their results are frequently biased (Sackett et al, 2010). Specifically regarding online experiments, open source frameworks that allow for the design of complex experiments are now available, including Facebook's recently released Planout <!-- ref -->. And yet, despite its availability, most learning management systems have not been integrated with randomization systems. This lack of adequate tools for conducting experiments in education aids in explaining why a relatively small number of well designed RCTs have been conducted (Wong et al., 2010; Triola et al., 2012) and, while it is true that RCTs are slowly becoming more common in the educational field (Slavin, 2002), experiments are still largely divorced from daily educational practice (Wong et al, 2010; Triola et al, 2012).
 
-An essential part of trial design is a proper randomization. Despite being relatively simple, randomization principles are often misunderstood by researchers (Jadad and Enkin, 2007; Friedman et al., 2010). Frequently, strategies that are not truly random are used to allocate educational subjects, including assignment by date of birth, using unique identifier numbers, or by alternating allocation depending on order of arrival (Jadad and Enkin, 2007). Through the use of computer-based randomization algorithms, reliable sequences can be generated that, although not completely random, are sufficient to establish efficacy measures and reduce bias from known and unknown factors (Jadad and Enkin, 2007; Friedman,2010). <!-- parei  --> Recently the first framework was developed that allowed randomization of online studies in the edX platform (Open edX platform. 2014). Despite the framework represented an important progress it is only possible to conduct parallel RCTs, which is a relatively simple design where each group of subjects is exposed exclusively to one of the interventions (Jadad and Enkins, 2007). However, when it comes to educational randomized experiments a full range of more refined designs is possible, which goes far beyond traditional parallel randomization (Jadad and Enkins, 2007). More advanced designs such as the cluster, factorial and cross-over trials might bring experimental refinement to educational trials with advantages such as the increase of statistical power  when properly used (Jadad and Enkins, 2007).
+An essential part of trial design is a proper randomization. Despite being relatively simple, randomization principles are often misunderstood by researchers (Jadad and Enkin, 2007; Friedman et al., 2010). Frequently, strategies that are not truly random are used to allocate educational subjects, including assignment by date of birth, using unique identifier numbers, or by alternating allocation depending on order of arrival (Jadad and Enkin, 2007). Through the use of computer-based randomization algorithms, reliable sequences can be generated that, although not completely random, are sufficient to establish efficacy measures and reduce bias from known and unknown factors (Jadad and Enkin, 2007; Friedman,2010). The first framework allowing for randomization within Open edX was recently released <!-- jacinto include link -->. Despite this addition representing an important progress toward facilitating educational experiments, it only allows for parallel trials with an equal proportion of participants in each arm (Jadad and Enkins, 2007). Although useful, this type of design only represents a small fraction of what might be desirable for educational trials (Jadad and Enkins, 2007). More complex designs such as cluster, factorial and cross-over  might bring experimental refinement to educational trials with advantages such as the increase of statistical power and avoiding intervention contamination (Jadad and Enkins, 2007). 
 
-Cluster randomization is conducted when it is more appropriate to random allocate groups of people than separete individuals (Jadad and Enkins, 2007). In educational RCTs we may prefer to use groups such as a specific schools or geographic areas if the intervention affects more than one individual and the classic parallel may lead to contamination or spread of the educational intervention among those in different experimental arms (Jadad and Enkins, 2007). In factorial trials researchers can compare two or more educational interventions in combination and individually (Jadad and Enkins, 2007). This design might be useful in education since we can evaluate potencial interactions between interventions such as, for example, synergic effect betweem different educational strategies (Jadad and Enkins, 2007). While in the cross-over design each of the individuals receives the educational interventions in successive periods and the order in which the subjects participate in each of the interventions is randomly determined (jadad and enkins, 2007). <!-- More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, interventions without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts (Lillie et al., 2011; Gabillon et al., 2011). --> However, without a supporting technology these more sofisticated designs have been relegated to a secondary plane. As a result, educators usually adopt design that are either quasi-randomized or that contain methodological errors invalidating their main conclusions.
+These more complex designs could include clustering participants when interventions might spread from one arm to another, combining interventions in factorial trials when combinations of interventions might be more efficacious than isolated ones, or even using cross-over trials in an attempt to increase statistical power for outcomes not related to knowledge acquisition.
+However, without a supporting technology these more sofisticated designs are either not used or, worse, wrongly implemented.
 
-In face of these gaps, the objective of this study is to describe the integration the fully validated Planout randomization framework for the design of a broad range of sophisticated online randomized designs, conducted within the Open edX Learning Management System. Specifically, we provide details about its architecture along with the taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework.
+In face of these gaps, the objective of this study was to describe the integration the fully validated Planout randomization framework for the design of a broad range of sophisticated online randomized designs, conducted within the Open edX Learning Management System. Specifically, we provide details about its architecture along with the taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages and a description of how they can be implemented under our framework.
 
 
 
@@ -133,30 +134,37 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 
 ## Scripts for creating specific designs
 
+Our system can currently implement the following designs: parallel with any proportion of participants across arms, cluster, cross-over, factorial and customized. These designs can be implemented by either (1) importing randomization schedules into Open edX or (2) by adding Planout scripts. Each method is described in the following sections along with their advantages and disadvantages.
+
+### Importing randomization schedules
+
+The simplest way to implement any of the complex trial designs is to use an external statistical language such as [R]() or a statistical software such as [SAS](), [SAS-JMP](), [SPSS]() or [Minitab]() to prepare a random schedule, and then simply copy and paste the schedule into the platform. Specifically, the steps for this process are described under table X, which also describes the corresponding figures representing each step.
+
+Table X. Steps for uploading a randomized schedule into Open edX
 
 
-### Creating experiments by importing random schedules from other statistical languages and software
+While the main advantage of this method is its simplicity, it is restricted to relativelly small samples. For example, a typical MOOC with 150 thousand participants would likely benefit for a direct Planout script as described in the following sections
+
+### Planout scripts
 
 
-### Parallel design
+#### Parallel design
 
 1:1
 other proportions
 
 
-### Factorial design
+#### Factorial design
 
 
-### Cross-over design
+#### Cross-over design
 
 
-### Cluster design
+#### Cluster design
 
 
-### Customized design
+#### Customized design
 
-
-### Video Library
 
 
 ## Discussion
@@ -172,10 +180,6 @@ Despite our expectation that our system to have an impact on the education pract
 In conclusion, we expect that future development of this system might lead toward the combination of randomization at the individual level through [N-of-1 trials](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3118090/) in combination with mechanisms to provide personalized information, thus combining the scalability of MOOCs with the customization of personalized education. Of immediate relevance, we expect that more instructors in charge of content generation might decide to include randomization as part of their courses, also making the resulting evidence available to other instructors and the data to their research peers.
 
 <!-- 
-https://sites.google.com/a/khanacademy.org/forge/technical/data_n
-
-http://goo.gl/R7Jno7
-
 Renzo - https://github.com/edx/edx-platform/wiki/Split-Testing
 
 blame: http://goo.gl/wczjcY
