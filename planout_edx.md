@@ -30,7 +30,7 @@ Regarding efficacy evaluation in relation to educational interventions, randomiz
 
 An essential part of trial design is a proper randomization. Despite being relatively simple, randomization principles are often misunderstood by researchers (Jadad and Enkin, 2007; Friedman et al., 2010). Frequently, strategies that are not truly random are used to allocate educational subjects, including assignment by date of birth, using unique identifier numbers, or by alternating allocation depending on order of arrival (Jadad and Enkin, 2007). Through the use of computer-based randomization algorithms, reliable sequences can be generated that, although not completely random, are sufficient to establish efficacy measures and reduce bias from known and unknown factors (Jadad and Enkin, 2007; Friedman,2010). <!-- parei  --> Recently the first framework was developed that allowed randomization of online studies in the edX platform (Open edX platform. 2014). Despite the framework represented an important progress it is only possible to conduct parallel RCTs, which is a relatively simple design where each group of subjects is exposed exclusively to one of the interventions (Jadad and Enkins, 2007). However, when it comes to educational randomized experiments a full range of more refined designs is possible, which goes far beyond traditional parallel randomization (Jadad and Enkins, 2007). More advanced designs such as the cluster, factorial and cross-over trials might bring experimental refinement to educational trials with advantages such as the increase of statistical power  when properly used (Jadad and Enkins, 2007).
 
-Cluster randomization is conducted when it is more appropriate to random allocate groups of people than separete individuals (Jadad and Enkins, 2007). In educational RCTs we may prefer to use groups such as a specific schools or geographic areas if the intervention affects more than one individual and the classic parallel may lead to contamination or spread of the educational intervention among those in different experimental arms (Jadad and Enkins, 2007). In factorial trials researchers can compare two or more educational interventions in combination and individually (Jadad and Enkins, 2007). This design might be useful in education since we can evaluate potencial interactions between interventions such as, for example, synergic effect betweem different educational strategies (Jadad and Enkins, 2007). While in the cross-over design each of the individuals receives the educational interventions in successive periods and the order in which the subjects participate in each of the interventions is randomly determined (jadad and enkins, 2007). <!-- More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, interventions without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts (Lillie et al., 2011; Gabillon et al., 2011). --> However, without a supporting technology these more sofisticated designs have been relegated to a secondary plane. As a result, educators usually adopt design that are either quasi-randomized or that contain methodological errors invalidating their main conclusions.
+Cluster randomization is conducted when it is more appropriate to random allocate groups of people than separete individuals (Jadad and Enkins, 2007). In educational RCTs we may prefer to use groups such as a specific schools or geographic areas if the intervention affects more than one individual and the classic parallel may lead to contamination or spread of the educational intervention among those in different experimental arms (Jadad and Enkins, 2007). In factorial trials researchers can compare two or more educational interventions in combination and individually (Jadad and Enkins, 2007). This design might be useful in education since we can evaluate potencial interactions between interventions such as, for example, synergic effect betweem different educational strategies (Jadad and Enkins, 2007). While in the cross-over design each of the individuals receives the educational interventions in successive periods and the order in which the subjects participate in each of the interventions is randomly determined (jadad and enkins, 2007). <!-- More recent and sophisticated designs, such as N-of-1 and bandit randomization http://goo.gl/bAhV7 can also have their place in education in situations where, respectively, interventions without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts (Lillie et al., 2011; Gabillon et al., 2011). --> However, without a supporting technology these more sofisticated designs have been relegated to a secondary plane. As a result, educators usually adopt design that are either quasi-randomized or that contain methodological errors invalidating their main conclusions.
 
 In face of these gaps, the objective of this study is to describe the integration the fully validated Planout randomization framework for the design of a broad range of sophisticated online randomized designs, conducted within the Open edX Learning Management System. Specifically, we provide details about its architecture along with the taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework.
 
@@ -48,7 +48,7 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 ### Existing randomization within Open edX
 
-Open edX recently released the *split_test* component, which can be added to a course to generate a parallel trial. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação
+There have been previous attempts to develop a randomization component to Open edX <!-- https://github.com/edx/edx-platform/wiki/Split-Testing -->. More recently, the *split_test* component was released so that a course can be designed to contain one or more parallel trials. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação
 Ricardo - usuários são inseridos nos grupos na primeira visualização do conteúdo 
    -->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref  Ricardo http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html-->
 
@@ -156,7 +156,11 @@ other proportions
 ### Customized design
 
 
-### Video Library
+### Video library and documentation
+
+All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for understanding the source code and further development. A video library was also made available in both Portuguese and English at insert link . All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE).
+
+<!-- create videos in english -->
 
 
 ## Discussion
@@ -165,84 +169,13 @@ To the best of our knowledge, this is the first description of the integration b
 
 Although education has been traditionally been dominated by more opinion and non-empirical studies (Baron, 2004; Landrum and Mastropieri, 2012), experimental research has become more popular in the past couple decades (Slavin, 2002, Hattie, 2013). In particular, medical education has seen a rise in the number and overall quality of randomized controlled trials , with systematic reviews and meta-analyses now beginning to have a greater impact on education policy (Cook et al., 2008). Although randomized studies are obviously limited as a design and cannot stand alone without a wide range of qualitative, historical, sociological and philosophical studies, its inclusion in the toolkit of available educational research methods is certainly a welcome addition (Jadad and Enkins, 2007; Friedman et al., 2010). Of importance, however, parallel randomized trials are but one of the multiple types of design which can provide insight regarding educational practices(Jadad and Enkins, 2007; Friedman et al., 2010). For example, N-of-1 trials have been largely overseen in education despite their ability to provide an interesting combination of qualitative as well as quantitative information in personalized education studies (Lillie et al., 2011). 
 
-Even though Massive Online Open Courses were initially deemed as a panacea to the world education problem <!-- ref -->, in two years the public opinion has been almost reversed, with these courses being accused of elitism and associated with very high attritiion rates <!-- cite article as well as study -->. While the value of MOOCs is likely somewhere between the two extremes, it is hard to dispute that a massified approach to online education is far from ideal, as individual learners tend to respond better to being exposed to concepts that are of particular interes to them, contextualized in a way that is relevant to their personal situation. <!-- ref personalized education -->The latter combination of concepts and situations can be characterized as personalized education. While the best ways to achieve personalized education in a scalable, high quality and cost-effective manner are still to be determined, the evidence behind personalized education necessarily relies on conducting experiments using designs that go beyond simple parallel randomized trials. Our randomization framework allows for such designs.
+Even though Massive Online Open Courses were initially deemed as a panacea to the world education problem <!-- ref, in two years the public opinion has been almost reversed, with these courses being accused of elitism and associated with very high attritiion rates <!-- cite article as well as study -->. While the value of MOOCs is likely somewhere between the two extremes, it is hard to dispute that a massified approach to online education is far from ideal, as individual learners tend to respond better to being exposed to concepts that are of particular interes to them, contextualized in a way that is relevant to their personal situation. <!-- ref personalized education -->The latter combination of concepts and situations can be characterized as personalized education. While the best ways to achieve personalized education in a scalable, high quality and cost-effective manner are still to be determined, the evidence behind personalized education necessarily relies on conducting experiments using designs that go beyond simple parallel randomized trials. Our randomization framework allows for such designs.
 
 Despite our expectation that our system to have an impact on the education practice as well as evidence-based learning, our system does have limitations. First, since we emphasized flexibility through the use of programming scripts, our system might not be set by individual instructors. Although this is a limitation, the implementation of a graphical user interface is not overly complex and could be implemented in subsequent cycles of our project. Second, although all data can be extracted for subsequent analysis, we still have not implemented interfaces that that would allow for report generation directly by instructors. Although these reports would improve user experience, we feel that before we focus on individual reports it would be appropriate to have more information on which reports might be of more interested to most instructors. In sum, our development continues to follow [Agile principles](http://agilemanifesto.org/), with a focus on the end user as well as using iterative development cycles.
 
 In conclusion, we expect that future development of this system might lead toward the combination of randomization at the individual level through [N-of-1 trials](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3118090/) in combination with mechanisms to provide personalized information, thus combining the scalability of MOOCs with the customization of personalized education. Of immediate relevance, we expect that more instructors in charge of content generation might decide to include randomization as part of their courses, also making the resulting evidence available to other instructors and the data to their research peers.
 
-<!-- 
-https://sites.google.com/a/khanacademy.org/forge/technical/data_n
 
-http://goo.gl/R7Jno7
-
-Renzo - https://github.com/edx/edx-platform/wiki/Split-Testing
-
-blame: http://goo.gl/wczjcY
-
-ele joga tudo pra https://segment.io/
-My framework keeps track of which flags are active for a particular user by adding a property to Segment.io API calls which contains a string listing active flags; this particular change was made in segment-io.html. Segment.io routes this information to Mixpanel where we can study the data, allowing us to compare the behavior of different groups of users.
-
-
-* livro sobre bandit - http://goo.gl/bAhV7
-* vagrant datajam http://goo.gl/1m1WTD - isso vai instalar localmente tudo que voce precisa
-* o que eu consegui achar sobre AB no edx:
-    * http://goo.gl/Eg2Jic
-    * http://goo.gl/qovqEZ
-    * http://goo.gl/7P8CI2 - eu acabei de achar isso, ele usou o waffle http://goo.gl/OZpY3 inves de ir com as implementacoes de AB que ja existem pro django (eu eu o Bruno tinhamos dado uma olhada ha algum tempo).
-
-emails renzo 
-
-
-muito interessante. tava lendo http://goo.gl/XVOGSe . voces acham que
-isso poderia ter impacto no projeto de AB/bandit? ou seja, se eles
-separarem conteudo e estrutura sera que a gente poderia aplicar a
-randomizacao pra dois ou mais cursos com estruturas diferentes
-(representando os arms experimentais) ao inves de criar os arms dentro
-de uma mesma estrutura?
-
-se sim, isso seria interessante porque daria pra gente a possibilidade
-de nao so realizar experimentos muito especificos (por exemplo
-comparar dois videos em um curso explicando a mesma coisa), mas daria
-pra gente a possibilidade de comparar metodos educacionais num nivel
-mais "macro", como por exemplo comparar a mudanca de metodo
-educacional em todos os videos de um determinado curso. como eles
-disseram, vamos ter de ver o que isso vai querer dizer em termos de
-storage
--->
-
-
-<!-- 
-variable categories
-1. arm
-2. baseline
-3. outcomes from exercises
-4. outcomes from computer logs
-
- -->
-
-<!-- 
-
-https://edx-wiki.atlassian.net/wiki/pages/viewpage.action?pageId=39551632
-
-a. allow for comparison of different educational content rather
-than user experience. this means that we could for example randomize
-across videos with different types of experiences, exercises, etc
-  b. ability to connect the experiments to three main types of
-outcomes: educational scores (measuring knowledge or ability to get an
-answer right or in the right direction measured through classical
-items), satisfaction (how much they liked a certain type of
-explanation or item), and computer log-type of outcomes (e.g. if they
-dropped out of a video and at which point they watched it before
-dropping out)
-  c. right now all of their data goes to an external analytics app
-called http://import.io/ , while we want to move the data into a csv
-format so that it can be analyzed by regular data science languages
-like R http://www.r-project.org/ or python
-
- -->
-
-<!-- Hawthorne effect and the problem with experiments run in artificial educational environments  -->
 
 
 <!-- 1. The initial randomization arm for the trial, often times the control group when it might exist, will have its content fully created and tested by the instructor. This might include any slides, videos, exercises, as well as any features that might be part of the actual course. Included in this design will be any exercises that might serve as the outcome variable for the trial. For example, these could include exercises measuring knowledge secondary to the course content, questions evaluating satisfaction with the course as a student, ability to put the course information into practice, among others. Notice here that from an operational perspective the length of the course is not relevant, and the instructor has complete freedom to include whatever she might want.
@@ -358,41 +291,7 @@ Para definir um novo experimento, o professor deve clicar no ícone duplicar ao 
 Em seguida, o professor determina quais serão os conteúdos a serem testados e, no fim do experimento, analisa os resultados. No protótipo, o aluno fica a cargo de definir a versão que será usada ao clicar \textit{Courseware }do LMS -- executando um \textit{loop} (este \textit{loop} cria um menu onde os alunos acessarão o conteúdo do LMS). Para cada elemento do loop, procura-se na base de dados se o usuário já participa de algum experimento da Seção, caso não esteja, o sistema atribui uma versão de forma aleatória.  Essas ações são descritras no Caso de Uso do professor e do aluno da Figura \ref{fig:edXUsecase}.
 \newpage
 
-
-system description
-course cloning
-database architecture
-[AGPL](http://www.gnu.org/licenses/agpl-3.0.html)
  -->
-<!-- http://bayesfactor.blogspot.com/2014/09/embedding-rdata-files-in-rmarkdown.html -->
-
-
-<!-- ricardo to add rmd in R and possibly in python -->
-
-
-<!-- 
-
-import R into ipython http://ipython.org/ipython-doc/dev/config/extensions/rmagic.html and then run
-
-http://nbviewer.ipython.org/gist/yoavram/5280132
-
-http://cran.us.r-project.org/web/views/ClinicalTrials.html
-http://cran.us.r-project.org/web/views/ExperimentalDesign.html
-http://cran.us.r-project.org/web/views/ReproducibleResearch.html
-http://nbviewer.ipython.org/gist/z-m-k/4484816/ipyD3sample.ipynb
-
-
- -->
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- ### Creating experiments
@@ -447,7 +346,6 @@ Versao
 
 --> 
 
-### Defining experimental designs
 
 
 <!-- Jacinto, eu não entendi o que são esses termos que você usou nessa frase. seria bom a gente aderir a uma nomenclatura padrão existente pra evitar confusão
@@ -495,46 +393,7 @@ Another way of designing an experiment is to directly use the Planout scripting 
 Each script will have as arguments information about the user profile, including choices, age, city, education and gender. With these variables as well as PlanOut operators it is then possible to generate scripts that allow the instructor to have further control over the way each arm is allocated.
  -->
 
-
-
-
-<!-- Video 3 ParteEntidadeRelacionamento
-http://youtu.be/yADpLzlYU8w
- 
- -->
-
-
-<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-<!-- Desenvolvemos alguns vídeos tutoriais ilustram todo o processo de criação de experimentos utilizando o edX integrado ao protótipo. Em tais vídeos exemplificamos como carregar designs, alternar entre os operadores do PlanOut e a carregar e compilar scripts em PlanOut. -->
-
-<!-- create videos in english -->
-
-<!-- [video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
-
-[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
-
-[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
- -->
-<!-- Jacinto, não entendi o que são os emails que estão nas opções e dos quais você fala no vídeo -->
-<!-- Nos e-mails eu simplesmente gero um arquivo .CSV com e-mails dos usuários e seus respectivos Arms 
-Ex.: 
-Ricardo
-Arm E-mail
-A   geekaia@gmail.com
-A   maria@gmail.com
-B   carlos@hotmail.com
-B   carlota@gmail.com
--->
-
-
-<!-- jacinto to add scripts under github repo -->
-
-<!-- * parallel trial with two arms and 1:1 allocation proportion
-* parallel trial with two arms and 2:1 allocation proportion
-* parallel trial with three arms and 1:1:1 proportion
-* factorial trial with three interventions
-* cluster trial wtih two arms
-
+<!--
 
 Data export
 Open Access description templates in compliance with CONSORT statement
@@ -662,42 +521,12 @@ tudo o que começar com """ e no corpo dos algoritmos o que começar com #
 https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments
 https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experimentslms
 
-
-Templates 
-https://github.com/geekaia/edx-platform/tree/master/cms/templates/experiment
-
-
-
-### Video library and documentation for new users
-
-All of our code was documented using docstrings at the beggining of our functions and classes, ultimately decreasing the threshold for code understanding and further development. A video library was also made available in both Portuguese and English at <!-- insert link . All licenses were kept in accordance to the guidelines established by the [Open edX project](https://github.com/geekaia/edx-platform/blob/master/LICENSE) 
-
-
-<!-- Jacinto a licença dos aplicativos com xblock agora mudou pra apache II, eles anunciaram há mais ou menos uma semana - voce usou xblock? Ricardo Resp: Não precisamos mudar a licença, só se eu atualizar o repositório. Vamos deixar isso para a próxima versão!
-
-<!-- 
-[video 1 in Portuguese](http://youtu.be/3ahFI6aJP30)
-[video 2 in Portuguese](http://youtu.be/BT3hPxVwCXM)
-[video 4 in Portuguese](http://youtu.be/fE79gZSvwlg)
  
-Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B.
-
-<!-- Jacinto, voce pode colocar uma descrição em texto aqui? -->
-<!-- [video on Forums in Portuguese](http://youtu.be/AF8IY_iRbD8) -->
+Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B. -->
 
 
 
-<!-- ##Introdução inicial Ricardo
 
-Despite Sherlock Holmes' widely known advice that theorizing before having data will bias the judgment Doyle, A Study in Scarlet (1887), Part 1, chap. 3, p. 27 , the history of education until recently can be largely summarized as a massive theorization followed by widespread education policy implementation, all of that occurring with no or minimal experimental validation. While observational data are now somewhat more prevalent in the educational literature, and randomized studies are slowly becoming more common, it is unfortunate that experiments are still largely divorced from the daily educational practice.
-
-In the now classic [Pyramid of Evidence](http://libguides.mssm.edu/hierarchy) proposed by the founders of Evidence-Based-Medicine, randomized controled trials and the corresponding meta-analyses are at the top, while observational studies and reports based on personal experience are positioned at a lower level. While this classification has been transposed to educational research , it has also been significantly criticized since randomized controled trials tend to select samples that are consistently different from the population where its results are supposed to be applied.  While the same is certainly true for in person education - individuals commiting to participate in an in-person educational trial will likely be different - in online environments randomization can be seamless, with the potential to conduct dozens of experiments within a single educational unit. An example of platforms allowing for online randomization include the [Planout framework](https://facebook.github.io/planout/), recently released by [Facebook](https://www.facebook.com/) and currently used to conduct over 1000 experiments on their site. Despite the promising perspective of transforming education into an evidence-driven field, to date most learning management systems have been unable to take advantage of frameworks such as Planout, and as a consequence the number and quality of educational trials is still far behind where it could be.
-
-When it comes to randomized experiments in education, a full range of designs is theoretically possible. For example, cluster randomized trials have been advocated when a class might be highly influenced by an instructor , factorial trial have been advocated when simultaneously testing variations of an educational method , blocked and stratified designs when there might be concern regarding imbalances. More recent and sophisticated designs, such as N-of-1 and bandit randomization can also have their place in education in situations where, respectively, outcomes without a carryover effect is studied or when the efficacy of a given intervention might vary across different contexts.  All of these designs are certainly interesting, but without a supporting technology they are more often than not relegated to a secondary plane, educators often not making use of randomization at all or using simplistic designs when more sophisticated ones could lead toward better information to guide educational practice.
-
-In face of these gaps, the objective of this study is therefore to describe the integration of the fully validated Planout framework for the design of online randomized trials with the Open edX Learning Management System. Specifically, we provide details about its architecture along with taxonomy to guide educators regarding the match across specific educational designs, educational studies where they would bring advantages, and a description of how they can be implemented under our framework. -->
-
-Introduction references
 
 Baron, Jon. "Identifying and Implementing Education Practices Supported by Rigorous Evidence: A User Friendly Guide." Journal for Vocational Special Needs Education 26 (2004): 40-54.
 
