@@ -20,7 +20,8 @@ Seiji Isotani, PhD
 
 ## Abstract
 
-<!-- write at the end -->
+Although evidence-based education plays a central role defining educational practice and policy, education is largely guided by annecdotal knowledge and non-empirical theories rather than randomized trials. In response to this gap, we have developed a system that combines the Facebook Planout framework for the development of experimental designs and the Open edX system, currently used for Massive Open Online Courses. This system, released under an open source license, allows for the design of complex experiments, including parallel with non-equal proportions, factorial, cluster, cross-over and customized educational trials. We describe its architecture and provide details on its use in the deployment of different educational scenarios. 
+
 
 ## Introduction
 
@@ -53,7 +54,9 @@ There have been previous attempts to develop a randomization component to Open e
 Ricardo - usuários são inseridos nos grupos na primeira visualização do conteúdo 
    -->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref  Ricardo http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html-->
 
-Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely cross-over, N-of-1 and factorial, as well as possible variations resulting from adaptations or combinations of each of these.
+Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely parallel with proportions other than 1:1, cross-over, cluster and factorial, as well as possible custom variations resulting from adaptations or combinations of each of these. Each of these designs is graphically summarized under Figure 1.
+
+<!-- Jacinto, seria bom colocar um gráfico simples que sumarize todos esses designs porque daí a gente não precisa ficar repetindo as explicações mais para baixo -->
 
 
 ### Requisites and informal use cases
@@ -145,42 +148,26 @@ Table X. Steps for uploading a randomized schedule into Open edX
 
 While the main advantage of this method is its simplicity, it is restricted to relativelly small samples. For example, a typical MOOC with 150 thousand participants would likely benefit for a direct Planout script as described in the following sections
 
-<!--
-### Planout scripts
-
 
 #### Parallel design
+In our application, this design is selected using the *Uniform* choice (Figure 1) or adding the following Planout script:
 
-1:1
-other proportions
+
+	URL = UniformChoice(choices=CHOICES, unit=userid)
+
+<!-- Jacinto, tem como alterar a proporção pelo GUI? isso é só uma pergunta, não to sugerindo que você acrescente essa possibilidade se ela não existir -->
 
 
 #### Factorial design
 
+<!-- Jacinto, tem um GUI pra esse design? -->
 
-#### Cross-over design
+The Planout script for a design including two interventions is:
 
+<!-- Jacinto, tem como ter mais de duas intervenções? e os níveis? -->
 
-#### Cluster design
-
-
-#### Customized design
--->
-#### Parallel design
-Dentre todos os designs disponíveis, este design é um dos mais simples, pois trata-se basicamente de estudar dois grupos que,usualmente, chamamos A para o grupo de controle e B para o grupo de intervenção. Por conta disso, experimentos paralelos são também chamados de testes AB. Em nosso protótipo, obtemos o design paralelo, como também experimentos multivariáveis selecionando mudando randomização para *Uniform* dentre as opções  disponíveis na Figura XXXX ou adicionando o script em PlanOut abaixo.
-
-URL = UniformChoice(choices=CHOICES, unit=userid)
-Script 1 - Design Paralelo
-
-Alternativamente, para cursos com pequeno número de alunos, também há a possibilidade o schedule gerados por softwares estatísticos como o JMP, LibreOffice, Excell e outros. Para este caso, será lido um arquivo separado por ponto de vírgula e os arms serão alocados na ordem especificada.
-
-#### Factorial design
-De forma similar ao implementado para experimentos paralelos, com o fatorial podemos criar experimentos de duas formas, ou carregando 
-o design criado por softwares com o Minitab, R e outros, ou carregando o script abaixo, que randomizar e gerar todas as combinações possíveis entre dois fatores (com dois níveis cada).
-
-fat1 = UniformChoice(choices=["1", "2"], unit=userid);
-fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
-Script 2 - Factorial design
+	fat1 = UniformChoice(choices=["1", "2"], unit=userid);
+	fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
 
 
 #### Cross-over design
@@ -236,11 +223,11 @@ All of our code was documented using docstrings at the beggining of our function
 
 ## Discussion
 
-To the best of our knowledge, this is the first description of the integration between a comprehensive randomization framework and a modular learning management system. Our system allows for the incorporation of a wide range of randomized experiments into the daily practice of online courses. This system can be used with both hundreds of thousands of learners such as in a Massive Open Online Course (MOOC) or personalized courses set for a single person. In addition, the randomization is based on a series of scripts, thus allowing for extreme flexibility in terms of the types of trials designs that can be deployed.
+To the best of our knowledge, this is the first description of the integration between a comprehensive randomization framework allowing for complex experimental designs and a modular learning management system. Our system allows for the incorporation of a wide range of randomized experiments into the daily practice of online courses. This system can be used with both hundreds of thousands of learners such as in a Massive Open Online Course (MOOC) or in personalized courses set for a few individuals. In addition, the randomization is based on a series of scripts, thus allowing for extreme flexibility in terms of the types of trials designs that can be deployed.
 
 Although education has been traditionally been dominated by more opinion and non-empirical studies (Baron, 2004; Landrum and Mastropieri, 2012), experimental research has become more popular in the past couple decades (Slavin, 2002, Hattie, 2013). In particular, medical education has seen a rise in the number and overall quality of randomized controlled trials , with systematic reviews and meta-analyses now beginning to have a greater impact on education policy (Cook et al., 2008). Although randomized studies are obviously limited as a design and cannot stand alone without a wide range of qualitative, historical, sociological and philosophical studies, its inclusion in the toolkit of available educational research methods is certainly a welcome addition (Jadad and Enkins, 2007; Friedman et al., 2010). Of importance, however, parallel randomized trials are but one of the multiple types of design which can provide insight regarding educational practices(Jadad and Enkins, 2007; Friedman et al., 2010). For example, N-of-1 trials have been largely overseen in education despite their ability to provide an interesting combination of qualitative as well as quantitative information in personalized education studies (Lillie et al., 2011). 
 
-Even though Massive Online Open Courses were initially deemed as a panacea to the world education problem <!-- ref -->, in two years the public opinion has been almost reversed, with these courses being accused of elitism and associated with very high attrition rates <!-- cite article as well as study -->. While the value of MOOCs is likely somewhere between the two extremes, it is hard to dispute that a massified approach to online education is far from ideal, as individual learners tend to respond better to being exposed to concepts that are of particular interes to them, contextualized in a way that is relevant to their personal situation. <!-- ref personalized education -->The latter combination of concepts and situations can be characterized as personalized education. While the best ways to achieve personalized education in a scalable, high quality and cost-effective manner are still to be determined, the evidence behind personalized education necessarily relies on conducting experiments using designs that go beyond simple parallel randomized trials. Our randomization framework allows for such designs.
+Even though Massive Online Open Courses were initially deemed as a panacea to the world education problem <!-- ref -->, in two years the public opinion has been almost reversed, with these courses being accused of elitism and associated with very high attrition rates <!-- cite article as well as study -->. While the value of MOOCs is likely somewhere between the two extremes, it is hard to dispute that a massified approach to online education is far from ideal, as individual learners tend to respond better to being exposed to concepts that are of particular interes to them, contextualized in a way that is relevant to their personal situation. <!-- ref personalized education -->. The latter combination of concepts and situations can be characterized as personalized education. While the best ways to achieve personalized education in a scalable, high quality and cost-effective manner are still to be determined, the evidence behind personalized education necessarily relies on conducting experiments using designs that go beyond simple parallel randomized trials. Our randomization framework allows for such designs.
 
 Despite our expectation that our system to have an impact on the education practice as well as evidence-based learning, our system does have limitations. First, since we emphasized flexibility through the use of programming scripts, our system might not be set by individual instructors. Although this is a limitation, the implementation of a graphical user interface is not overly complex and could be implemented in subsequent cycles of our project. Second, although all data can be extracted for subsequent analysis, we still have not implemented interfaces that that would allow for report generation directly by instructors. Although these reports would improve user experience, we feel that before we focus on individual reports it would be appropriate to have more information on which reports might be of more interested to most instructors. In sum, our development continues to follow [Agile principles](http://agilemanifesto.org/), with a focus on the end user as well as using iterative development cycles.
 
