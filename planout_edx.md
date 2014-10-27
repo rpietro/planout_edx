@@ -145,6 +145,7 @@ Table X. Steps for uploading a randomized schedule into Open edX
 
 While the main advantage of this method is its simplicity, it is restricted to relativelly small samples. For example, a typical MOOC with 150 thousand participants would likely benefit for a direct Planout script as described in the following sections
 
+<!--
 ### Planout scripts
 
 
@@ -164,6 +165,65 @@ other proportions
 
 
 #### Customized design
+-->
+#### Parallel design
+Dentre todos os designs disponíveis, este design é um dos mais simples, pois trata-se basicamente de estudar dois grupos que,usualmente, chamamos A para o grupo de controle e B para o grupo de intervenção. Por conta disso, experimentos paralelos são também chamados de testes AB. Em nosso protótipo, obtemos o design paralelo, como também experimentos multivariáveis selecionando mudando randomização para *Uniform* dentre as opções  disponíveis na Figura XXXX ou adicionando o script em PlanOut abaixo.
+
+URL = UniformChoice(choices=CHOICES, unit=userid)
+Script 1 - Design Paralelo
+
+Alternativamente, para cursos com pequeno número de alunos, também há a possibilidade o schedule gerados por softwares estatísticos como o JMP, LibreOffice, Excell e outros. Para este caso, será lido um arquivo separado por ponto de vírgula e os arms serão alocados na ordem especificada.
+
+#### Factorial design
+De forma similar ao implementado para experimentos paralelos, com o fatorial podemos criar experimentos de duas formas, ou carregando 
+o design criado por softwares com o Minitab, R e outros, ou carregando o script abaixo, que randomizar e gerar todas as combinações possíveis entre dois fatores (com dois níveis cada).
+
+fat1 = UniformChoice(choices=["1", "2"], unit=userid);
+fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
+Script 2 - Factorial design
+
+
+#### Cross-over design
+Para este design, em um primeiro momento os alunos são alocados randomicamente para um Arm, mas durante durante o curso é possível mudar de Arm. Para isto, o professor deve configurar o momento em que o aluno poderá mudar entre os Arms disponíveis. Desta forma, pode-se avaliar se há benefícios quando muda-se o conteúdo aplicado.
+
+
+#### Cluster design
+Neste este design, ao invés de randomizar entre os Arms disponíveis para alocar o estudante, a unidade a ser randomizada são os grupos definidos pelo professor. Os grupos podem ser criados com as informações do profile como Gender, Age, Escolaridade, Country e City. Caso um grupo já tenha sido randomizado, todos os estudantes que preenchem os requisitos do grupo serão alocados para o Arm do grupo.
+
+
+#### Customized design
+Como já dizemos, no prótótipo é possível customizar o design com Scripts em PlanOut, onde torna possível definir critérios para a atribuição dos arms dos usuários em um determinado Arm. Para isto, passamos informações do profile dos usuários para o script, o que possibilita alocar arms baseando-se em critérios com ou sem randomização. Na janela de edicação de scripts está disponível a listagem de variáveis e de códigos que podem ser utilizados nos scripts. Abaixo mostramos alguns da utilização de scripts em PlanOut.
+
+
+Script 4 -- Alunos do Brasil entrarão no Arm A, enquanto que os alunos dos eua irão para o Arm B, os demais irão ser randomizados entre os Arms disponíveis. 
+
+if(PAIS=='BR')
+{
+  URL = CHOICES[0];
+} else if (PAIS=='US')
+{
+  URL = CHOICES[1]; 
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+Script 5 -- Podemos combinar o script anterior com BernaultTrial, que nos permite obter um certo número de estudantes de um grupo
+
+p1 = BernoultiTrial(p=0.5, unit=userid);
+p2 = BernoultiTrial(p=0.5, unit=userid);
+if(SEXO=='m' && p1)
+{
+  URL = CHOICES[0];
+} else if (SEXO=='f' && p2)
+{
+  URL = CHOICES[1]; 
+} else {
+  URL = uniformChoice(choices=CHOICES, unit=userid);
+}
+
+<!--Ricardo vou dormir e quando acordar eu volto a escrever --> 
+
+
 
 
 
