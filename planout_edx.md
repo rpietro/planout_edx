@@ -155,7 +155,13 @@ In our application, this design is selected using the *Uniform* choice (Figure 1
 
 	URL = UniformChoice(choices=CHOICES, unit=userid)
 
-<!-- Jacinto, tem como alterar a proporção pelo GUI? isso é só uma pergunta, não to sugerindo que você acrescente essa possibilidade se ela não existir -->
+<!-- Jacinto, tem como alterar a proporção pelo GUI? isso é só uma pergunta, não to sugerindo que você acrescente essa possibilidade se ela não existir. Ricardo, existe sim e descrevi abaixo-->
+#### Proporcional design
+Podemos mudar as proporções de alocação para cada arm selecionando *Proportion*. Por exemplo, para design A(2):B(1) podemos passar 0.66 e 0.33 para a GUI ou inserir script abaixo: 
+
+
+	URL = WeightedChoice(choices=CHOICES, weights=[0.66, 0.33], unit=userid)
+	
 
 
 #### Factorial design
@@ -164,7 +170,7 @@ In our application, this design is selected using the *Uniform* choice (Figure 1
 
 The Planout script for a design including two interventions is:
 
-<!-- Jacinto, tem como ter mais de duas intervenções? e os níveis? -->
+<!-- Jacinto, tem como ter mais de duas intervenções? e os níveis? Ricardo, ainda não implementei isso, só com 2 fats e 2 níveis cada-->
 
 	fat1 = UniformChoice(choices=["1", "2"], unit=userid);
 	fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
@@ -184,29 +190,29 @@ Como já dizemos, no prótótipo é possível customizar o design com Scripts em
 
 Script 4 -- Alunos do Brasil entrarão no Arm A, enquanto que os alunos dos eua irão para o Arm B, os demais irão ser randomizados entre os Arms disponíveis. 
 
-if(PAIS=='BR')
-{
-  URL = CHOICES[0];
-} else if (PAIS=='US')
-{
-  URL = CHOICES[1]; 
-} else {
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
+	if(PAIS=='BR')
+	{
+  		URL = CHOICES[0];
+	} else if (PAIS=='US')
+	{
+  		URL = CHOICES[1]; 
+	} else {
+  		URL = uniformChoice(choices=CHOICES, unit=userid);
+	}
 
 Script 5 -- Podemos combinar o script anterior com BernaultTrial, que nos permite obter um certo número de estudantes de um grupo
 
-p1 = BernoultiTrial(p=0.5, unit=userid);
-p2 = BernoultiTrial(p=0.5, unit=userid);
-if(SEXO=='m' && p1)
-{
-  URL = CHOICES[0];
-} else if (SEXO=='f' && p2)
-{
-  URL = CHOICES[1]; 
-} else {
-  URL = uniformChoice(choices=CHOICES, unit=userid);
-}
+	p1 = BernoultiTrial(p=0.5, unit=userid);
+	p2 = BernoultiTrial(p=0.5, unit=userid);
+	if(SEXO=='m' && p1)
+	{
+	  URL = CHOICES[0];
+	} else if (SEXO=='f' && p2)
+	{
+	  URL = CHOICES[1]; 
+	} else {
+	  URL = uniformChoice(choices=CHOICES, unit=userid);
+	}
 
 <!--Ricardo vou dormir e quando acordar eu volto a escrever --> 
 
