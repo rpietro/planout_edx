@@ -190,31 +190,29 @@ Como já dizemos, no prótótipo é possível customizar o design com Scripts em
 
 Script 4 -- Alunos do Brasil entrarão no Arm A, enquanto que os alunos dos eua irão para o Arm B, os demais irão ser randomizados entre os Arms disponíveis. 
 
-	if(PAIS=='BR')
+	if(country=='BR')
 	{
-  		URL = CHOICES[0];
-	} else if (PAIS=='US')
+  		URL = choices[0];
+	} else if (country=='US')
 	{
-  		URL = CHOICES[1]; 
+  		URL = choices[1]; 
 	} else {
-  		URL = uniformChoice(choices=CHOICES, unit=userid);
+  		URL = uniformChoice(choices=choices, unit=userid);
 	}
 
 Script 5 -- Podemos combinar o script anterior com BernaultTrial, que nos permite obter um certo número de estudantes de um grupo
 
 	p1 = BernoultiTrial(p=0.5, unit=userid);
 	p2 = BernoultiTrial(p=0.5, unit=userid);
-	if(SEXO=='m' && p1)
+	if(gender=='m' && p1)
 	{
-	  URL = CHOICES[0];
-	} else if (SEXO=='f' && p2)
+	  URL = choices[0];
+	} else if (gender=='f' && p2)
 	{
-	  URL = CHOICES[1]; 
+	  URL = choices[1]; 
 	} else {
-	  URL = uniformChoice(choices=CHOICES, unit=userid);
+	  URL = uniformChoice(choices=choices, unit=userid);
 	}
-
-<!--Ricardo vou dormir e quando acordar eu volto a escrever --> 
 
 
 
