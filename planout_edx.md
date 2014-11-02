@@ -83,8 +83,9 @@ Open edX's architecture is based on a group of modular components, including Stu
 
 Figure XXX demonstrates the main elements in this architecture, containing the CMS and LMS. The CMS provides a group of tools for the authoring of courses. It also allows for the addition of items such as the pass and fail criteria, settings for learner activity and content import and export. The CMS also makes available resources such as videos, HTML pages, problems and forum discussions.
 
-
 ![Open edX Architecture](./img/studiomapping.jpg "Open edX Architecture")
+
+
 
 The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course. 
 
