@@ -29,7 +29,7 @@ Despite Sherlock Holmes' widely known advice that theorizing before having data 
 
 Regarding efficacy evaluation in relation to educational interventions, randomized trials are perceived as one of the best ways to establish causal relationships between interventions and educational outcomes (Baron, 2004, Jadad and Enkins, 2007, Friedman et al., 2010). While observational studies and case reports based on personal experience can bring additional insights, they are frequently positioned at a lower level in relation to the strength of evidence since their results are frequently biased (Sackett et al, 2010). Specifically regarding online experiments, open source frameworks that allow for the design of complex experiments are now available, including Facebook's recently released Planout <!-- ref -->. And yet, despite its availability, most learning management systems have not been integrated with randomization systems. This lack of adequate tools for conducting experiments in education aids in explaining why a relatively small number of well designed RCTs have been conducted (Wong et al., 2010; Triola et al., 2012) and, while it is true that RCTs are slowly becoming more common in the educational field (Slavin, 2002), experiments are still largely divorced from daily educational practice (Wong et al, 2010; Triola et al, 2012).
 
-An essential part of trial design is a proper randomization. Despite being relatively simple, randomization principles are often misunderstood by researchers (Jadad and Enkin, 2007; Friedman et al., 2010). Frequently, strategies that are not truly random are used to allocate educational subjects, including assignment by date of birth, using unique identifier numbers, or by alternating allocation depending on order of arrival (Jadad and Enkin, 2007). Through the use of computer-based randomization algorithms, reliable sequences can be generated that, although not completely random, are sufficient to establish efficacy measures and reduce bias from known and unknown factors (Jadad and Enkin, 2007; Friedman,2010). The first framework allowing for randomization within Open edX was recently released <!-- jacinto include link -->. Despite this addition representing an important progress toward facilitating educational experiments, it only allows for parallel trials with an equal proportion of participants in each arm (Jadad and Enkins, 2007). Although useful, this type of design only represents a small fraction of what might be desirable for educational trials (Jadad and Enkins, 2007). More complex designs such as cluster, factorial and cross-over  might bring experimental refinement to educational trials with advantages such as the increase of statistical power and avoiding intervention contamination (Jadad and Enkins, 2007). 
+An essential part of trial design is a proper randomization. Despite being relatively simple, randomization principles are often misunderstood by researchers (Jadad and Enkin, 2007; Friedman et al., 2010). Frequently, strategies that are not truly random are used to allocate educational subjects, including assignment by date of birth, using unique identifier numbers, or by alternating allocation depending on order of arrival (Jadad and Enkin, 2007). Through the use of computer-based randomization algorithms, reliable sequences can be generated that, although not completely random, are sufficient to establish efficacy measures and reduce bias from known and unknown factors (Jadad and Enkin, 2007; Friedman,2010). The first framework allowing for randomization within Open edX was recently released <!-- jacinto include link. Ricardo http://edx.readthedocs.org/projects/edx-partner-course-staff/en/latest/content_experiments/index.html -->. Despite this addition representing an important progress toward facilitating educational experiments, it only allows for parallel trials with an equal proportion of participants in each arm (Jadad and Enkins, 2007). Although useful, this type of design only represents a small fraction of what might be desirable for educational trials (Jadad and Enkins, 2007). More complex designs such as cluster, factorial and cross-over  might bring experimental refinement to educational trials with advantages such as the increase of statistical power and avoiding intervention contamination (Jadad and Enkins, 2007). 
 
 These more complex designs could include clustering participants when interventions might spread from one arm to another, combining interventions in factorial trials when combinations of interventions might be more efficacious than isolated ones, or even using cross-over trials in an attempt to increase statistical power for outcomes not related to knowledge acquisition.
 However, without a supporting technology these more sofisticated designs are either not used or, worse, wrongly implemented.
@@ -51,7 +51,7 @@ When organizing courses, instructors are presented with the edX Studio Content M
 ### Existing randomization within Open edX
 
 There have been previous attempts to develop a randomization component to Open edX <!-- https://github.com/edx/edx-platform/wiki/Split-Testing -->. More recently, the *split_test* component was released so that a course can be designed to contain one or more parallel trials. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação
-Ricardo - usuários são inseridos nos grupos na primeira visualização do conteúdo 
+Ricardo - usuários são inseridos nos grupos na primeira visualização do conteúdo (no LMS quando clicado em Courseware) 
    -->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref  Ricardo http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html-->
 
 Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely parallel with proportions other than 1:1, cross-over, cluster and factorial, as well as possible custom variations resulting from adaptations or combinations of each of these. Each of these designs is graphically summarized under Figure 1.
@@ -87,7 +87,7 @@ Figure XXX demonstrates the main elements in this architecture, containing the C
 
 
 
-The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course. 
+The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course.
 
 The majority of  components in the Open edX platform are based on the Django framework, and the content is rendered using the Mako library, allowing for better flexibility and performance. Beyond Python, the server also uses languages such as [Java](), [Ruby](), [Ruby on Rails](), and [NodeJs](). On the client side the content is rendered using a combination of [HTML](), [JavaScript](), [CSS]() and [SASS]().
 
@@ -113,14 +113,14 @@ Figure X displays and a partial Entity Relationship Diagram for our software. Th
 
 ![edX Architecture](./img/modeloer.png "Partial Entity Relationship Diagram" )
 
-In order to create the integration between Open edX and PlanOut, and make possible to load designs created by third-party software. We have added the following entities: <!-- modifiquei aqui adicionei load designs -->
+In order to create the integration between Open edX and PlanOut, and make possible to load designs created by third-party software. We have added the following entities: 
 
 
 <!-- might transform below into a table -->
 
 * ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
-* OpcoesExperiment: <!-- Jacinto, seria melhor chamar de options ao invés de experimento --> stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
-* StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- Jacinto, o que é um operator? o que é um design? acho que essas coisas precisam ser definidas --> As a consequece, individual students will only be in a single arm across all experiments.
+* OptionsExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
+* StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- Jacinto, o que é um operator? o que é um design? acho que essas coisas precisam ser definidas  --> As a consequece, individual students will only be in a single arm across all experiments.
 * UserChoiceExperiment: this entity defines which arm was allocated during randomization, by inserting an entry that is defined under Design in StrategyRandomization. This entity ensures that, at a later moment, users might recover and use the content of the Arm where they have been allocated.
 * AnonyMousPost: this entity stores the unique identifier for the comment as well as the user, which allows for the identificatio of an anonymous post. This feature allows that, for example, group users only have access to posts made within their own group.
 * GroupsCluster -- cada registro desta entidade descreve um grupo criado para Cluster Trials. Um aluno pertencerá a um determinado grupo se preencher todos os requisitos definidos pelo professor. Cada grupo, pode usar até 5 critérios distintos, dos quais incluem: gender, age, level of education, country and city. Os critérios são armazenados no formato JSON, o que permite, de forma fácil, a recuperação do que foi definido para cada grupo. 
@@ -139,7 +139,7 @@ The code for the application can be found at [GitHub](https://github.com/geekaia
 
 Table X summarizes all available designs within the current version of our software:
 
-|       Design       | Custom Design with PlanOut Script | Custom design generated by third-party software or language | Just selecting among the options <!-- Jacinto, isso daqui quer dizer GUI -->|
+|       Design       | Custom Design with PlanOut Script | Custom design generated by third-party software or language | Just selecting among the options <!-- Jacinto, isso daqui quer dizer GUI - Ricardo, sim -->|
 |:------------------:|:---------------------------------:|:------------------------------------------------:|:--------------------------------:|
 | Parallel with equal proportions          |                 x                 |                         x                        |                 x                |
 | Proportional       |                 x                 |                         x                        |                 x                |
@@ -183,9 +183,11 @@ In our application, this design is selected using the *Uniform* choice (Figure 1
 
 It is possible to change the allocation proportion across arms selecting the *Proportion* parameter. For example, for a design with a 2:1 proportion we would allocate 0.66 and 0.33 through the graphical user interface (GUI). Alternatively, the following script could be used:
 
-<!-- jacinto, como 0.66 + 0.33 não é igual a 1, daria pra fazer algo como usar uma função que gerasse o valor numérico de 1/3 e 2/3? -->
+<!-- jacinto, como 0.66 + 0.33 não é igual a 1, daria pra fazer algo como usar uma função que gerasse o valor numérico de 1/3 e 2/3? 
+Ricardo, mudei de 0.6 será que seria melhor 0.667? Precisa?
+-->
 
-	URL = WeightedChoice(choices=CHOICES, weights=[0.66, 0.33], unit=userid)
+	URL = WeightedChoice(choices=CHOICES, weights=[0.67, 0.33], unit=userid)
 	
 
 #### Factorial design
@@ -201,13 +203,31 @@ In our current version, factorial designs are restricted to two factors and two 
 #### Cross-over design
 Para este design, em um primeiro momento os alunos são alocados randomicamente para um Arm, mas durante durante o curso é possível mudar de Arm. Para isto, o professor deve configurar o momento em que o aluno poderá mudar entre os Arms disponíveis. Desta forma, pode-se avaliar se há benefícios quando muda-se o conteúdo aplicado.
 
-<!-- Jacinto, beleza, mas como ele faria essa troca? você pode descrever passo a passo? -->
+<!-- Jacinto, beleza, mas como ele faria essa troca? você pode descrever passo a passo? 
+Ricardo,
+
+Steps: 
+Primeiro periodo
+	- O professor cria um experimento para uma semana
+	- Configura-se via GUI a opção crossover, configura o número de períodos 
+	- Salvar
+
+Segundo período 
+	- O professor cria outro experimento para outra semana 
+	- Via GUI muda para crossover.
+	- No último campo insere-se o ID do experimento do primeiro período 
+	- Salvar
+ Vou enviar um vídeo fazendo definindo experimentos cross-over e Cluster
+ -->
 
 
 #### Cluster design
 Neste este design, ao invés de randomizar entre os Arms disponíveis para alocar o estudante, a unidade a ser randomizada são os grupos definidos pelo professor. Os grupos podem ser criados com as informações do profile como Gender, Age, Escolaridade, Country e City. Caso um grupo já tenha sido randomizado, todos os estudantes que preenchem os requisitos do grupo serão alocados para o Arm do grupo.
 
-<!-- Jacinto, como ficaria o script pra isso? -->
+<!-- Jacinto, como ficaria o script pra isso? Isto não é implementado com Scripts, mas selecionando  
+Ricardo, com scripts não dá para fazer clusters. No máximo conseguimos fazer a estratificação.
+
+-->
 
 
 #### Customized design
@@ -226,7 +246,9 @@ Given the flexibility of the Planout language, it is possible to create a variet
 
 The script above can also be combined with a Bernoulli trial where a certain number of students 
 
-<!-- Jacinto, não entendi o que o script abaixo quer dizer -->
+<!-- Jacinto, não entendi o que o script abaixo quer dizer 
+Ricardo, aqui quer dizer que será extratificado 50% dos alunos do sexo masculino para o Arm A e 50% para o Arm B. Os demais irão para o Arm C. Acho que fica melhor do que usar o UniformChoice no último Arm.
+-->
 
 	p1 = BernoultiTrial(p=0.5, unit=userid);
 	p2 = BernoultiTrial(p=0.5, unit=userid);
@@ -237,7 +259,8 @@ The script above can also be combined with a Bernoulli trial where a certain num
 	{
 	  URL = choices[1]; 
 	} else {
-	  URL = uniformChoice(choices=choices, unit=userid);
+	  URL = choices[2];
+<!--URL = uniformChoice(choices=choices, unit=userid); -->
 	}
 
 ### Video library and documentation
