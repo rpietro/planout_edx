@@ -1,5 +1,10 @@
 # "It is a capital mistake to theorize before you have all the evidence": Educational trial design, randomization and analysis framework integrated into an Open Source Learning Management System
 
+<!-- 
+Title Suggestions: 
+    A Framework for Large Scale Design and Analysis of Randomized (Controlled) Trials and its Application in a MOOC
+ -->
+
 
 <!-- documentation to be translated
 https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments
@@ -20,7 +25,7 @@ Seiji Isotani, PhD
 
 ## Abstract
 
-Although evidence-based education plays a central role defining educational practice and policy, education is largely guided by annecdotal knowledge and non-empirical theories rather than randomized trials. In response to this gap, we have developed a system that combines the Facebook Planout framework for the development of experimental designs and the Open edX system, currently used for Massive Open Online Courses. This system, released under an open source license, allows for the design of complex experiments, including parallel with non-equal proportions, factorial, cluster, cross-over and customized educational trials. We describe its architecture and provide details on its use in the deployment of different educational scenarios. 
+Although evidence-based education plays a central role in defining educational practice and policy, to date education is largely guided by annecdotal knowledge and non-empirical theories rather than randomized trials. In response to this gap, we have developed a system that combines the Facebook Planout framework for the development of experimental designs and the Open edX system, currently used for Massive Open Online Courses. This system, released under an open source license, allows for the design of complex experiments, including parallel with non-equal proportions, factorial, cluster, cross-over and customized educational trials. We describe its architecture and provide details on its use in the deployment of different educational scenarios. 
 
 
 ## Introduction
