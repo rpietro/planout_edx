@@ -255,8 +255,8 @@ The script above can also be combined with a Bernoulli trial where a certain num
 Ricardo, aqui quer dizer que será extratificado 50% dos alunos do sexo masculino para o Arm A e 50% para o Arm B. Os demais irão para o Arm C. Acho que fica melhor do que usar o UniformChoice no último Arm.
 -->
 
-	p1 = BernoultiTrial(p=0.5, unit=userid);
-	p2 = BernoultiTrial(p=0.5, unit=userid);
+	p1 = BernoulliTrial(p=0.5, unit=userid);
+	p2 = BernoulliTrial(p=0.5, unit=userid);
 	if(gender=='m' && p1)
 	{
 	  URL = choices[0];
