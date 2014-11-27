@@ -201,8 +201,8 @@ Ricardo, mudei de 0.6 será que seria melhor 0.667? Precisa?
 In our current version, factorial designs are restricted to two factors and two levels, which can be implemented through the following script:
 
 
-	fat1 = UniformChoice(choices=["1", "2"], unit=userid);
-	fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
+	fat1 = uniformChoice(choices=["1", "2"], unit=userid);
+	fat2 = weightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
 
 
 #### Cross-over design
