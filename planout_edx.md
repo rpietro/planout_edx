@@ -1,5 +1,10 @@
 # "It is a capital mistake to theorize before you have all the evidence": Educational trial design, randomization and analysis framework integrated into an Open Source Learning Management System
 
+<!-- 
+Title Suggestions: 
+    A Framework for Large Scale Design and Analysis of Randomized (Controlled) Trials and its Application in a MOOC
+ -->
+
 
 <!-- documentation to be translated
 https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments
@@ -20,7 +25,7 @@ Seiji Isotani, PhD
 
 ## Abstract
 
-Although evidence-based education plays a central role defining educational practice and policy, education is largely guided by annecdotal knowledge and non-empirical theories rather than randomized trials. In response to this gap, we have developed a system that combines the Facebook Planout framework for the development of experimental designs and the Open edX system, currently used for Massive Open Online Courses. This system, released under an open source license, allows for the design of complex experiments, including parallel with non-equal proportions, factorial, cluster, cross-over and customized educational trials. We describe its architecture and provide details on its use in the deployment of different educational scenarios. 
+Although evidence-based education plays a central role in defining educational practice and policy, to date education is largely guided by annecdotal knowledge and non-empirical theories rather than randomized trials. In response to this gap, we have developed a system that combines the Facebook Planout framework for the development of experimental designs and the Open edX system, currently used for Massive Open Online Courses. This system, released under an open source license, allows for the design of complex experiments, including parallel with non-equal proportions, factorial, cluster, cross-over and customized educational trials. We describe its architecture and provide details on its use in the deployment of different educational scenarios. 
 
 
 ## Introduction
@@ -196,8 +201,8 @@ Ricardo, mudei de 0.6 será que seria melhor 0.667? Precisa?
 In our current version, factorial designs are restricted to two factors and two levels, which can be implemented through the following script:
 
 
-	fat1 = UniformChoice(choices=["1", "2"], unit=userid);
-	fat2 = WeightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
+	fat1 = uniformChoice(choices=["1", "2"], unit=userid);
+	fat2 = weightedChoice(choices=["1", "2"], weights=[0.5, 0.5], unit=userid); 
 
 
 #### Cross-over design
@@ -250,8 +255,8 @@ The script above can also be combined with a Bernoulli trial where a certain num
 Ricardo, aqui quer dizer que será extratificado 50% dos alunos do sexo masculino para o Arm A e 50% para o Arm B. Os demais irão para o Arm C. Acho que fica melhor do que usar o UniformChoice no último Arm.
 -->
 
-	p1 = BernoultiTrial(p=0.5, unit=userid);
-	p2 = BernoultiTrial(p=0.5, unit=userid);
+	p1 = bernoulliTrial(p=0.5, unit=userid);
+	p2 = bernoulliTrial(p=0.5, unit=userid);
 	if(gender=='m' && p1)
 	{
 	  URL = choices[0];
