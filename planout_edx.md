@@ -186,7 +186,7 @@ In our application, this design is selected using the *Uniform* choice (Figure 1
 
 #### Proportional design
 
-It is possible to change the allocation proportion across arms selecting the *Proportion* parameter. For example, for a design with a 2:1 proportion we would allocate 0.66 and 0.33 through the graphical user interface (GUI). Alternatively, the following script could be used:
+It is possible to change the allocation proportion across arms selecting the *Proportion* parameter. For example, for a design with a 2:1 proportion we would allocate 0.6667 and 0.33 through the graphical user interface (GUI). Alternatively, the following script could be used:
 
 <!-- jacinto, como 0.66 + 0.33 não é igual a 1, daria pra fazer algo como usar uma função que gerasse o valor numérico de 1/3 e 2/3? 
 Ricardo, mudei de 0.6 será que seria melhor 0.667? Precisa?
@@ -206,24 +206,7 @@ In our current version, factorial designs are restricted to two factors and two 
 
 
 #### Cross-over design
-Para este design, em um primeiro momento os alunos são alocados randomicamente para um Arm, mas durante durante o curso é possível mudar de Arm. Para isto, o professor deve configurar o momento em que o aluno poderá mudar entre os Arms disponíveis. Desta forma, pode-se avaliar se há benefícios quando muda-se o conteúdo aplicado.
-
-<!-- Jacinto, beleza, mas como ele faria essa troca? você pode descrever passo a passo? 
-Ricardo,
-
-Steps: 
-Primeiro periodo
-	- O professor cria um experimento para uma semana
-	- Configura-se via GUI a opção crossover, configura o número de períodos 
-	- Salvar
-
-Segundo período 
-	- O professor cria outro experimento para outra semana 
-	- Via GUI muda para crossover.
-	- No último campo insere-se o ID do experimento do primeiro período 
-	- Salvar
- Vou enviar um vídeo fazendo definindo experimentos cross-over e Cluster
- -->
+In this design, students in an intervention are progressively randomized to different intervention across the duration of the study. The study designer should therefore establish when the change in intervention will occur. <!--  tem de explicar melhor essa parte: No último campo insere-se o ID do experimento do primeiro período  -->
 
 
 #### Cluster design
@@ -249,10 +232,12 @@ Given the flexibility of the Planout language, it is possible to create a variet
   		URL = uniformChoice(choices = choices, unit = userid);
 	}
 
-The script above can also be combined with a Bernoulli trial where a certain number of students 
+The script above can also be combined with a Bernoulli trial where a certain number of students. 
 
 <!-- Jacinto, não entendi o que o script abaixo quer dizer 
 Ricardo, aqui quer dizer que será extratificado 50% dos alunos do sexo masculino para o Arm A e 50% para o Arm B. Os demais irão para o Arm C. Acho que fica melhor do que usar o UniformChoice no último Arm.
+
+não entendi quais demais na explicação acima
 -->
 
 	p1 = bernoulliTrial(p=0.5, unit=userid);
