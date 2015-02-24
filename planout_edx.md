@@ -57,13 +57,15 @@ Ricardo - usuários são inseridos nos grupos na primeira visualização do cont
    -->
 
 
-The edX development team recently released the module called “split_test” which can enable the creation of content experiments. However, this module is limited in terms of experimental design, basically are possible to design only four kinds of configuration to assign students in the groups. So, is possible to set the group assignments as: dynamic, random, evenly distributed and permanent \cite{
+The edX development team recently released the module called “split_test” which can enable the creation of content experiments. However, this module is limited in terms of experimental design, basically is possible to design only four kinds of configuration to assign students to the groups. So, is possible to set the group assignments as: dynamic, random, evenly distributed and permanent \cite{
 http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html#set-up-group-configuration-for-olx-courses}.
 
 
-Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely parallel with proportions other than 1:1, cross-over, cluster and factorial, as well as possible custom variations resulting from adaptations or combinations of each of these. Each of these designs is graphically summarized under Figure 1.
+Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely parallel with proportions other than 1:1, cross-over, cluster and factorial, as well as possible custom variations resulting from adaptations or combinations of each of these. Each of these designs is <!--graphically --> summarized under <!--Figure --> Table 1.
 
-<!-- Jacinto, seria bom colocar um gráfico simples que sumarize todos esses designs porque daí a gente não precisa ficar repetindo as explicações mais para baixo -->
+<!-- Jacinto, seria bom colocar um gráfico simples que sumarize todos esses designs porque daí a gente não precisa ficar repetindo as explicações mais para baixo.. 
+
+Oi, lembrei que eu já havia elencado todos os designs na Tabela 1, mas, caso precise, posso puxar a tabela para cima. -->
 
 
 ### Requisites and informal use cases
@@ -91,7 +93,6 @@ Open edX's architecture is based on a group of modular components, including Stu
 Figure XXX demonstrates the main elements in this architecture, containing the CMS and LMS. The CMS provides a group of tools for the authoring of courses. It also allows for the addition of items such as the pass and fail criteria, settings for learner activity and content import and export. The CMS also makes available resources such as videos, HTML pages, problems and forum discussions.
 
 ![Open edX Architecture](./img/studiomapping.jpg "Open edX Architecture")
-
 
 
 The LMS contains a number of methods that allows for learners to enroll in courses, interact with content made available through the CMS. LMS also allows course staff to extract learner data from each course.
@@ -123,14 +124,14 @@ Figure X displays and a partial Entity Relationship Diagram for our software. Th
 In order to create the integration between Open edX and PlanOut, and make possible to load designs created by third-party software. We have added the following entities: 
 
 
-<!-- might transform below into a table -->
-
-* ExperimentDefinition: the primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table. 
-* OptionsExperiment: stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.
-* StrategyRandomization: this entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an operator, script or design. <!-- Jacinto, o que é um operator? o que é um design? acho que essas coisas precisam ser definidas  --> As a consequece, individual students will only be in a single arm across all experiments.
-* UserChoiceExperiment: this entity defines which arm was allocated during randomization, by inserting an entry that is defined under Design in StrategyRandomization. This entity ensures that, at a later moment, users might recover and use the content of the Arm where they have been allocated.
-* AnonyMousPost: this entity stores the unique identifier for the comment as well as the user, which allows for the identificatio of an anonymous post. This feature allows that, for example, group users only have access to posts made within their own group.
-* GroupsCluster -- cada registro desta entidade descreve um grupo criado para Cluster Trials. Um aluno pertencerá a um determinado grupo se preencher todos os requisitos definidos pelo professor. Cada grupo, pode usar até 5 critérios distintos, dos quais incluem: gender, age, level of education, country and city. Os critérios são armazenados no formato JSON, o que permite, de forma fácil, a recuperação do que foi definido para cada grupo. 
+| *Entity*                | *Description*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ExperimentDefinition  | The primary entity, where an experiment is identified in Open edX. For each time period in a course, the instructor can create an entry in this table.                                                                                                                                                                                                                                                                                                                                         |
+| OptionsExperiment     | Stores address which will be used to recover sections in the experiment. Each entry in this entity represent an experimental arm.                                                                                                                                                                                                                                                                                                                                                              |
+| StrategyRandomization | This entity allows the instructor to define a design through a PlanOut script or use the operators during the randomization process. When creating a randomized experiment, the default is UniformChoice. In our current version, the instructor can only define a single experimental design for the entire course, this been made through an PlanOut random assignment operator, script or design. As a consequece, individual students will only be in a single arm across all experiments. |
+| UserChoiceExperiment  | This entity defines which arm was allocated during randomization, by inserting an entry that is defined under Design in StrategyRandomization. This entity ensures that, at a later moment, users might recover and use the content of the Arm where they have been allocated.                                                                                                                                                                                                                 |
+| AnonyMousPost         | This entity stores the unique identifier for the comment as well as the user, which allows for the identificatio of an anonymous post. This feature allows that, for example, group users only have access to posts made within their own group.                                                                                                                                                                                                                                               |
+| GroupsCluster         | This entity stores the groups created for a Cluster Trial. The groups are describe with 1 to 5 criterias that can include: gender, age, level of education, country and city.                                                                                                                                                                                                                                                                                                                  |
 
 
 The entities auth_user are standard within any Django application. In our project, this entiry identifies the experiment owner and the respective Arms allocated within the LMS. Auth_profile is where data about learners can be extracted, such as baseline and socio-demographic variables. Finally, some of the data are passes are an argument to the scripts within Planout which allows for the stratification of a randomization schedule.
