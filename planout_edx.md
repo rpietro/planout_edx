@@ -50,9 +50,16 @@ When organizing courses, instructors are presented with the edX Studio Content M
 
 ### Existing randomization within Open edX
 
+<!-- 
 There have been previous attempts to develop a randomization component to Open edX <!-- https://github.com/edx/edx-platform/wiki/Split-Testing -->. More recently, the *split_test* component was released so that a course can be designed to contain one or more parallel trials. This randomization scheme allows for the following allocation schedules: (1) Dynamic, where groups are formed in following the order in which they view the content <!-- Jacinto, não entendi essa ultima explicação
 Ricardo - usuários são inseridos nos grupos na primeira visualização do conteúdo (no LMS quando clicado em Courseware) 
-   -->, (2) Random, where students are allocated at random to pre-established grupo, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the group. <!-- ref  Ricardo http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html-->
+   -->, (2) Random, where students are allocated at random to pre-established group, (3) Evenly distributed, where students are distributed in equal proportions among the existing groups and (4) Permanent, where students remain in the same group independent from the number of experiments in the MOOC course. <!-- ref  Ricardo http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html--> 
+   -->
+
+
+The edX development team recently released the module called “split_test” which can enable the creation of content experiments. However, this module is limited in terms of experimental design, basically are possible to design only four kinds of configuration to assign students in the groups. So, is possible to set the group assignments as: dynamic, random, evenly distributed and permanent \cite{
+http://edx-partner-course-staff.readthedocs.org/en/latest/content_experiments/content_experiments_configure.html#set-up-group-configuration-for-olx-courses}.
+
 
 Although this system is certainly an advance, it does not match the most commonly alternative trial designs in educational research, namely parallel with proportions other than 1:1, cross-over, cluster and factorial, as well as possible custom variations resulting from adaptations or combinations of each of these. Each of these designs is graphically summarized under Figure 1.
 
