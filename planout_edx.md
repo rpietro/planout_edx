@@ -134,14 +134,19 @@ In order to create the integration between Open edX and PlanOut, and make possib
 | GroupsCluster         | This entity stores the groups created for a Cluster Trial. The groups are describe with 1 to 5 criterias that can include: gender, age, level of education, country and city.                                                                                                                                                                                                                                                                                                                  |
 
 
-The entities auth_user are standard within any Django application. In our project, this entiry identifies the experiment owner and the respective Arms allocated within the LMS. Auth_profile is where data about learners can be extracted, such as baseline and socio-demographic variables. Finally, some of the data are passes are an argument to the scripts within Planout which allows for the stratification of a randomization schedule.
+The entities auth_user are standard within any Django application. In our project, this entiry identifies the experiment owner and the respective Arms allocated within the LMS. Auth_profile is where data about learners can be extracted, such as baseline and socio-demographic variables. Finally, some of the data are passes are an argument to the scripts within PlanOut which allows for the stratification of a randomization schedule.
 
 
 ## Results
 
-The code for the application can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). 
+The code for the edx-platform can be found at [GitHub](https://github.com/geekaia/edx-platform), licensed under the [Affero General Public License](http://en.wikipedia.org/wiki/Affero_General_Public_License) (AGLP). The module developed is under [Apache 2](http://en.wikipedia.org/wiki/Apache_License) license and available at [GitHub](https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiments).
 
-<!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx http://iblstudios.com/open-edx-gets-more-open-xblock-api-license-is-changed-from-aglp-to-apache-2-0/ -->
+<!-- jacinto, eu trocaria a licensa pra apache 2 como eu mencionei no artigo, porque essa é a nova direção dada pelo grupo coordenando o open edx http://iblstudios.com/open-edx-gets-more-open-xblock-api-license-is-changed-from-aglp-to-apache-2-0/ 
+
+Acredito que parte do código não dê para fazer isso, pq a programação que fiz está muito integrada ao código do edX. Por conta disso, pode ser melhor deixar como está. 
+
+O restante do código adicionei na licença Apache 2 
+-->
 
 ### Available designs
 
@@ -189,11 +194,8 @@ In our application, this design is selected using the *Uniform* choice (Figure 1
 
 #### Proportional design
 
-It is possible to change the allocation proportion across arms selecting the *Proportion* parameter. For example, for a design with a 2:1 proportion we would allocate 0.6667 and 0.33 through the graphical user interface (GUI). Alternatively, the following script could be used:
+It is possible to change the allocation proportion across arms selecting the *Proportion* parameter. For example, for a design with a 2:1 proportion we would allocate 0.67 and 0.33 through the graphical user interface (GUI). Alternatively, the following script could be used:
 
-<!-- jacinto, como 0.66 + 0.33 não é igual a 1, daria pra fazer algo como usar uma função que gerasse o valor numérico de 1/3 e 2/3? 
-Ricardo, mudei de 0.6 será que seria melhor 0.667? Precisa?
--->
 
 	URL = WeightedChoice(choices=CHOICES, weights=[0.67, 0.33], unit=userid)
 	
