@@ -281,8 +281,17 @@ In conclusion, we expect that future development of this system might lead towar
 
 ### Appendix 
 
+Para verificar se a nossa metodologia desenvolvida funciona, nós criamos um benchmark que envia requisições *http* para o edX LMS, o que permite-nos mostrar graficamente como será distribuído os alunos entre os Arms. Para bencharmk, foram executados os seguintes passos: 
 
-**Appendix A** -- we created a micro-benchmark to evaluate how many students will be in each arm. So, this 
+* Criamos um script em bash que, utilizando o cURL, cadastra 1 000 usuários no edX;
+* Em seguida, outro script encarregava-se de matricular os alunos no MOOC do experimento;
+* Por fim, o terceiro script, para cada design, gerou as requisições no courseware do LMS.
+
+Para cada design de experimento possível em nosso sistema, obtivemos os gráficos abaixo. Para cada gráfico com a distribuição dos alunos entre os Arms, há uma pequena descrição de como o cenário de teste foi configurado. 
+
+
+
+
 
 
 
