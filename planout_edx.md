@@ -657,9 +657,7 @@ https://github.com/geekaia/edx-platform/tree/master/common/djangoapps/experiment
  
 Em nosso protótipo implementamos uma funcionalidade que permite que os estudantes tenham acesso somente aos posts feitos pelo seu grupo. Desta forma, os alunos do Arm A só terão acesso aos posts dos estudantes do Arm A e os alunos do Arm B só terão acesso aos posts do Arm B. -->
 
-
-
-
+### References
 
 Baron, Jon. "Identifying and Implementing Education Practices Supported by Rigorous Evidence: A User Friendly Guide." Journal for Vocational Special Needs Education 26 (2004): 40-54.
 
