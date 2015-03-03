@@ -279,21 +279,34 @@ In conclusion, we expect that future development of this system might lead towar
 
 
 
-### Appendix 
+### Appendix
+To evaluate how our methodology works we made some bash scripts to send *http* requests to edX LMS. This allow us to show graphically how many  students are allocate between the Arms available in a experiment. 
 
+We have the following steps to alocated students in our tests: 
+* With the first bash script created 1 000 users;
+* With the second bash script enrolled the users in the experiment MOOC;
+* Finally, the last script send requests to the courseware and our edX module is responsible for registering users in an Arm.
+
+<!-- Portugueset  version
 Para verificar se a nossa metodologia desenvolvida funciona, nós criamos um benchmark que envia requisições *http* para o edX LMS, o que permite-nos mostrar graficamente como será distribuído os alunos entre os Arms. Para bencharmk, foram executados os seguintes passos: 
 
 * Criamos um script em bash que, utilizando o cURL, cadastra 1 000 usuários no edX;
 * Em seguida, outro script encarregava-se de matricular os alunos no MOOC do experimento;
-* Por fim, o terceiro script, para cada design, gerou as requisições no courseware do LMS.
+* Por fim, o terceiro script, para cada design, gerou as requisições no courseware do LMS. -->
 
+Below, we show graphically the distribution among the Arms with the random assignment operators available to create experimental designs.
+ 
+<!-- Portuguese version
 Para cada design de experimento possível em nosso sistema, obtivemos os gráficos abaixo. Para cada gráfico com a distribuição dos alunos entre os Arms, há uma pequena descrição de como o cenário de teste foi configurado. 
+-->
+#### UniformChoice choice with two and four Arms
+![UniformChoice with 2 and 4 Arms](./img/UniformChoice2and4Arms.png "UniformChoice with 2 and 4 Arms" )
 
+#### Factorial and Stratified design with Scripts
+![Factorial Stratified](./img/facorialandStratification.png "Factorial and Stratification designs " )
 
-
-
-
-
+#### Trial with the Arm weight specified
+![Arm with Weight](./img/weightTrial.png "Trial with weights: A - 35%, B - 15%, C - 35% and D - 15%" )
 
 
 
