@@ -12,7 +12,6 @@ Jacinto José Franco, MSc
 Ricardo Pietrobon, MD, PhD  
 Joao Ricardo Vissoci, PhD  
 Bruno Melo 
-Gustavo Costa Medeiros, MD  
 Jacson Barros  
 Seiji Isotani, PhD  
 
